@@ -20,7 +20,7 @@ class Cliente{
 	void setNome(string n);
 	void setCpf_cnpj(string c);
 	void setEndereco(string e);
-	void setFone(string f);	
+	void setFone(string f);
 }
 
 #endif
