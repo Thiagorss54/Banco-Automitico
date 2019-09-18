@@ -10,7 +10,7 @@ class Conta{
 	int numConta;
 	double saldo;
 	Cliente cliente;
-	list movimentacoes;
+	list<movimentacoes> movimentacoes;
 	int static proximoNumConta;
 
 	public:
@@ -18,7 +18,7 @@ class Conta{
 	int getNumConta();
 	double getSaldo();
 	Cliente getCliente();
-	list getMovimentacoes();
+	list<movimentacoes> getMovimentacoes();
 	void debitar(double v, string d);
 
 }

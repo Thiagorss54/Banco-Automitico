@@ -22,12 +22,11 @@ Conta::Conta(Cliente c){
 int Conta::getNumConta(){ return numConta; }
 double Conta::getSaldo(){ return saldo; }
 Cliente COonta::getCliente(){ return cliente; }
-list Conta::getMovimentacoes(){ return movimentacoes; }
+list<movimentacao> Conta::getMovimentacoes(){ return movimentacoes; }
 void Conta::debitar(string d, double v){
 	if(saldo - v > 0){
 		movimentacao mov(d,"D",v);
 		saldo -= v;
 	}
 	else{cout << "Saldo insuficiente" << endl;}
-
 }
