@@ -5,6 +5,7 @@
 #include "conta.h"
 #include "cliente.h"
 #include "movimentacao.h"
+using namespace std;
 
 /*class Conta{
 	private:
@@ -21,11 +22,11 @@ Conta::Conta(Cliente c){
 }
 int Conta::getNumConta(){ return numConta; }
 double Conta::getSaldo(){ return saldo; }
-Cliente COonta::getCliente(){ return cliente; }
-list<movimentacao> Conta::getMovimentacoes(){ return movimentacoes; }
-void Conta::debitar(string d, double v){
+Cliente Conta::getCliente(){ return cliente; }
+list<Movimentacao> Conta::getMovimentacoes(){ return movimentacoes;}
+void Conta::debitar(double v, string d){
 	if(saldo - v > 0){
-		movimentacao mov(d,"D",v);
+		Movimentacao mov(d,"D",v);
 		saldo -= v;
 	}
 	else{cout << "Saldo insuficiente" << endl;}

@@ -1,8 +1,8 @@
 #include <iostream>
 #include <string>
-#include <ctime> 
-
+#include <ctime>
 #include "movimentacao.h"
+using namespace std;
 
 Movimentacao::Movimentacao(string d, char op, double v){
 	time_t rawtime;
@@ -13,7 +13,7 @@ Movimentacao::Movimentacao(string d, char op, double v){
 	valor = v;
 }
 
-string Movimentacao::getDataMov{ return dataMov; }
-string Movimentacao::getDescricao{ return descricao; }
-char Movimentacao::getOp{ return debitoCredito; }
-double Movimentacao::getValor{ return valor; }
+string Movimentacao::getDataMov(){ return dataMov; }
+string Movimentacao::getDescricao(){ return descricao; }
+char Movimentacao::getOp(){ return debitoCredito; }
+double Movimentacao::getValor(){ return valor; }

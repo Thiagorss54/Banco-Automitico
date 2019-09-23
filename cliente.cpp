@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
-
 #include "cliente.h"
+using namespace std;
 
 Cliente::Cliente(string n, string c, string e, string f){
 	nomeCliente = n;
@@ -9,11 +9,10 @@ Cliente::Cliente(string n, string c, string e, string f){
 	endereco = e;
 	fone = f;
 }
-
-string Cliente::getNome{ return nomeCliente; }
-string Cliente::getCpf_cnpj{ return cpf_cnpj; }
-string Cliente::getEndereco{ return endereco; }
-string Cliente::getFone{ return fone; }
+string Cliente::getNome(){ return nomeCliente; }
+string Cliente::getCpf_cnpj(){ return cpf_cnpj; }
+string Cliente::getEndereco(){ return endereco; }
+string Cliente::getFone(){ return fone; }
 
 void Cliente::setNome(string n){ nomeCliente = n; }
 void Cliente::setCpf_cnpj(string c){ cpf_cnpj = c; }

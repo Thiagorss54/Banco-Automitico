@@ -1,10 +1,10 @@
+#ifndef BANCO_H
+#define BANCO_H
+
 #include <iostream>
 #include <list>
 #include <string>
 #include <vector>
-
-#IFNDEF BANCO_H
-#DEFINE BANCO_H
 
 class Banco{
 	private:
@@ -18,6 +18,6 @@ class Banco{
 	void setconta(Conta c);
 
 
-}
+};
 
-#endif
+#endif //BANCO_H
