@@ -15,6 +15,8 @@ Banco::Banco(string nBanco){
 void Banco::setcliente(Cliente c){
   cliente.push_back(c);
 }
+
+
 void Banco::setconta(Conta c){
   contas.push_back(c);
 }
