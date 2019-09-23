@@ -28,6 +28,13 @@ void Conta::debitar(double v, string d){
 	if(saldo - v > 0){
 		Movimentacao mov(d,"D",v);
 		saldo -= v;
+		movimentacoes.push_back(mov);
 	}
 	else{cout << "Saldo insuficiente" << endl;}
 }
+void Conta::creditar(double v, string d){
+	Movimentacao mov(d,"D",v);
+	saldo += v;
+	movimentacoes.push_back(mov);
+}
+

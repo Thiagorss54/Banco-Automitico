@@ -26,6 +26,7 @@ class Conta{
 	Cliente getCliente();
 	list<Movimentacao> getMovimentacoes();
 	void debitar(double v, string d);
+	void creditar(double v, string d);
 
 };
 
