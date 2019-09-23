@@ -1,8 +1,9 @@
+#ifndef CLIENTE_H
+#define CLIENTE_H
+
 #include <iostream>
 #include <string>
-
-#IFNDEF CLIENTE_H
-#DEFINE CLIENTE_H
+using std::string;
 
 class Cliente{
 	private:
@@ -21,6 +22,6 @@ class Cliente{
 	void setCpf_cnpj(string c);
 	void setEndereco(string e);
 	void setFone(string f);
-}
+};
 
-#endif
+#endif //CLIENTE_H
