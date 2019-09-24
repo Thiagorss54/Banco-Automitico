@@ -11,6 +11,7 @@ class Cliente{
 	string cpf_cnpj;
 	string endereco;
 	string fone;
+	//gabriel gay
 
 	public:
 	Cliente(string n, string c, string e, string f);
