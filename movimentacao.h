@@ -3,11 +3,14 @@
 
 #include <iostream>
 #include <string>
+#include <vector>
+#include <ctime>
+
 using std::string;
 
 class Movimentacao{
 	private:
-	string dataMov;
+	vector<string> dataMov;
 	string descricao;
 	char debitoCredito;
 	double valor;
