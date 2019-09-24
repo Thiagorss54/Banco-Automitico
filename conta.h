@@ -27,6 +27,9 @@ class Conta{
 	list<Movimentacao> getMovimentacoes();
 	void debitar(double v, string d);
 	void creditar(double v, string d);
+	list<Movimentacao> extrato();
+	list<Movimentacao> extrato(vector<string> di);
+	list<Movimentacao> extrato(vector<string> di, vector<string> df);
 
 };
 
