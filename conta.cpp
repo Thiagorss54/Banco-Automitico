@@ -17,8 +17,6 @@ using namespace std;
 	int static proximoNumConta;
 */
 
-//jfisjvi
-
 Conta::Conta(Cliente c){
 	saldo = 0;
 	cliente = c;
