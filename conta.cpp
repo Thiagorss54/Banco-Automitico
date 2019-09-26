@@ -11,9 +11,6 @@ using namespace std;
 /*class Conta{
 	private:
 	int numConta;
-	double saldo;
-	Cliente cliente;
-	list movimentacoes;
 	int static proximoNumConta;
 */
 
@@ -63,7 +60,7 @@ list<Movimentacao> Conta::extrato(){
 			return res;
 		}
 		else {
-			cout << "O extrato est� vazio para o m�s corrente." << endl;
+			cout << "O extrato esta vazio para o mes corrente." << endl;
 		}
 	}
 	else { cout << "A conta nao tem movimentacoes." ;}
@@ -81,10 +78,10 @@ list<Movimentacao> Conta::extrato(vector<string> di){
 			return res;
 		}
 		else {
-			cout << "O extrato est� vazio a partir da data selecionada." << endl;
+			cout << "O extrato esta vazio a partir da data selecionada." << endl;
 		}
 	}
-	else { cout << "A conta n�o tem movimentacoes." ;}
+	else { cout << "A conta nao tem movimentacoes." ;}
 }
 
 list<Movimentacao> Conta::extrato(vector<string> di, vector<string> df){
@@ -99,8 +96,8 @@ list<Movimentacao> Conta::extrato(vector<string> di, vector<string> df){
 			return res;
 		}
 		else {
-			cout << "O extrato est� vazio para a data selecionada." << endl;
+			cout << "O extrato esta vazio para a data selecionada." << endl;
 		}
 	}
-	else { cout << "A conta n�o tem movimentacoes."; }
+	else { cout << "A conta nao tem movimentacoes."; }
 }
