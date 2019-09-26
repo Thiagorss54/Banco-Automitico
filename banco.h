@@ -4,7 +4,8 @@
 #include <iostream>
 #include <list>
 #include <string>
-#include <vector>
+#include <map>
+
 #include "cliente.h"
 #include "conta.h"
 
@@ -13,8 +14,9 @@ using namespace std;
 class Banco{
 	private:
 	string nomeBanco;
-	std::vector<Cliente> cliente;//Por que ñ usar map???
-	std::vector<Conta> contas;
+	list<Cliente> cliente;//Por que ñ usar map???
+	list<Conta> contas;
+	map < Cliente, Conta > ControleClienteConta;
 
 	public:
 	Banco(string nomeBanco);
