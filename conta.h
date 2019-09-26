@@ -14,12 +14,13 @@ class Conta{
 	int numConta;
 	double saldo;
 	Cliente cliente;
-	list<Movimentacao> movimentacoes;
+	list<Movimentacao> movimentacoes; 
 	int static proximoNumConta;
 	friend class Cliente;
 	friend class Movimentacao;
 
 	public:
+	
 	Conta(Cliente c);
 	int getNumConta();
 	double getSaldo();

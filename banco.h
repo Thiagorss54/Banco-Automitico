@@ -5,6 +5,10 @@
 #include <list>
 #include <string>
 #include <vector>
+#include "cliente.h"
+#include "conta.h"
+
+using namespace std;
 
 class Banco{
 	private:
