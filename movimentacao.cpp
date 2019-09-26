@@ -27,7 +27,7 @@ Movimentacao::Movimentacao(string d, char op, double v){
 	valor = v;
 }
 
-string Movimentacao::getDataMov(){ return dataMov; }
+vector<string> Movimentacao::getDataMov(){ return dataMov; }
 string Movimentacao::getDescricao(){ return descricao; }
 char Movimentacao::getOp(){ return debitoCredito; }
 double Movimentacao::getValor(){ return valor; }

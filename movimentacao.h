@@ -7,6 +7,7 @@
 #include <ctime>
 
 using std::string;
+using std::vector;
 
 class Movimentacao{
 	private:
@@ -17,7 +18,7 @@ class Movimentacao{
 
 	public:
 	Movimentacao(string d, char op, double v);
-	string getDataMov();
+	vector<string> getDataMov();
 	string getDescricao();
 	char getOp();
 	double getValor();

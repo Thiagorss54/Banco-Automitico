@@ -41,7 +41,7 @@ void Conta::creditar(double v, string d){
 	movimentacoes.push_back(mov);
 }
 
-list<Movimentacao> extrato(){
+list<Movimentacao> Conta::extrato(){
 	if (!movimentacoes.empty()) {
 		time_t rawtime;
 		string a, m;
@@ -63,17 +63,13 @@ list<Movimentacao> extrato(){
 			return res;
 		}
 		else {
-			cout << "O extrato está vazio para o mês corrente." << endl;
+			cout << "O extrato estï¿½ vazio para o mï¿½s corrente." << endl;
 		}
 	}
-	else { cout << "A conta nao tem movimentacoes." }
+	else { cout << "A conta nao tem movimentacoes." ;}
 }
 
-
-
-}
-
-list<Movimentacao> extrato(vector<string> di){
+list<Movimentacao> Conta::extrato(vector<string> di){
 	if (!movimentacoes.empty()) {
 		list<Movimentacao> res;
 		for (list<Movimentacao>::iterator it = movimentacoes.begin(); it != movimentacoes.end(); it++) {
@@ -85,13 +81,13 @@ list<Movimentacao> extrato(vector<string> di){
 			return res;
 		}
 		else {
-			cout << "O extrato está vazio a partir da data selecionada." << endl;
+			cout << "O extrato estï¿½ vazio a partir da data selecionada." << endl;
 		}
 	}
-	else { cout << "A conta não tem movimentacoes." }
+	else { cout << "A conta nï¿½o tem movimentacoes." ;}
 }
 
-list<Movimentacao> extrato(vector<string> di, vector<string> df){
+list<Movimentacao> Conta::extrato(vector<string> di, vector<string> df){
 	if(!movimentacoes.empty()){
 		list<Movimentacao> res;
 		for(list<Movimentacao>::iterator it = movimentacoes.begin(); it != movimentacoes.end(); it++){
@@ -103,8 +99,8 @@ list<Movimentacao> extrato(vector<string> di, vector<string> df){
 			return res;
 		}
 		else {
-			cout << "O extrato está vazio para a data selecionada." << endl;
+			cout << "O extrato estï¿½ vazio para a data selecionada." << endl;
 		}
 	}
-	else { cout << "A conta não tem movimentacoes." }
+	else { cout << "A conta nï¿½o tem movimentacoes."; }
 }
