@@ -6,6 +6,7 @@
 #include "conta.h"
 #include "cliente.h"
 #include "movimentacao.h"
+#include "banco.h"
 
 
 Banco::Banco(string nBanco){

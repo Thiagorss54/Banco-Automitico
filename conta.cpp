@@ -18,7 +18,7 @@ using namespace std;
 */
 
 Conta::Conta(Cliente c){
-	saldo = 0;
+	saldo = 0.0;
 	cliente = c;
 }
 int Conta::getNumConta(){ return numConta; }
@@ -28,7 +28,7 @@ list<Movimentacao> Conta::getMovimentacoes(){ return movimentacoes;}
 
 void Conta::debitar(double v, string d){
 	if(saldo - v > 0){
-		Movimentacao mov(d,"D",v);
+		Movimentacao mov(d,'D',v);
 		saldo -= v;
 		movimentacoes.push_back(mov);
 	}
@@ -36,7 +36,7 @@ void Conta::debitar(double v, string d){
 }
 
 void Conta::creditar(double v, string d){
-	Movimentacao mov(d,"D",v);
+	Movimentacao mov(d,'D',v);
 	saldo += v;
 	movimentacoes.push_back(mov);
 }
@@ -55,7 +55,7 @@ list<Movimentacao> Conta::extrato(){
 		m = buffer;
 		list<Movimentacao> res;
 		for (list<Movimentacao>::iterator it = movimentacoes.begin(); it != movimentacoes.end(); it++) {
-			if (*it.dataMov[0] == a  && *it.dataMov[1] == m) {
+			if (it->dataMov[0] == a  && it->dataMov[1] == m) {
 				res.push_back(*it);
 			}
 		}
@@ -73,7 +73,7 @@ list<Movimentacao> Conta::extrato(vector<string> di){
 	if (!movimentacoes.empty()) {
 		list<Movimentacao> res;
 		for (list<Movimentacao>::iterator it = movimentacoes.begin(); it != movimentacoes.end(); it++) {
-			if (*it.dataMov[0] >= di[0] && *it.dataMov[1] >= di[1] && *it.dataMov[2] >= di[2]) {
+			if (it->dataMov[0] >= di[0] && it->dataMov[1] >= di[1] && it->dataMov[2] >= di[2]) {
 				res.push_back(*it);
 			}
 		}
@@ -91,7 +91,7 @@ list<Movimentacao> Conta::extrato(vector<string> di, vector<string> df){
 	if(!movimentacoes.empty()){
 		list<Movimentacao> res;
 		for(list<Movimentacao>::iterator it = movimentacoes.begin(); it != movimentacoes.end(); it++){
-			if (*it.dataMov[0] >= di[0] && *it.dataMov[1] >= di[1] && *it.dataMov[2] >= di[2] && *it.dataMov[0] <= df[0] && *it.dataMov[1] <= di[1] && *it.dataMov[2] <= di[2]){
+			if (it->dataMov[0] >= di[0] && it->dataMov[1] >= di[1] && it->dataMov[2] >= di[2] && it->dataMov[0] <= df[0] && it->dataMov[1] <= di[1] && it->dataMov[2] <= di[2]){
 				res.push_back(*it);
 			}
 		}
