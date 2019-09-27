@@ -14,13 +14,13 @@ class Conta{
 	int numConta;
 	double saldo;
 	Cliente cliente;
-	list<Movimentacao> movimentacoes; 
+	list<Movimentacao> movimentacoes;
 	int static proximoNumConta;
 	friend class Cliente;
 	friend class Movimentacao;
 
 	public:
-	
+
 	Conta(Cliente c);
 	int getNumConta();
 	double getSaldo();
@@ -31,6 +31,8 @@ class Conta{
 	list<Movimentacao> extrato();
 	list<Movimentacao> extrato(vector<string> di);
 	list<Movimentacao> extrato(vector<string> di, vector<string> df);
+
+	void operator =(const Conta& c);
 
 };
 

@@ -101,3 +101,12 @@ list<Movimentacao> Conta::extrato(vector<string> di, vector<string> df){
 	}
 	else { cout << "A conta nao tem movimentacoes."; }
 }
+
+void Conta::operator =(const Conta& c){
+	this->numConta = c.numConta;
+  this->cliente = c.cliente;
+  this->saldo = c.saldo;
+  this->movimentacoes = c.movimentacoes;
+	this->proximoNumConta = c.proximoNumConta;
+
+}

@@ -21,3 +21,11 @@ void Banco::setcliente(Cliente c){
 void Banco::setconta(Conta c){
   contas.push_back(c);
 }
+
+void Banco::operator =(const Banco& c){
+  this->nomeBanco = c.nomeBanco;
+  this->cliente = c.cliente;
+  this->contas = c.contas;
+  this->ControleClienteConta = c.ControleClienteConta;
+
+}
