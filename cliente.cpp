@@ -3,6 +3,7 @@
 #include "cliente.h"
 using namespace std;
 
+Cliente::Cliente(){};
 Cliente::Cliente(string n, string c, string e, string f){
 	nomeCliente = n;
 	cpf_cnpj = c;
@@ -18,3 +19,10 @@ void Cliente::setNome(string n){ nomeCliente = n; }
 void Cliente::setCpf_cnpj(string c){ cpf_cnpj = c; }
 void Cliente::setEndereco(string e){ endereco = e; }
 void Cliente::setFone(string f){ fone = f; }
+
+void Cliente::operator =(const Cliente& c){
+	this->nomeCliente = c.nomeCliente;
+	this->cpf_cnpj = c.cpf_cnpj;
+	this->endereco = c.endereco;
+	this->fone = c.fone;
+}

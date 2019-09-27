@@ -13,15 +13,17 @@ class Cliente{
 	string fone;
 
 	public:
-	Cliente(string n, string c, string e, string f);
-	string getNome();
-	string getCpf_cnpj();
-	string getEndereco();
-	string getFone();
-	void setNome(string n);
-	void setCpf_cnpj(string c);
-	void setEndereco(string e);
-	void setFone(string f);
+		Cliente();
+		Cliente(string n, string c, string e, string f);
+		void operator =(const Cliente& c);
+		string getNome();
+		string getCpf_cnpj();
+		string getEndereco();
+		string getFone();
+		void setNome(string n);
+		void setCpf_cnpj(string c);
+		void setEndereco(string e);
+		void setFone(string f);
 };
 
 #endif //CLIENTE_H
