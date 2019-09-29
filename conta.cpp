@@ -2,7 +2,7 @@
 #include <list>
 #include <string>
 #include <ctime>
-
+#include "movimentacao.h"
 #include "conta.h"
 #include "cliente.h"
 //#include "movimentacao.h"
@@ -13,9 +13,25 @@ void Conta::print(){
 		cout << "cliente:" << endl;
 		cliente->print();
 		cout << "saldo = " << saldo << endl;
+		cout << "movimentacao: "<<endl;
+		movimentacao->print();
 }
 
 int Conta::proximoNumConta = 0;
+
+void Conta::debitar(float valor_debitado,string descricao,char deb_cred){
+	movimentacao->setDescricao(descricao);
+	movimentacao->setOp(deb_cred);
+	movimentacao->setValor(valor_debitado);
+	int aux_saldo = saldo - valor_debitado;
+//	if(aux_saldo < 0){
+//		cout<< "saldo insuficiente" << endl;
+//	}
+//	else{
+//		saldo = aux_saldo;
+//	}
+
+}
 
 Conta::Conta(Cliente *c){
 	saldo = 0.0;

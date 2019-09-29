@@ -15,7 +15,6 @@ class Movimentacao{
 	string descricao;
 	char debitoCredito;
 	double valor;
-	friend class Conta;
 
 	public:
 	Movimentacao(string d, char op, double v);
@@ -23,6 +22,11 @@ class Movimentacao{
 	string getDescricao();
 	char getOp();
 	double getValor();
+	void setDescricao(string descr);
+	void setOp(char db);
+	void setValor(double v);
+	void print();
+
 };
 
 #endif //MOVIMENTACAO_H

@@ -4,6 +4,7 @@
 #include <list>
 #include <string>
 #include "cliente.h"
+#include "movimentacao.h"
 
 using namespace std;
 
@@ -12,7 +13,7 @@ class Conta{
 	int numConta;
 	double saldo;
 	Cliente *cliente;	
-
+	Movimentacao *movimentacao;
 	public:
 	static int proximoNumConta;
 
@@ -21,6 +22,7 @@ class Conta{
 	double getSaldo();
 	Cliente* getCliente();
 	~Conta();
+	void debitar(float valor_debitado,string descricao,char deb_cred);
 	void print();
 };
 
