@@ -5,24 +5,29 @@
 
 #include "conta.h"
 #include "cliente.h"
-#include "movimentacao.h"
+//#include "movimentacao.h"
 using namespace std;
 
-/*class Conta{
-	private:
-	int numConta;
-	int static proximoNumConta;
-*/
+void Conta::print(){
+		cout << "numero = " << numConta << endl;
+		cout << "cliente:" << endl;
+		cliente->print();
+		cout << "saldo = " << saldo << endl;
+}
 
-Conta::Conta(Cliente c){
+int Conta::proximoNumConta = 0;
+
+Conta::Conta(Cliente *c){
 	saldo = 0.0;
 	cliente = c;
+	proximoNumConta++;
+	numConta = proximoNumConta;
 }
 int Conta::getNumConta(){ return numConta; }
 double Conta::getSaldo(){ return saldo; }
-Cliente Conta::getCliente(){ return cliente; }
-list<Movimentacao> Conta::getMovimentacoes(){ return movimentacoes;}
-
+Cliente* Conta::getCliente(){ return cliente; }
+//list<Movimentacao> Conta::getMovimentacoes(){ return movimentacoes;}
+/* 
 void Conta::debitar(double v, string d){
 	if(saldo - v > 0){
 		Movimentacao mov(d,'D',v);
@@ -110,3 +115,5 @@ void Conta::operator =(const Conta& c){
 	this->proximoNumConta = c.proximoNumConta;
 
 }
+*/
+Conta::~Conta(){}

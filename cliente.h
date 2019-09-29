@@ -3,7 +3,7 @@
 
 #include <iostream>
 #include <string>
-using std::string;
+using namespace std;
 
 class Cliente{
 	private:
@@ -24,6 +24,8 @@ class Cliente{
 		void setCpf_cnpj(string c);
 		void setEndereco(string e);
 		void setFone(string f);
+		~Cliente();
+		void print();
 };
 
 #endif //CLIENTE_H
