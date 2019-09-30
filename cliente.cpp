@@ -19,10 +19,16 @@ void Cliente::setNome(string n){ nomeCliente = n; }
 void Cliente::setCpf_cnpj(string c){ cpf_cnpj = c; }
 void Cliente::setEndereco(string e){ endereco = e; }
 void Cliente::setFone(string f){ fone = f; }
-
 void Cliente::operator =(const Cliente& c){
 	this->nomeCliente = c.nomeCliente;
 	this->cpf_cnpj = c.cpf_cnpj;
 	this->endereco = c.endereco;
 	this->fone = c.fone;
+}
+Cliente::~Cliente(){}
+void Cliente::print(){
+	cout<<"nome = "<< nomeCliente <<endl;
+	cout<< "cpf = " << cpf_cnpj << endl;
+	cout <<"endereco = " << endereco << endl;
+	cout << "telefone = " << fone << endl;
 }

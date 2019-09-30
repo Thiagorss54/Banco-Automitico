@@ -3,37 +3,27 @@
 #include <iostream>
 #include <list>
 #include <string>
-#include "movimentacao.h"
 #include "cliente.h"
+#include "movimentacao.h"
 
-using std::list;
-using std::string;
+using namespace std;
 
 class Conta{
 	private:
 	int numConta;
 	double saldo;
-	Cliente cliente;
-	list<Movimentacao> movimentacoes;
-	int static proximoNumConta;
-	friend class Cliente;
-	friend class Movimentacao;
-
+	Cliente *cliente;	
+	Movimentacao *movimentacao;
 	public:
+	static int proximoNumConta;
 
-	Conta(Cliente c);
+	Conta(Cliente *c);
 	int getNumConta();
 	double getSaldo();
-	Cliente getCliente();
-	list<Movimentacao> getMovimentacoes();
-	void debitar(double v, string d);
-	void creditar(double v, string d);
-	list<Movimentacao> extrato();
-	list<Movimentacao> extrato(vector<string> di);
-	list<Movimentacao> extrato(vector<string> di, vector<string> df);
-
-	void operator =(const Conta& c);
-
+	Cliente* getCliente();
+	~Conta();
+	void debitar(float valor_debitado,string descricao,char deb_cred);
+	void print();
 };
 
 #endif //CONTA_H
