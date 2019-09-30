@@ -15,18 +15,18 @@ using namespace std;
 class Banco{
 	private:
 	string nomeBanco;
-	list<Cliente> cliente;//Por que ñ usar map???
-	list<Conta> contas;
-	map < Cliente, Conta > ControleClienteConta;
+	list<Cliente> listaCliente;
+	list<Conta> listaContas;
 	friend class Cliente;
 	friend class Conta;
 
 	public:
 	Banco(string nomeBanco);
-	void setcliente(Cliente c);
-	void setconta(Conta c);
+	void setCliente(Cliente c);
+	void setConta(Conta c);
 	void operator =(const Banco& c);
-
+	void delCliente(int num);
+	void delConta(int num);
 
 };
 
