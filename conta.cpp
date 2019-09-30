@@ -33,6 +33,7 @@ void Conta::debitar(float valor_debitado,string descricao,char deb_cred){
 
 }
 
+Conta::Conta(){}
 Conta::Conta(Cliente *c){
 	saldo = 0.0;
 	cliente = c;

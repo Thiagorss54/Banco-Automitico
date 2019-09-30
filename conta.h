@@ -16,7 +16,7 @@ class Conta{
 	Movimentacao *movimentacao;
 	public:
 	static int proximoNumConta;
-
+	Conta();
 	Conta(Cliente *c);
 	int getNumConta();
 	double getSaldo();
