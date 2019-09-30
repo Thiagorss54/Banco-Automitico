@@ -14,6 +14,7 @@ class Conta{
 	double saldo;
 	Cliente *cliente;	
 	Movimentacao *movimentacao;
+
 	public:
 	static int proximoNumConta;
 	Conta();
