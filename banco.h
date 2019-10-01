@@ -28,7 +28,7 @@ class Banco{
 	void delCliente(int num);
 	void delConta(int num);
 	void deposito(int nconta, double valor);
-	
+
 };
 
 #endif //BANCO_H
