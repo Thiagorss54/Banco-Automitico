@@ -19,17 +19,6 @@ void Conta::print(){
 
 int Conta::proximoNumConta = 0;
 
-// void Conta::debitar(float valor_debitado,string descricao,char deb_cred){
-// 	Movimentacao *x = new Movimentacao(descricao,deb_cred,valor_debitado);
-// 	int aux_saldo = saldo - valor_debitado;
-	// if(aux_saldo < 0){
-	// 	cout<< "saldo insuficiente" << endl;
-	// }
-	// else{
-	// 	saldo = aux_saldo;
-	// }
-
-//}
 void Conta::debitar(double v, string d){
 	if(saldo - v >= 0){
 		Movimentacao mov(d,'D',v);
@@ -95,9 +84,9 @@ list<Movimentacao> Conta::extrato(){
 	else { cout << "A conta nao tem movimentacoes." ;}
 }
 
-/*list<Movimentacao> Conta::extrato(vector<string> di){
+list<Movimentacao> Conta::extrato(vector<string> di){
+	list<Movimentacao> res;
 	if (!movimentacoes.empty()) {
-		list<Movimentacao> res;
 		for (list<Movimentacao>::iterator it = movimentacoes.begin(); it != movimentacoes.end(); it++) {
 			if (it->dataMov[0] >= di[0] && it->dataMov[1] >= di[1] && it->dataMov[2] >= di[2]) {
 				res.push_back(*it);
@@ -108,14 +97,18 @@ list<Movimentacao> Conta::extrato(){
 		}
 		else {
 			cout << "O extrato esta vazio a partir da data selecionada." << endl;
+			return res;
 		}
 	}
-	else { cout << "A conta nao tem movimentacoes." ;}
+	else {
+		cout << "A conta nao tem movimentacoes." ;
+		return res;
+	}
 }
 
 list<Movimentacao> Conta::extrato(vector<string> di, vector<string> df){
+	list<Movimentacao> res;
 	if(!movimentacoes.empty()){
-		list<Movimentacao> res;
 		for(list<Movimentacao>::iterator it = movimentacoes.begin(); it != movimentacoes.end(); it++){
 			if (it->dataMov[0] >= di[0] && it->dataMov[1] >= di[1] && it->dataMov[2] >= di[2] && it->dataMov[0] <= df[0] && it->dataMov[1] <= di[1] && it->dataMov[2] <= di[2]){
 				res.push_back(*it);
@@ -125,12 +118,16 @@ list<Movimentacao> Conta::extrato(vector<string> di, vector<string> df){
 			return res;
 		}
 		else {
-			cout << "O extrato esta vazio para a data selecionada." << endl;
+			cout << "O extrato esta vazio a partir da data selecionada." << endl;
+			return res;
 		}
 	}
-	else { cout << "A conta nao tem movimentacoes."; }
+	else {
+		cout << "A conta nao tem movimentacoes." ;
+		return res;
+	}
 }
-*/
+
 
 
 

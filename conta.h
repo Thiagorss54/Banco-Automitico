@@ -28,6 +28,8 @@ class Conta{
 	void creditar(double v, string d);
 	void print();
 	list<Movimentacao> extrato();
+	list<Movimentacao> extrato(vector<string> di);
+	list<Movimentacao> extrato(vector<string> di, vector<string> df);
 };
 
 #endif //CONTA_H

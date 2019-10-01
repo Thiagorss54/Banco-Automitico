@@ -8,12 +8,7 @@
 using namespace std;
 
 int main(){
-    Cliente *a = new Cliente("Joaoa","121212","Rua do joao","33333333");
-    Conta ca(a);
 
-    ca.creditar(10,"ted enviada");
-    ca.print();
-    cout << endl << endl;
     Cliente b;
     b.setNome("Paulo");
     b.setCpf_cnpj("115654879622");
@@ -27,5 +22,13 @@ int main(){
     cb.debitar(10,"toma");
     cb.print();
 
+    string ai = "2019", mi = "10", di = "02";
+
+    vector<string> d;
+    d.push_back(ai);
+    d.push_back(mi);
+    d.push_back(di);
+    list<Movimentacao> a = cb.extrato(d);
+    cout << a.type() << endl;
 
 }
