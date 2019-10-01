@@ -15,6 +15,7 @@ class Movimentacao{
 	string descricao;
 	char debitoCredito;
 	double valor;
+	friend class Conta;
 
 	public:
 	Movimentacao(string d, char op, double v);
