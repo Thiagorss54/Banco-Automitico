@@ -5,7 +5,7 @@
 #include "movimentacao.h"
 #include "conta.h"
 #include "cliente.h"
-//#include "movimentacao.h"
+#include "movimentacao.h"
 using namespace std;
 
 void Conta::print(){
@@ -13,27 +13,47 @@ void Conta::print(){
 		cout << "cliente:" << endl;
 		cliente->print();
 		cout << "saldo = " << saldo << endl;
-		cout << "movimentacao: "<<endl;
-		movimentacao->print();
+		cout << "movimentacao tamanho: ";
+		cout << movimentacoes.size()<< endl;
 }
 
 int Conta::proximoNumConta = 0;
 
-void Conta::debitar(float valor_debitado,string descricao,char deb_cred){
-	movimentacao->setDescricao(descricao);
-	movimentacao->setOp(deb_cred);
-	movimentacao->setValor(valor_debitado);
-	int aux_saldo = saldo - valor_debitado;
-//	if(aux_saldo < 0){
-//		cout<< "saldo insuficiente" << endl;
-//	}
-//	else{
-//		saldo = aux_saldo;
-//	}
+// void Conta::debitar(float valor_debitado,string descricao,char deb_cred){
+// 	Movimentacao *x = new Movimentacao(descricao,deb_cred,valor_debitado);
+// 	int aux_saldo = saldo - valor_debitado;
+	// if(aux_saldo < 0){
+	// 	cout<< "saldo insuficiente" << endl;
+	// }
+	// else{
+	// 	saldo = aux_saldo;
+	// }
 
+//}
+void Conta::debitar(double v, string d){
+	if(saldo - v >= 0){
+		Movimentacao mov(d,'D',v);
+		saldo -= v;
+		movimentacoes.push_back(mov);
+		for(auto i=movimentacoes.begin();i!=movimentacoes.end();i++){
+			cout << "mov descricao :  "<< i->descricao << endl;
+		}
+	}
+	else{cout << "Saldo insuficiente" << endl;}
 }
 
-Conta::Conta(){}
+void Conta::creditar(double v, string d){
+	Movimentacao mov(d,'C',v);
+	saldo += v;
+	movimentacoes.push_back(mov);
+	for(auto i=movimentacoes.begin();i!=movimentacoes.end();i++){
+		cout << "mov descricao :  "<< i->descricao << endl;
+	}
+}
+
+
+
+// Conta::Conta(){}
 Conta::Conta(Cliente *c){
 	saldo = 0.0;
 	cliente = c;
@@ -44,21 +64,8 @@ int Conta::getNumConta(){ return numConta; }
 double Conta::getSaldo(){ return saldo; }
 Cliente* Conta::getCliente(){ return cliente; }
 //list<Movimentacao> Conta::getMovimentacoes(){ return movimentacoes;}
-/* 
-void Conta::debitar(double v, string d){
-	if(saldo - v > 0){
-		Movimentacao mov(d,'D',v);
-		saldo -= v;
-		movimentacoes.push_back(mov);
-	}
-	else{cout << "Saldo insuficiente" << endl;}
-}
 
-void Conta::creditar(double v, string d){
-	Movimentacao mov(d,'D',v);
-	saldo += v;
-	movimentacoes.push_back(mov);
-}
+
 
 list<Movimentacao> Conta::extrato(){
 	if (!movimentacoes.empty()) {
@@ -88,7 +95,7 @@ list<Movimentacao> Conta::extrato(){
 	else { cout << "A conta nao tem movimentacoes." ;}
 }
 
-list<Movimentacao> Conta::extrato(vector<string> di){
+/*list<Movimentacao> Conta::extrato(vector<string> di){
 	if (!movimentacoes.empty()) {
 		list<Movimentacao> res;
 		for (list<Movimentacao>::iterator it = movimentacoes.begin(); it != movimentacoes.end(); it++) {
@@ -123,14 +130,8 @@ list<Movimentacao> Conta::extrato(vector<string> di, vector<string> df){
 	}
 	else { cout << "A conta nao tem movimentacoes."; }
 }
-
-void Conta::operator =(const Conta& c){
-	this->numConta = c.numConta;
-  this->cliente = c.cliente;
-  this->saldo = c.saldo;
-  this->movimentacoes = c.movimentacoes;
-	this->proximoNumConta = c.proximoNumConta;
-
-}
 */
+
+
+
 Conta::~Conta(){}

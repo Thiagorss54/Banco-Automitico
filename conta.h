@@ -12,8 +12,9 @@ class Conta{
 	private:
 	int numConta;
 	double saldo;
-	Cliente *cliente;	
-	Movimentacao *movimentacao;
+	Cliente *cliente;
+	list<Movimentacao> movimentacoes;
+	friend class Movimentacao;
 
 	public:
 	static int proximoNumConta;
@@ -23,8 +24,10 @@ class Conta{
 	double getSaldo();
 	Cliente* getCliente();
 	~Conta();
-	void debitar(float valor_debitado,string descricao,char deb_cred);
+	void debitar(double v,string d);
+	void creditar(double v, string d);
 	void print();
+	list<Movimentacao> extrato();
 };
 
 #endif //CONTA_H

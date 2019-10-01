@@ -22,31 +22,20 @@ Movimentacao::Movimentacao(string d, char op, double v){
 	a = buffer;
 	dataMov.push_back(a);
 
-	descricao = d;
-	debitoCredito = op;
-	valor = v;
+	this->descricao = d;
+	this->debitoCredito = op;
+	this->valor = v;
+	cout<<"descricao = "<< this->descricao <<endl;
+	cout<< "deb ou cred = " << this->debitoCredito << endl;
+	cout <<"valor = " << this->valor << endl;
 }
 void Movimentacao::print(){
-	cout<<"descricao = "<< descricao <<endl;
-	cout<< "deb ou cred = " << debitoCredito << endl;
-	cout <<"valor = " << valor << endl;
+	cout<<"descricao = "<< this->descricao <<endl;
+	cout<< "deb ou cred = " << this->debitoCredito << endl;
+	cout <<"valor = " << this->valor << endl;
 }
 
 vector<string> Movimentacao::getDataMov(){ return dataMov; }
 string Movimentacao::getDescricao(){ return descricao; }
 char Movimentacao::getOp(){ return debitoCredito; }
 double Movimentacao::getValor(){ return valor; }
-
-void Movimentacao::setDescricao(string descr){
-	descricao =  descr;
-}
-
-void Movimentacao::setOp(char db){
-	debitoCredito = db;
-}
-
-void Movimentacao::setValor(double v){
-	valor = v;
-}
-
-
