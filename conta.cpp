@@ -5,7 +5,7 @@
 #include "movimentacao.h"
 #include "conta.h"
 #include "cliente.h"
-//#include "movimentacao.h"
+#include "movimentacao.h"
 using namespace std;
 
 void Conta::print(){
@@ -13,26 +13,36 @@ void Conta::print(){
 		cout << "cliente:" << endl;
 		cliente->print();
 		cout << "saldo = " << saldo << endl;
-		cout << "movimentacao: "<<endl;
-		movimentacao->print();
+		cout << "movimentacao tamanho: ";
+		cout << movimentacoes.size()<< endl;
 }
 
 int Conta::proximoNumConta = 0;
 
-void Conta::debitar(float valor_debitado,string descricao,char deb_cred){
-	movimentacao->setDescricao(descricao);
-	movimentacao->setOp(deb_cred);
-	movimentacao->setValor(valor_debitado);
-	int aux_saldo = saldo - valor_debitado;
-//	if(aux_saldo < 0){
-//		cout<< "saldo insuficiente" << endl;
-//	}
-//	else{
-//		saldo = aux_saldo;
-//	}
-
+void Conta::debitar(double v, string d){
+	if(saldo - v >= 0){
+		Movimentacao mov(d,'D',v);
+		saldo -= v;
+		movimentacoes.push_back(mov);
+		for(auto i=movimentacoes.begin();i!=movimentacoes.end();i++){
+			cout << "mov descricao :  "<< i->descricao << endl;
+		}
+	}
+	else{cout << "Saldo insuficiente" << endl;}
 }
 
+void Conta::creditar(double v, string d){
+	Movimentacao mov(d,'C',v);
+	saldo += v;
+	movimentacoes.push_back(mov);
+	for(auto i=movimentacoes.begin();i!=movimentacoes.end();i++){
+		cout << "mov descricao :  "<< i->descricao << endl;
+	}
+}
+
+
+
+// Conta::Conta(){}
 Conta::Conta(Cliente *c){
 	saldo = 0.0;
 	cliente = c;
@@ -43,21 +53,8 @@ int Conta::getNumConta(){ return numConta; }
 double Conta::getSaldo(){ return saldo; }
 Cliente* Conta::getCliente(){ return cliente; }
 //list<Movimentacao> Conta::getMovimentacoes(){ return movimentacoes;}
-/* 
-void Conta::debitar(double v, string d){
-	if(saldo - v > 0){
-		Movimentacao mov(d,'D',v);
-		saldo -= v;
-		movimentacoes.push_back(mov);
-	}
-	else{cout << "Saldo insuficiente" << endl;}
-}
 
-void Conta::creditar(double v, string d){
-	Movimentacao mov(d,'D',v);
-	saldo += v;
-	movimentacoes.push_back(mov);
-}
+
 
 list<Movimentacao> Conta::extrato(){
 	if (!movimentacoes.empty()) {
@@ -88,8 +85,8 @@ list<Movimentacao> Conta::extrato(){
 }
 
 list<Movimentacao> Conta::extrato(vector<string> di){
+	list<Movimentacao> res;
 	if (!movimentacoes.empty()) {
-		list<Movimentacao> res;
 		for (list<Movimentacao>::iterator it = movimentacoes.begin(); it != movimentacoes.end(); it++) {
 			if (it->dataMov[0] >= di[0] && it->dataMov[1] >= di[1] && it->dataMov[2] >= di[2]) {
 				res.push_back(*it);
@@ -100,14 +97,18 @@ list<Movimentacao> Conta::extrato(vector<string> di){
 		}
 		else {
 			cout << "O extrato esta vazio a partir da data selecionada." << endl;
+			return res;
 		}
 	}
-	else { cout << "A conta nao tem movimentacoes." ;}
+	else {
+		cout << "A conta nao tem movimentacoes." ;
+		return res;
+	}
 }
 
 list<Movimentacao> Conta::extrato(vector<string> di, vector<string> df){
+	list<Movimentacao> res;
 	if(!movimentacoes.empty()){
-		list<Movimentacao> res;
 		for(list<Movimentacao>::iterator it = movimentacoes.begin(); it != movimentacoes.end(); it++){
 			if (it->dataMov[0] >= di[0] && it->dataMov[1] >= di[1] && it->dataMov[2] >= di[2] && it->dataMov[0] <= df[0] && it->dataMov[1] <= di[1] && it->dataMov[2] <= di[2]){
 				res.push_back(*it);
@@ -117,19 +118,17 @@ list<Movimentacao> Conta::extrato(vector<string> di, vector<string> df){
 			return res;
 		}
 		else {
-			cout << "O extrato esta vazio para a data selecionada." << endl;
+			cout << "O extrato esta vazio a partir da data selecionada." << endl;
+			return res;
 		}
 	}
-	else { cout << "A conta nao tem movimentacoes."; }
+	else {
+		cout << "A conta nao tem movimentacoes." ;
+		return res;
+	}
 }
 
-void Conta::operator =(const Conta& c){
-	this->numConta = c.numConta;
-  this->cliente = c.cliente;
-  this->saldo = c.saldo;
-  this->movimentacoes = c.movimentacoes;
-	this->proximoNumConta = c.proximoNumConta;
 
-}
-*/
+
+
 Conta::~Conta(){}
