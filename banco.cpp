@@ -10,28 +10,18 @@
 
 using namespace std;
 
-/*
-    private:
-	string nomeBanco;
-	list<Cliente> cliente;//Por que ñ usar map???
-	list<Conta> contas;
-	map < Cliente, Conta > ControleClienteConta;
-	friend class Cliente;
-	friend class Conta;
-
-
 Banco::Banco(string nBanco){
-  this->nomeBanco = nBanco;
+  nomeBanco = nBanco;
 }
 
 void Banco::setCliente(Cliente c) {
 	listaClientes.push_back(c);
 }
 
-void Banco::setConta(Cliente c){
-	listaContas.push_back(Conta conta(c));
+void Banco::setConta(Conta c){
+	listaContas.push_back(c);
 }
-
+/*
 void Banco::operator =(const Banco& c){
   this->nomeBanco = c.nomeBanco;
   this->listaClientes = c.listaClientes;
@@ -76,11 +66,10 @@ void Banco::delConta(int num) {
 		listaContas.remove(aux);
 	}
 }
-
+*/
 void Banco::deposito(int nconta, double valor){
-  for (list<Conta>::iterator j = listaContas.begin(); j != listaContas.end(); j++) {
+  for (auito j = listaContas.begin(); j != listaContas.end(); j++) {
     if(nconta == j->numConta){
       j->saldo += valor;
     }
 }
-*/

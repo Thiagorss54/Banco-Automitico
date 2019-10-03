@@ -12,6 +12,9 @@ class Cliente{
 	string endereco;
 	string fone;
 
+	friend class Banco;
+	friend class Conta;
+
 	public:
 		Cliente();
 		Cliente(string n, string c, string e, string f);

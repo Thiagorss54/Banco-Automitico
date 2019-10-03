@@ -15,6 +15,7 @@ class Conta{
 	Cliente *cliente;
 	list<Movimentacao> movimentacoes;
 	friend class Movimentacao;
+	friend class Banco;
 
 	public:
 	static int proximoNumConta;
