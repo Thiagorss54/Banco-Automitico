@@ -19,7 +19,7 @@ void Conta::print(){
 
 int Conta::proximoNumConta = 0;
 
-void Conta::debitar(double v, string d){
+bool Conta::debitar(double v, string d){
 	if(saldo - v >= 0){
 		Movimentacao mov(d,'D',v);
 		saldo -= v;
@@ -27,16 +27,37 @@ void Conta::debitar(double v, string d){
 		for(auto i=movimentacoes.begin();i!=movimentacoes.end();i++){
 			cout << "mov descricao :  "<< i->descricao << endl;
 		}
+		return true;
 	}
-	else{cout << "Saldo insuficiente" << endl;}
+	else{
+		cout << "Saldo insuficiente" << endl;
+		return false;
+	}
 }
+
+bool Conta::debitar(double v,Movimentacao mov){
+	if(saldo - v >= 0){
+		saldo -= v;
+		movimentacoes.push_back(mov);
+		for(auto i=movimentacoes.begin();i!=movimentacoes.end();i++){
+			cout << "mov descricao :  "<< i->descricao << endl;
+		}
+		return true;
+	}
+	else{
+		cout << "Saldo insuficiente" << endl;
+		return false;
+	}
+}
+
+
 
 void Conta::creditar(double v, string d){
 	Movimentacao mov(d,'C',v);
 	saldo += v;
 	movimentacoes.push_back(mov);
 	for(auto i=movimentacoes.begin();i!=movimentacoes.end();i++){
-		cout << "mov descricao :  "<< i->descricao << endl;
+		 cout << "mov descricao :  "<< i->descricao << endl;
 	}
 }
 
@@ -129,7 +150,7 @@ list<Movimentacao> Conta::extrato(vector<string> di){
 // 				}
 // 			}
 //
-// 
+//
 // 		if (!res.empty()) {
 // 			return res;
 // 		}
