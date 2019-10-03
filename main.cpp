@@ -17,16 +17,29 @@ int main(){
   b.setCpf_cnpj("115654879622");
   b.setEndereco("rua a");
   b.setFone("998745632545");
-
+  Cliente ac ("Jacu","11","rua mae do jose","231231123");
+  Conta ca(&ac);
+  a.setCliente(ac);
   a.setCliente(b);
   Conta cb(&b);
 
   a.setConta(cb);
-  a.deposito(1,20);
-  //
-  // cb.creditar(10,"Ted");
-  // cb.print();
-  // cb.debitar(10,"toma");
+  a.setConta(ca);
+  a.deposito(1,100);
+  a.deposito(2,2);
+  cout<<"-------------------------------------------"<<endl;
+  a.tarifa();
+  a.saque(1,10);
+  a.saque(1,10);
+  a.saque(1,10);
+  a.debitar_cpmf();
+//  a.get_clientes();
+  a.get_contas();
+
+
+  // /cb.creditar(10,"Ted");
+  //  cb.print();
+  // // cb.debitar(10,"toma");
   // cb.print();
   //
   // string ai = "2019", mi = "10", di = "04";

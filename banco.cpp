@@ -68,8 +68,98 @@ void Banco::delConta(int num) {
 }
 */
 void Banco::deposito(int nconta, double valor){
-  for (auito j = listaContas.begin(); j != listaContas.end(); j++) {
+  for (auto j = listaContas.begin(); j != listaContas.end(); j++) {
     if(nconta == j->numConta){
-      j->saldo += valor;
+      j->creditar(valor, "Deposito");
     }
+  }
+}
+
+void Banco::saque(int nconta, double valor){
+
+  for (auto j = listaContas.begin(); j != listaContas.end(); j++) {
+    if(nconta == j->numConta){
+      j->debitar(valor, "Saque");
+    }
+  }
+}
+void Banco::saque(int nconta, double valor, string ano, string mes, string dia){
+  Movimentacao mov("Saque",'D',valor,ano,mes,dia);
+  for (auto j = listaContas.begin(); j != listaContas.end(); j++) {
+    if(nconta == j->numConta){
+      j->debitar(valor,mov);
+    }
+  }
+}
+
+
+void Banco::transferencia_conta(int conta_origem, int conta_destino,double valor){
+  for (auto j = listaContas.begin(); j != listaContas.end(); j++) {
+    if(conta_origem == j->numConta){
+      if(j->debitar(valor, "Transferencia entre contas")){
+        for (auto j = listaContas.begin(); j != listaContas.end(); j++) {
+          j->creditar(valor, "Transferencia entre contas");
+        }
+      }
+      else{
+        cout<<"Transacao nao pode ser realizada" << endl;
+      }
+    }
+  }
+}
+
+void Banco::tarifa(){
+  for (auto j = listaContas.begin(); j != listaContas.end(); j++) {
+    j->debitar(15, "Cobranca de Tarifa");
+  }
+}
+
+int rdn(int y, int m, int d) { /* Rata Die day one is 0001-01-01 */
+  if (m < 3)
+  y--, m += 12;
+  return 365*y + y/4 - y/100 + y/400 + (153*m - 457)/5 + d - 306;
+}
+
+void Banco::debitar_cpmf(){
+
+  vector<string> opa ;
+  time_t rawtime;
+  string x;
+  struct tm * timeinfo;
+  char buffer [80];
+  time (&rawtime);
+  timeinfo = localtime (&rawtime);
+  strftime (buffer,80,"%Y",timeinfo);
+  x = buffer;
+  opa.push_back(x);
+  strftime (buffer,80,"%m",timeinfo);
+  x = buffer;
+  opa.push_back(x);
+  strftime (buffer,80,"%d",timeinfo);
+  x = buffer;
+  opa.push_back(x);
+  for (auto j = listaContas.begin(); j != listaContas.end(); j++) {
+    double pirocao = 0;
+    for(auto a = j->movimentacoes.begin(); a!= j->movimentacoes.end();a++){
+      if(a->debitoCredito == 'D'){
+        int days = rdn(stoi(a->dataMov[0]),stoi(a->dataMov[1]),stoi(a->dataMov[2])) - rdn(stoi(opa[0]), stoi(opa[1]) , stoi(opa[2]));
+        if(days <=7){
+          pirocao += a->valor;
+        }
+      }
+    }
+    pirocao *= 0.0038;
+    j->debitar(pirocao,"CPMF");
+  }
+}
+
+list <Cliente> Banco::get_clientes(){
+  for (auto j = listaClientes.begin(); j != listaClientes.end(); j++) {
+    cout << "cliente  " << j->nomeCliente <<endl;
+  }
+}
+list <Conta> Banco::get_contas(){
+  for (auto j = listaContas.begin(); j != listaContas.end(); j++) {
+    cout << "conta  " << j->numConta <<endl;
+  }
 }

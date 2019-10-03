@@ -28,7 +28,13 @@ class Banco{
 	void delCliente(int num);
 	void delConta(int num);
 	void deposito(int nconta, double valor);
-
+	void saque(int nconta, double valor);
+	void saque(int nconta, double valor, string ano, string mes, string dia);
+	void transferencia_conta(int conta_origem, int conta_destino,double valor);
+	void tarifa();
+	void debitar_cpmf();
+	list <Cliente> get_clientes();
+	list <Conta> get_contas();
 };
 
 #endif //BANCO_H
