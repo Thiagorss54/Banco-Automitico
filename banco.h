@@ -15,7 +15,7 @@ using namespace std;
 class Banco{
 	private:
 	string nomeBanco;
-	list<Cliente> listaCliente;
+	list<Cliente> listaClientes;
 	list<Conta> listaContas;
 	friend class Cliente;
 	friend class Conta;

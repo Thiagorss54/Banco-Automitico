@@ -105,28 +105,44 @@ list<Movimentacao> Conta::extrato(vector<string> di){
 		return res;
 	}
 }
-
-list<Movimentacao> Conta::extrato(vector<string> di, vector<string> df){
-	list<Movimentacao> res;
-	if(!movimentacoes.empty()){
-		for(list<Movimentacao>::iterator it = movimentacoes.begin(); it != movimentacoes.end(); it++){
-			if (it->dataMov[0] >= di[0] && it->dataMov[1] >= di[1] && it->dataMov[2] >= di[2] && it->dataMov[0] <= df[0] && it->dataMov[1] <= di[1] && it->dataMov[2] <= di[2]){
-				res.push_back(*it);
-			}
-		}
-		if (!res.empty()) {
-			return res;
-		}
-		else {
-			cout << "O extrato esta vazio a partir da data selecionada." << endl;
-			return res;
-		}
-	}
-	else {
-		cout << "A conta nao tem movimentacoes." ;
-		return res;
-	}
-}
+/////////////////////////////////Se o ano e o mes forem difernetes da erro na validaçao dos dias
+// list<Movimentacao> Conta::extrato(vector<string> di, vector<string> df){
+// 	list<Movimentacao> res;
+// 	int aux123=0;
+// 	if(!movimentacoes.empty()){
+// 		for(list<Movimentacao>::iterator it = movimentacoes.begin(); it != movimentacoes.end(); it++){
+// 			cout << "dataMov0 " << it->dataMov[0]<<"  dataMov1 " << it->dataMov[1]<< "   dataMov2 " << it->dataMov[2]<<endl;
+// 			// if (it->dataMov[0] >= di[0] && it->dataMov[1] >= di[1] && it->dataMov[2] >= di[2] && it->dataMov[0] <= df[0]
+// 			// 	&& it->dataMov[1] <= di[1] && it->dataMov[2] <= di[2]){
+// 			if(it->dataMov[0] >= di[0] && it->dataMov[0] <= df[0]){
+// 				cout << "asldkfjals" << endl; ////////////
+// 				if(di[0]==df[0] && it->dataMov[1] >= di[1] && it->dataMov[1] <= df[1]){
+// 					cout << "if 2" << endl; ///////
+// 						if((di[1]==df[1]) && (it->dataMov[2] >= di[2] && it->dataMov[2] <= df[2])){
+// 							cout << "valor:: "<< it->valor << endl ;
+// 							res.push_back(*it);
+// 						}
+// 						else if(di[1]<df[1]){
+//
+// 						}
+// 					}
+// 				}
+// 			}
+//
+// 
+// 		if (!res.empty()) {
+// 			return res;
+// 		}
+// 		else {
+// 			cout << "O extrato esta vazio a partir da data selecionada." << endl;
+// 			return res;
+// 		}
+// 	}
+// 	else {
+// 		cout << "A conta nao tem movimentacoes." ;
+// 		return res;
+// 	}
+// }
 
 
 
