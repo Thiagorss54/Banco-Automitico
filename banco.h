@@ -33,6 +33,9 @@ class Banco{
 	void transferencia_conta(int conta_origem, int conta_destino,double valor);
 	void tarifa();
 	void debitar_cpmf();
+	void saldo(int nconta);
+	void criar_conta(Cliente c);
+	void excluir_conta(int nconta);
 	list <Cliente> get_clientes();
 	list <Conta> get_contas();
 };
