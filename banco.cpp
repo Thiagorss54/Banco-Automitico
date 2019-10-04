@@ -2,7 +2,7 @@
 #include <list>
 #include <string>
 #include <vector>
-
+#include <fstream>
 #include "conta.h"
 #include "cliente.h"
 #include "movimentacao.h"
@@ -96,9 +96,9 @@ void Banco::saque(int nconta, double valor, string ano, string mes, string dia){
 void Banco::transferencia_conta(int conta_origem, int conta_destino,double valor){
   for (auto j = listaContas.begin(); j != listaContas.end(); j++) {
     if(conta_origem == j->numConta){
-      if(j->debitar(valor, "Transferencia entre contas")){
+      if(j->debitar(valor,"Transferencia para a conta " + to_string(conta_destino))){
         for (auto j = listaContas.begin(); j != listaContas.end(); j++) {
-          j->creditar(valor, "Transferencia entre contas");
+          j->creditar(valor, "Transferencia da conta " + to_string(conta_origem));
         }
       }
       else{
@@ -167,12 +167,11 @@ void Banco::criar_conta(Cliente c){
 }
 
 void Banco::excluir_conta(int nconta){
-  // for (auto j = listaContas.begin(); j != listaContas.end(); j++) {
-  //   if(nconta = j->numConta){
-  //     cout<<"teste";
-  //     listaContas.remove(*j);
-  //   }
-  // }
+  for (auto j = listaContas.begin(); j != listaContas.end(); j++) {
+     if(nconta == j->numConta){
+       listaContas.erase(j);
+    }
+  }
 }
 
 list <Cliente> Banco::get_clientes(){
@@ -190,4 +189,56 @@ list <Conta> Banco::get_contas(){
     cout << "conta  " << j->numConta <<endl;
   }
   return aux;
+}
+
+void Banco::gravar_dados(){
+  ofstream out("Bancodedados.txt");
+  out<<nomeBanco<<endl;
+  out<<"Clientes"<<endl;
+  list<Cliente> c = get_clientes();
+  for (auto j = c.begin() ; j!= c.end(); j++){
+    out<<j->nomeCliente<<endl;
+    out<<j->cpf_cnpj<<endl;
+    out<<j->endereco<<endl;
+    out<<j->fone<<endl;
+  }
+  out<<"Conta"<<endl;
+  list<Conta> co = get_contas();
+  for (auto j = co.begin() ; j != co.end() ; j++){
+    out<<j->numConta<<endl;
+    out<<j->saldo<<endl;
+    out<<j->cliente<<endl;
+    for(auto k = j->movimentacoes.begin(); k != j->movimentacoes.end(); k++){
+      out<<k->dataMov[0]<<" "<<k->dataMov[1]<<" "<<k->dataMov[2]<<endl;
+      out<<k->descricao<<endl;
+      out<<k->debitoCredito<<endl;
+      out<<k->valor<<endl<<endl;
+    }
+    out<<"contax";
+  }
+}
+
+void Banco::ler_dados(){
+  ifstream in("Bancodedados.txt");
+  string linha;
+  char *result;
+  while (!in.eof()) {
+    getline(in,linha);
+    if(linha == "Clientes"){
+      getline(in,linha);
+      while(linha != "Conta"){
+        string nome = linha;
+        getline(in,linha);
+        string cpf = linha;
+        getline(in,linha);
+        string endereco = linha;
+        getline(in,linha);
+        string fone = linha;
+        Cliente a (nome,cpf,endereco,fone);
+        setCliente(a);
+        getline(in,linha);
+      }
+    }
+
+  }
 }
