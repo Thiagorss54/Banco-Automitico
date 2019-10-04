@@ -9,12 +9,12 @@
 using namespace std;
 
 void Conta::print(){
+		cout << "\t\t\t  CLIENTE" << endl;
 		cout << "numero = " << numConta << endl;
 		cout << "cliente:" << endl;
 		cliente->print();
 		cout << "saldo = " << saldo << endl;
-		cout << "movimentacao tamanho: ";
-		cout << movimentacoes.size()<< endl;
+		
 }
 
 int Conta::proximoNumConta = 0;
@@ -25,7 +25,7 @@ bool Conta::debitar(double v, string d){
 		saldo -= v;
 		movimentacoes.push_back(mov);
 		for(auto i=movimentacoes.begin();i!=movimentacoes.end();i++){
-			cout << "mov descricao :  "<< i->descricao << endl;
+			i->print();
 		}
 		return true;
 	}
@@ -126,45 +126,76 @@ list<Movimentacao> Conta::extrato(vector<string> di){
 		return res;
 	}
 }
-/////////////////////////////////Se o ano e o mes forem difernetes da erro na validaçao dos dias
-// list<Movimentacao> Conta::extrato(vector<string> di, vector<string> df){
-// 	list<Movimentacao> res;
-// 	int aux123=0;
-// 	if(!movimentacoes.empty()){
-// 		for(list<Movimentacao>::iterator it = movimentacoes.begin(); it != movimentacoes.end(); it++){
-// 			cout << "dataMov0 " << it->dataMov[0]<<"  dataMov1 " << it->dataMov[1]<< "   dataMov2 " << it->dataMov[2]<<endl;
-// 			// if (it->dataMov[0] >= di[0] && it->dataMov[1] >= di[1] && it->dataMov[2] >= di[2] && it->dataMov[0] <= df[0]
-// 			// 	&& it->dataMov[1] <= di[1] && it->dataMov[2] <= di[2]){
-// 			if(it->dataMov[0] >= di[0] && it->dataMov[0] <= df[0]){
-// 				cout << "asldkfjals" << endl; ////////////
-// 				if(di[0]==df[0] && it->dataMov[1] >= di[1] && it->dataMov[1] <= df[1]){
-// 					cout << "if 2" << endl; ///////
-// 						if((di[1]==df[1]) && (it->dataMov[2] >= di[2] && it->dataMov[2] <= df[2])){
-// 							cout << "valor:: "<< it->valor << endl ;
-// 							res.push_back(*it);
-// 						}
-// 						else if(di[1]<df[1]){
-//
-// 						}
-// 					}
-// 				}
-// 			}
-//
-//
-// 		if (!res.empty()) {
-// 			return res;
-// 		}
-// 		else {
-// 			cout << "O extrato esta vazio a partir da data selecionada." << endl;
-// 			return res;
-// 		}
-// 	}
-// 	else {
-// 		cout << "A conta nao tem movimentacoes." ;
-// 		return res;
-// 	}
-// }
+///////////////////////////////Se o ano e o mes forem difernetes da erro na validaçao dos dias
+/*list<Movimentacao> Conta::extrato(vector<string> di, vector<string> df){
+	list<Movimentacao> res;
+	if(!movimentacoes.empty()){
+		for(list<Movimentacao>::iterator it = movimentacoes.begin(); it != movimentacoes.end(); it++){
+			cout << "dataMov0 " << it->dataMov[0]<<"  dataMov1 " << it->dataMov[1]<< "   dataMov2 " << it->dataMov[2]<<endl;
+			// if (it->dataMov[0] >= di[0] && it->dataMov[1] >= di[1] && it->dataMov[2] >= di[2] && it->dataMov[0] <= df[0]
+			// 	&& it->dataMov[1] <= di[1] && it->dataMov[2] <= di[2]){
+			if(it->dataMov[0] >= di[0] && it->dataMov[0] <= df[0]){
+				
+				if(di[0]==df[0] && it->dataMov[1] >= di[1] && it->dataMov[1] <= df[1]){
+					
+						if((di[1]==df[1]) && (it->dataMov[2] >= di[2] && it->dataMov[2] <= df[2])){
+							cout << "valor:: "<< it->valor << endl ;
+							res.push_back(*it);
+						}
+						else if(di[1]<df[1]){
 
+						}
+					}
+				}
+			}
+
+
+		if (!res.empty()) {
+			return res;
+		}
+		else {
+			cout << "O extrato esta vazio a partir da data selecionada." << endl;
+			return res;
+		}
+	}
+	else {
+		cout << "A conta nao tem movimentacoes." ;
+		return res;
+	}
+}
+*/
+
+/////////////////////////Extrato B
+list<Movimentacao> Conta::extrato(vector<string> di, vector<string> df){
+	list<Movimentacao> res;
+	string diadehoje;
+	auto aux1 = di[0] + di[1] + di[2];
+	auto aux2 = df[0] + df[1] + df[2];
+	cout <<"Di  " << aux1<< "   Df  "  << aux2 << endl;
+	
+	if(!movimentacoes.empty()){
+		for(list<Movimentacao>::iterator it = movimentacoes.begin(); it != movimentacoes.end(); it++){
+		
+			auto dataMovimentacao = it->dataMov[0] + it->dataMov[1] + it->dataMov[2];
+			cout << "dataMovimentacao " << dataMovimentacao << endl;
+			if(dataMovimentacao >= aux1 && dataMovimentacao <= aux2 ){
+				cout << "primiu   " << dataMovimentacao << endl;
+				res.push_back(*it);
+			}
+		}
+		if (!res.empty()) {
+			return res;
+		}
+		else {
+			cout << "O extrato esta vazio a partir da data selecionada." << endl;
+			return res;
+		}
+	}
+	else {
+		cout << "A conta nao tem movimentacoes." ;
+		return res;
+	}
+}
 
 
 

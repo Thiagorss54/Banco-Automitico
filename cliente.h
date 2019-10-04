@@ -27,7 +27,7 @@ class Cliente{
 		void setCpf_cnpj(string c);
 		void setEndereco(string e);
 		void setFone(string f);
-		~Cliente();
+		~Cliente(); 
 		void print();
 };
 
