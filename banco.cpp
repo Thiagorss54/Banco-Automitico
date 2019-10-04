@@ -153,13 +153,41 @@ void Banco::debitar_cpmf(){
   }
 }
 
-list <Cliente> Banco::get_clientes(){
-  for (auto j = listaClientes.begin(); j != listaClientes.end(); j++) {
-    cout << "cliente  " << j->nomeCliente <<endl;
+void Banco::saldo(int nconta){
+  for (auto j = listaContas.begin(); j != listaContas.end(); j++) {
+    if(nconta == j->numConta){
+      cout<<"O saldo da conta: "<<nconta<<" = "<<j->saldo<<endl;
+    }
   }
 }
+
+void Banco::criar_conta(Cliente c){
+  Conta a(&c);
+  this->setConta(a);
+}
+
+void Banco::excluir_conta(int nconta){
+  // for (auto j = listaContas.begin(); j != listaContas.end(); j++) {
+  //   if(nconta = j->numConta){
+  //     cout<<"teste";
+  //     listaContas.remove(*j);
+  //   }
+  // }
+}
+
+list <Cliente> Banco::get_clientes(){
+  list<Cliente> aux;
+  for (auto j = listaClientes.begin(); j != listaClientes.end(); j++) {
+    aux.push_back(*j);
+    cout << "cliente  " << j->nomeCliente <<endl;
+  }
+  return aux;
+}
 list <Conta> Banco::get_contas(){
+  list<Conta> aux;
   for (auto j = listaContas.begin(); j != listaContas.end(); j++) {
+    aux.push_back(*j);
     cout << "conta  " << j->numConta <<endl;
   }
+  return aux;
 }
