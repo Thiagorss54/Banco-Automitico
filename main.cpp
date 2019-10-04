@@ -12,49 +12,37 @@ int main(){
 
 
   Banco a("Banco nordeste");
-//  a.ler_dados();
-  Cliente b;
-  b.setNome("Paulo");
-  b.setCpf_cnpj("115654879622");
-  b.setEndereco("rua a");
-  b.setFone("998745632545");
-  Cliente ac ("Jacu","11","rua mae do jose","231231123");
-  Cliente ad ("Pirocao","11","rua mae","231123");
-  a.setCliente(b);
-  a.setCliente(ac);
-  a.setCliente(ad);
-  a.criar_conta(ad);
-  a.criar_conta(b);
-  a.criar_conta(ac);
-  a.get_contas();
-  // a.excluir_conta(2);
-  a.get_clientes();
-  a.get_contas();
-   a.deposito(1,100);
-  // a.saldo(1);
-   a.deposito(2,2);
-  // a.saldo(2);
-   a.deposito(3,50);
-  // a.saldo(3);
-   cout<<"-------------------------------------------"<<endl;
-  // a.tarifa();
-  a.transferencia_conta(1,2,20);
-
-  cout<<"------------------"<<endl;
-
-
+ a.ler_dados();
+  // Cliente b;
+  // b.setNome("Paulo");
+  // b.setCpf_cnpj("115654879622");
+  // b.setEndereco("rua a");
+  // b.setFone("998745632545");
+  // Cliente ac ("Jacu","11","rua mae do jose","231231123");
+  // Cliente ad ("Pirocao","11","rua mae","231123");
+  // a.setCliente(b);
+  // a.setCliente(ac);
+  // a.setCliente(ad);
+  // a.criar_conta(ad);
+  // a.criar_conta(b);
+  // a.criar_conta(ac);
+//   a.get_contas();
+//    a.deposito(1,100);
+//   // a.saldo(1);
+//    a.deposito(2,2);
+//   // a.saldo(2);
+//    a.deposito(3,50);
+//   // a.saldo(3);
+// //    cout<<"-------------------------------------------"<<endl;
+// //   // a.tarifa();
+//   a.transferencia_conta(1,2,20);
+  //
+  // cout<<"------------------"<<endl;
+  //
+  //
+  //
+  //
   a.gravar_dados();
-  // a.saldo(2);
-  // a.saque(1,10);
-  // a.saldo(1);
-  // a.saque(1,10);
-  // a.saldo(1);
-  // a.saque(3,10);
-  // a.saldo(3);
-  // a.debitar_cpmf();
-  // a.saldo(1);
-  // a.saldo(2);
-  // a.saldo(3);
 
   // Conta cb(&b);
   // cout << "\t\t\tINICIO DE CREDITAR" << endl;

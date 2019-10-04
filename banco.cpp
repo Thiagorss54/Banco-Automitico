@@ -97,8 +97,10 @@ void Banco::transferencia_conta(int conta_origem, int conta_destino,double valor
   for (auto j = listaContas.begin(); j != listaContas.end(); j++) {
     if(conta_origem == j->numConta){
       if(j->debitar(valor,"Transferencia para a conta " + to_string(conta_destino))){
-        for (auto j = listaContas.begin(); j != listaContas.end(); j++) {
-          j->creditar(valor, "Transferencia da conta " + to_string(conta_origem));
+        for (auto k = listaContas.begin(); k != listaContas.end(); k++) {
+          if(conta_destino == k->numConta){
+            k->creditar(valor, "Transferencia da conta " + to_string(conta_origem));
+          }
         }
       }
       else{
@@ -178,22 +180,20 @@ list <Cliente> Banco::get_clientes(){
   list<Cliente> aux;
   for (auto j = listaClientes.begin(); j != listaClientes.end(); j++) {
     aux.push_back(*j);
-    cout << "cliente  " << j->nomeCliente <<endl;
   }
   return aux;
 }
 list <Conta> Banco::get_contas(){
   list<Conta> aux;
   for (auto j = listaContas.begin(); j != listaContas.end(); j++) {
+    cout<<"Conta "<<j->numConta<<endl;
     aux.push_back(*j);
-    cout << "conta  " << j->numConta <<endl;
   }
   return aux;
 }
 
 void Banco::gravar_dados(){
   ofstream out("Bancodedados.txt");
-  out<<nomeBanco<<endl;
   out<<"Clientes"<<endl;
   list<Cliente> c = get_clientes();
   for (auto j = c.begin() ; j!= c.end(); j++){
@@ -202,28 +202,32 @@ void Banco::gravar_dados(){
     out<<j->endereco<<endl;
     out<<j->fone<<endl;
   }
-  out<<"Conta"<<endl;
+  out<<endl;
   list<Conta> co = get_contas();
   for (auto j = co.begin() ; j != co.end() ; j++){
+    out<<"Conta"<<endl;
     out<<j->numConta<<endl;
     out<<j->saldo<<endl;
-    out<<j->cliente<<endl;
+    auto ic = j->cliente;
+    out<<ic->nomeCliente<<endl;
     for(auto k = j->movimentacoes.begin(); k != j->movimentacoes.end(); k++){
-      out<<k->dataMov[0]<<" "<<k->dataMov[1]<<" "<<k->dataMov[2]<<endl;
+      out<<"mov"<<endl;
+      out<<k->dataMov[0]<<endl;
+      out<<k->dataMov[1]<<endl;
+      out<<k->dataMov[2]<<endl;
       out<<k->descricao<<endl;
       out<<k->debitoCredito<<endl;
-      out<<k->valor<<endl<<endl;
+      out<<k->valor<<endl;
     }
-    out<<"contax";
   }
+  out.close();
 }
 
 void Banco::ler_dados(){
   ifstream in("Bancodedados.txt");
   string linha;
-  char *result;
-  while (!in.eof()) {
-    getline(in,linha);
+  getline(in,linha);
+  while (!(in.eof())) {
     if(linha == "Clientes"){
       getline(in,linha);
       while(linha != "Conta"){
@@ -235,10 +239,54 @@ void Banco::ler_dados(){
         getline(in,linha);
         string fone = linha;
         Cliente a (nome,cpf,endereco,fone);
-        setCliente(a);
+        this->setCliente(a);
         getline(in,linha);
       }
     }
-
+    else if(linha == "Conta"){
+      getline(in,linha);
+      int nconta = stoi(linha);
+      getline(in,linha);
+      double sald = stod(linha);
+      getline(in,linha);
+      string ncli = linha;
+      list<Cliente> c = get_clientes();
+      Cliente aux;
+      for (auto cli = c.begin() ; cli != c.end() ; cli++){
+        if(ncli == cli->nomeCliente){
+          aux.setNome(cli->nomeCliente);
+          aux.setCpf_cnpj(cli->cpf_cnpj);
+          aux.setEndereco(cli->endereco);
+          aux.setFone(cli->fone);
+          break;
+        }
+      }
+      list<Movimentacao> m;
+      while(linha != "Conta"){
+        getline(in,linha);
+        while((linha != "mov")){
+          string ano = linha;
+          getline(in,linha);
+          string mes = linha;
+          getline(in,linha);
+          string dia = linha;
+          getline(in,linha);
+          string d = linha;
+          getline(in,linha);
+          char op = linha[0];
+          getline(in,linha);
+          double v = stod(linha);
+          Movimentacao a(d,op,v,ano,mes,dia);
+          m.push_back(a);
+          getline(in,linha);
+          if(linha == "Conta"){break;}
+          if(linha.size() == 0){break;}
+        }
+        if(linha.size() == 0){break;}
+      }
+      Conta co(nconta,sald,&aux,m);
+      this->setConta(co);
+    }
   }
+  in.close();
 }
