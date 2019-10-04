@@ -15,6 +15,7 @@ class Conta{
 	Cliente *cliente;
 	list<Movimentacao> movimentacoes;
 	friend class Movimentacao;
+	friend class Banco;
 
 	public:
 	static int proximoNumConta;
@@ -24,7 +25,8 @@ class Conta{
 	double getSaldo();
 	Cliente* getCliente();
 	~Conta();
-	void debitar(double v,string d);
+	bool debitar(double v,string d);
+	bool debitar(double v,Movimentacao mov);
 	void creditar(double v, string d);
 	void print();
 	list<Movimentacao> extrato();

@@ -15,7 +15,7 @@ using namespace std;
 class Banco{
 	private:
 	string nomeBanco;
-	list<Cliente> listaCliente;
+	list<Cliente> listaClientes;
 	list<Conta> listaContas;
 	friend class Cliente;
 	friend class Conta;
@@ -28,7 +28,16 @@ class Banco{
 	void delCliente(int num);
 	void delConta(int num);
 	void deposito(int nconta, double valor);
-
+	void saque(int nconta, double valor);
+	void saque(int nconta, double valor, string ano, string mes, string dia);
+	void transferencia_conta(int conta_origem, int conta_destino,double valor);
+	void tarifa();
+	void debitar_cpmf();
+	void saldo(int nconta);
+	void criar_conta(Cliente c);
+	void excluir_conta(int nconta);
+	list <Cliente> get_clientes();
+	list <Conta> get_contas();
 };
 
 #endif //BANCO_H

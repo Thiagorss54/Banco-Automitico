@@ -29,6 +29,19 @@ Movimentacao::Movimentacao(string d, char op, double v){
 	cout<< "deb ou cred = " << this->debitoCredito << endl;
 	cout <<"valor = " << this->valor << endl;
 }
+
+Movimentacao::Movimentacao(string d, char op, double v, string ano, string mes, string dia){
+	dataMov.push_back(ano);
+	dataMov.push_back(mes);
+	dataMov.push_back(dia);
+
+	this->descricao = d;
+	this->debitoCredito = op;
+	this->valor = v;
+	cout<<"descricao = "<< this->descricao <<endl;
+	cout<< "deb ou cred = " << this->debitoCredito << endl;
+	cout <<"valor = " << this->valor << endl;
+}
 void Movimentacao::print(){
 	cout<<"descricao = "<< this->descricao <<endl;
 	cout<< "deb ou cred = " << this->debitoCredito << endl;

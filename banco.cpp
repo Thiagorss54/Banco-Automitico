@@ -10,28 +10,18 @@
 
 using namespace std;
 
-/*
-    private:
-	string nomeBanco;
-	list<Cliente> cliente;//Por que ñ usar map???
-	list<Conta> contas;
-	map < Cliente, Conta > ControleClienteConta;
-	friend class Cliente;
-	friend class Conta;
-
-
 Banco::Banco(string nBanco){
-  this->nomeBanco = nBanco;
+  nomeBanco = nBanco;
 }
 
 void Banco::setCliente(Cliente c) {
 	listaClientes.push_back(c);
 }
 
-void Banco::setConta(Cliente c){
-	listaContas.push_back(Conta conta(c));
+void Banco::setConta(Conta c){
+	listaContas.push_back(c);
 }
-
+/*
 void Banco::operator =(const Banco& c){
   this->nomeBanco = c.nomeBanco;
   this->listaClientes = c.listaClientes;
@@ -76,11 +66,128 @@ void Banco::delConta(int num) {
 		listaContas.remove(aux);
 	}
 }
-
-void Banco::deposito(int nconta, double valor){
-  for (list<Conta>::iterator j = listaContas.begin(); j != listaContas.end(); j++) {
-    if(nconta == j->numConta){
-      j->saldo += valor;
-    }
-}
 */
+void Banco::deposito(int nconta, double valor){
+  for (auto j = listaContas.begin(); j != listaContas.end(); j++) {
+    if(nconta == j->numConta){
+      j->creditar(valor, "Deposito");
+    }
+  }
+}
+
+void Banco::saque(int nconta, double valor){
+
+  for (auto j = listaContas.begin(); j != listaContas.end(); j++) {
+    if(nconta == j->numConta){
+      j->debitar(valor, "Saque");
+    }
+  }
+}
+void Banco::saque(int nconta, double valor, string ano, string mes, string dia){
+  Movimentacao mov("Saque",'D',valor,ano,mes,dia);
+  for (auto j = listaContas.begin(); j != listaContas.end(); j++) {
+    if(nconta == j->numConta){
+      j->debitar(valor,mov);
+    }
+  }
+}
+
+
+void Banco::transferencia_conta(int conta_origem, int conta_destino,double valor){
+  for (auto j = listaContas.begin(); j != listaContas.end(); j++) {
+    if(conta_origem == j->numConta){
+      if(j->debitar(valor, "Transferencia entre contas")){
+        for (auto j = listaContas.begin(); j != listaContas.end(); j++) {
+          j->creditar(valor, "Transferencia entre contas");
+        }
+      }
+      else{
+        cout<<"Transacao nao pode ser realizada" << endl;
+      }
+    }
+  }
+}
+
+void Banco::tarifa(){
+  for (auto j = listaContas.begin(); j != listaContas.end(); j++) {
+    j->debitar(15, "Cobranca de Tarifa");
+  }
+}
+
+int rdn(int y, int m, int d) { /* Rata Die day one is 0001-01-01 */
+  if (m < 3)
+  y--, m += 12;
+  return 365*y + y/4 - y/100 + y/400 + (153*m - 457)/5 + d - 306;
+}
+
+void Banco::debitar_cpmf(){
+
+  vector<string> opa ;
+  time_t rawtime;
+  string x;
+  struct tm * timeinfo;
+  char buffer [80];
+  time (&rawtime);
+  timeinfo = localtime (&rawtime);
+  strftime (buffer,80,"%Y",timeinfo);
+  x = buffer;
+  opa.push_back(x);
+  strftime (buffer,80,"%m",timeinfo);
+  x = buffer;
+  opa.push_back(x);
+  strftime (buffer,80,"%d",timeinfo);
+  x = buffer;
+  opa.push_back(x);
+  for (auto j = listaContas.begin(); j != listaContas.end(); j++) {
+    double pirocao = 0;
+    for(auto a = j->movimentacoes.begin(); a!= j->movimentacoes.end();a++){
+      if(a->debitoCredito == 'D'){
+        int days = rdn(stoi(a->dataMov[0]),stoi(a->dataMov[1]),stoi(a->dataMov[2])) - rdn(stoi(opa[0]), stoi(opa[1]) , stoi(opa[2]));
+        if(days <=7){
+          pirocao += a->valor;
+        }
+      }
+    }
+    pirocao *= 0.0038;
+    j->debitar(pirocao,"CPMF");
+  }
+}
+
+void Banco::saldo(int nconta){
+  for (auto j = listaContas.begin(); j != listaContas.end(); j++) {
+    if(nconta == j->numConta){
+      cout<<"O saldo da conta: "<<nconta<<" = "<<j->saldo<<endl;
+    }
+  }
+}
+
+void Banco::criar_conta(Cliente c){
+  Conta a(&c);
+  this->setConta(a);
+}
+
+void Banco::excluir_conta(int nconta){
+  // for (auto j = listaContas.begin(); j != listaContas.end(); j++) {
+  //   if(nconta = j->numConta){
+  //     cout<<"teste";
+  //     listaContas.remove(*j);
+  //   }
+  // }
+}
+
+list <Cliente> Banco::get_clientes(){
+  list<Cliente> aux;
+  for (auto j = listaClientes.begin(); j != listaClientes.end(); j++) {
+    aux.push_back(*j);
+    cout << "cliente  " << j->nomeCliente <<endl;
+  }
+  return aux;
+}
+list <Conta> Banco::get_contas(){
+  list<Conta> aux;
+  for (auto j = listaContas.begin(); j != listaContas.end(); j++) {
+    aux.push_back(*j);
+    cout << "conta  " << j->numConta <<endl;
+  }
+  return aux;
+}

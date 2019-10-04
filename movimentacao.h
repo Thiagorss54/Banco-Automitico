@@ -16,9 +16,11 @@ class Movimentacao{
 	char debitoCredito;
 	double valor;
 	friend class Conta;
-
+	friend class Cliente;
+	friend class Banco;
 	public:
 	Movimentacao(string d, char op, double v);
+	Movimentacao(string d, char op, double v, string ano, string mes, string dia);
 	vector<string> getDataMov();
 	string getDescricao();
 	char getOp();
