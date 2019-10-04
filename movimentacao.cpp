@@ -9,7 +9,7 @@ Movimentacao::Movimentacao(string d, char op, double v){
 	time_t rawtime;
 	string a;
 	struct tm * timeinfo;
-	char buffer [80];
+	char buffer [80]; 
 	time (&rawtime);
 	timeinfo = localtime (&rawtime);
 	strftime (buffer,80,"%Y",timeinfo);
@@ -25,9 +25,9 @@ Movimentacao::Movimentacao(string d, char op, double v){
 	this->descricao = d;
 	this->debitoCredito = op;
 	this->valor = v;
-	cout<<"descricao = "<< this->descricao <<endl;
-	cout<< "deb ou cred = " << this->debitoCredito << endl;
-	cout <<"valor = " << this->valor << endl;
+	// cout<<"descricao = "<< this->descricao <<endl;
+	// cout<< "deb ou cred = " << this->debitoCredito << endl;
+	// cout <<"valor = " << this->valor << endl;
 }
 
 Movimentacao::Movimentacao(string d, char op, double v, string ano, string mes, string dia){
@@ -43,6 +43,7 @@ Movimentacao::Movimentacao(string d, char op, double v, string ano, string mes, 
 	cout <<"valor = " << this->valor << endl;
 }
 void Movimentacao::print(){
+	cout << "\t\t\tMOVIMENTACAO" << endl;
 	cout<<"descricao = "<< this->descricao <<endl;
 	cout<< "deb ou cred = " << this->debitoCredito << endl;
 	cout <<"valor = " << this->valor << endl;

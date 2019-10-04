@@ -9,6 +9,7 @@
 using namespace std;
 
 int main(){
+    
 
   Banco a("Banco nordeste");
 
@@ -46,28 +47,31 @@ int main(){
   // a.debitar_cpmf();
   // a.saldo(1);
   // a.saldo(2);
-  // a.saldo(3);
+  // a.saldo(3); 
+    
+  Conta cb(&b);
+  cout << "\t\t\tINICIO DE CREDITAR" << endl;
+  cb.creditar(10,"Ted");
+  cb.print();
+  //cb.debitar(10,"toma");
+  cb.print();
+  
+  string ai = "2019", mi = "10", di = "06";
+  string af = "2019", mf = "10", df = "01";
+  string datainicial = "20191004";
+  string datafinal = "20191001";
+  vector<string> d;
+  d.push_back(ai);
+  d.push_back(mi);
+  d.push_back(di);
+  
+  vector<string> d1;
+  d1.push_back(af);
+  d1.push_back(mf);
+  d1.push_back(df);
+  
+  cb.extrato(d1,d);
 
-
-  // /cb.creditar(10,"Ted");
-  //  cb.print();
-  // // cb.debitar(10,"toma");
-  // cb.print();
-  //
-  // string ai = "2019", mi = "10", di = "04";
-  // string af = "2019", mf = "10", df = "01";
-  //
-  // vector<string> d;
-  // d.push_back(ai);
-  // d.push_back(mi);
-  // d.push_back(di);
-  //
-  // vector<string> d1;
-  // d1.push_back(af);
-  // d1.push_back(mf);
-  // d1.push_back(df);
-
-
-    return 0;
+  return 0;
 
 }
