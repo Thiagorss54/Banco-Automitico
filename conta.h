@@ -16,15 +16,15 @@ class Conta{
 	list<Movimentacao> movimentacoes;
 	friend class Movimentacao;
 	friend class Banco;
+	friend class Cliente;
 
 	public:
 	static int proximoNumConta;
-	Conta();
 	Conta(Cliente *c);
+	Conta(int nconta, double sald, Cliente *c, list<Movimentacao> mov);
 	int getNumConta();
 	double getSaldo();
 	Cliente* getCliente();
-	~Conta();
 	bool debitar(double v,string d);
 	bool debitar(double v,Movimentacao mov);
 	void creditar(double v, string d);

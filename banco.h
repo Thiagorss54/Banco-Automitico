@@ -19,6 +19,7 @@ class Banco{
 	list<Conta> listaContas;
 	friend class Cliente;
 	friend class Conta;
+	friend class Movimentacao;
 
 	public:
 	Banco(string nomeBanco);
