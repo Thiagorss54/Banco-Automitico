@@ -1,0 +1,59 @@
+Banco nordeste
+Clientes
+Paulo
+115654879622
+rua a
+998745632545
+Jacu
+11
+rua mae do jose
+231231123
+Pirocao
+11
+rua mae
+231123
+Conta
+1
+100
+0x62fdcc
+2019 10 04
+Deposito
+C
+100
+
+2019 10 04
+Transferencia para a conta 2
+D
+20
+
+2019 10 04
+Transferencia da conta 1
+C
+20
+
+2
+22
+0x62fe2c
+2019 10 04
+Deposito
+C
+2
+
+2019 10 04
+Transferencia da conta 1
+C
+20
+
+3
+70
+0x62fe8c
+2019 10 04
+Deposito
+C
+50
+
+2019 10 04
+Transferencia da conta 1
+C
+20
+
