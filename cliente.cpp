@@ -27,10 +27,10 @@ void Cliente::operator =(const Cliente& c){
 }
 bool Cliente::operator ==(const Cliente& c){
 	if((this->nomeCliente == c.nomeCliente) && (this->cpf_cnpj == c.cpf_cnpj) && 
-	(this->endereco == c.endereco) && (this->fone == c.fone){
+	(this->endereco == c.endereco) && (this->fone == c.fone)){
 		return true;
 	}
-	else return false;
+	else {return false;}
 }
 Cliente::~Cliente(){}
 void Cliente::print(){

@@ -40,6 +40,8 @@ class Banco{
 	list <Conta> get_contas();
 	void gravar_dados();
 	void ler_dados();
+	void extrato(int nconta, vector<string> di);
+	void extrato(int nconta, vector<string> di, vector<string> df);
 };
 
 #endif //BANCO_H
