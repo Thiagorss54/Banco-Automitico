@@ -1,12 +1,13 @@
 #include "interface.h"
 
 
-    int nconta;
+    int nconta,conf;
     double valor;
     
     
     void cls(){
-        system("cls");
+        // system("cls");
+        cout << "\n\n\n\n\n";
     }
 
     int confirmacao(){
@@ -29,7 +30,7 @@
     }
 
     void Interface::menu(){
-        system("cls");
+        cls();
         cout << "\n\n\n\t\t\t  " << nomeBanco_ << endl << endl << endl ;
         cout << "1  Cadastrar cliente";
         cout << "\t\t\t\t2  Criar Conta" << endl<< endl;
@@ -38,9 +39,9 @@
         cout << "5  Deposito" ;
         cout << "\t\t\t\t\t6  Saque" << endl<< endl;
         cout << "7  Transferencia" ;
-        cout << "\t\t\t\t8  CobrarTarifa" << endl<< endl;
-        cout << "9  Cobrar CPMF" ;
-        cout << "\t\t\t\t\t10 Saldo" << endl<< endl;
+        cout << "\t\t\t\t8  Tarifa" << endl<< endl;
+        cout << "9  CPMF" ;
+        cout << "\t\t\t\t\t\t10 Saldo" << endl<< endl;
         cout << "11 Extrato" ;
         cout << "\t\t\t\t\t12 Listar Clientes" << endl<< endl;
         cout << "13 Listar Contas";
@@ -66,46 +67,117 @@
         
         cls();
         cout << "\t\t\t Deposito\n\n";
-        cout << "Numero da Conta:\t" ;
+        cout << "Numero da Conta:\t  " ;
         cin >> nconta;
-        cout << "Valor:\t";
+        cout << "Valor:\t  ";
         cin >> valor;
-        int conf = confirmacao();
+        conf = confirmacao();
         if(conf == 0){
             NU->deposito(nconta,valor);
-            cout << "   Operacao realizada.  " << endl;
+            cout << "        Operacao realizada.  " << endl;
             NU->gravar_dados();
-           
-
+            system("pause");
         }
         else if(conf == 1){
             deposito();
         }
-        else
            main();
     }
     void Interface::saque(){
         cls();
         cout << "\t\t\t Saque\n\n";
+        cout << "Numero da Conta:\t  " ;
+        cin >> nconta;
+        cout << "Valor:\t  ";
+        cin >> valor;
+        conf = confirmacao();
+        if(conf == 0){
+            NU->saque(nconta,valor);
+            cout << "        Operacao realizada.  " << endl;
+            NU->gravar_dados();
+            system("pause");
+        }
+        else if(conf == 1){
+            saque();
+        }
+           main();
 
     }
     void Interface::transferencia(){
+        int nconta_O, nconta_D;
         cls();
         cout << "\t\t\t Transferencia\n\n";
+        cout << "Numero da Conta:\t  " ;
+        cin >> nconta_O;
+        cout << "Conta Destino:\t  ";
+        cin >> nconta_D;
+        cout << "Valor:\t  ";
+        cin >> valor;
+        conf = confirmacao();
+        if(conf == 0){
+            NU->transferencia_conta(nconta_O,nconta_D,valor);
+            cout << "        Operacao realizada.  " << endl;
+            NU->gravar_dados();
+            system("pause");
+        }
+        else if(conf == 1){
+            transferencia();
+        }
+           main();
     }
     void Interface::cobrarTarifa(){
         cls();
-        cout << "\t\t\t Cobrar Tarifa\n\n";
+        cout << "\t\t\t Pagamento da Tarifa\n\n";
+        cout << "Confirmar pagamento?   ";
+        conf = confirmacao();
+        if(conf == 0){
+            NU->tarifa();
+            cout << "        Operacao realizada.  " << endl;
+            NU->gravar_dados();
+            system("pause");
+        }
+        else if(conf == 1){
+            cobrarTarifa();
+        }
+           main();
+
     }
     void Interface::cobrarCPMF(){
+        cls();
+        cout << "\t\t\t CPMF\n\n";
+        cout << "Confirmar pagamento?   ";
+        conf = confirmacao();
+        if(conf == 0){
+            NU->debitar_cpmf();
+            cout << "        Operacao realizada.  " << endl;
+            NU->gravar_dados();
+            system("pause");
+        }
+        else if(conf == 1){
+            cobrarCPMF();
+        }
+           main();
 
     }
     void Interface::saldo(){
         cls();
         cout << "\t\t\t Saldo\n\n";
+        cout << "Numero da Conta:\t  " ;
+        cin >> nconta;
+        conf = confirmacao();
+        if(conf == 0){
+            NU->saldo(nconta);
+            cout << "        Operacao realizada.  " << endl;
+            NU->gravar_dados();
+            system("pause");
+        }
+        else if(conf == 1){
+            saldo();
+        }
+           main();
     }
     void Interface::extrato(){
-
+      
     }
     void Interface::listarClientes(){
 
@@ -134,7 +206,7 @@
             case 12: listarClientes();break;
             case 13: listarContas();break;
             case 0: exit(0);break;
-            default: system("cls"); cout <<" \t\t\t Operacao INVALIDA" << endl<< endl;system("pause");menu();
+            default: cls(); cout <<" \t\t\t Operacao INVALIDA" << endl<< endl;system("pause");menu();
         }
         system("pause");
     }

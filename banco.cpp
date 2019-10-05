@@ -138,17 +138,17 @@ void Banco::debitar_cpmf(){
   x = buffer;
   opa.push_back(x);
   for (auto j = listaContas.begin(); j != listaContas.end(); j++) {
-    double pirocao = 0;
+    double aux1 = 0;
     for(auto a = j->movimentacoes.begin(); a!= j->movimentacoes.end();a++){
       if(a->debitoCredito == 'D'){
         int days = rdn(stoi(a->dataMov[0]),stoi(a->dataMov[1]),stoi(a->dataMov[2])) - rdn(stoi(opa[0]), stoi(opa[1]) , stoi(opa[2]));
         if(days <=7){
-          pirocao += a->valor;
+          aux1 += a->valor;
         }
       }
     }
-    pirocao *= 0.0038;
-    j->debitar(pirocao,"CPMF");
+    aux1 *= 0.0038;
+    j->debitar(aux1,"CPMF");
   }
 }
 
@@ -168,7 +168,7 @@ void Banco::criar_conta(Cliente c){
 list <Cliente> Banco::get_clientes(){
   list<Cliente> aux;
   for (auto j = listaClientes.begin(); j != listaClientes.end(); j++) {
-    cout<<"Cliente "<<j->nomeCliente<<endl;
+    // cout<<"Cliente "<<j->nomeCliente<<endl;
     aux.push_back(*j);
   }
   return aux;
@@ -176,7 +176,7 @@ list <Cliente> Banco::get_clientes(){
 list <Conta> Banco::get_contas(){
   list<Conta> aux;
   for (auto j = listaContas.begin(); j != listaContas.end(); j++) {
-    cout<<"Conta "<<j->numConta<<endl;
+    //cout<<"Conta "<<j->numConta<<endl;
     aux.push_back(*j);
   }
   return aux;
