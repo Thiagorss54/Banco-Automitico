@@ -35,6 +35,9 @@ int main(){
   a.saldo(3);
 //  a.saque(1,20);
   a.saldo(1);
+  cout<<"-----------"<<endl;
+  a.excluir_cliente("115654879622");
+  
   a.gravar_dados();
 
   // a.deposito(1,100);

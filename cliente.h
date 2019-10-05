@@ -20,6 +20,7 @@ class Cliente{
 		Cliente();
 		Cliente(string n, string c, string e, string f);
 		void operator =(const Cliente& c);
+		bool operator ==(const Cliente& c);
 		string getNome();
 		string getCpf_cnpj();
 		string getEndereco();
