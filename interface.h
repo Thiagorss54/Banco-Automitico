@@ -9,6 +9,7 @@
 
 class Interface{
     public:
+    Interface();
     void menu();
     void cadastrarCliente();
     void criarConta();
@@ -16,7 +17,7 @@ class Interface{
     void excluirConta();
     void deposito();
     void saque();
-    void tranferencia();
+    void transferencia();
     void cobrarTarifa();
     void cobrarCPMF();
     void saldo();
@@ -25,6 +26,8 @@ class Interface{
     void listarContas();
     void main() ;
     
+    private:
+        Banco banco(string x);
 
 
 

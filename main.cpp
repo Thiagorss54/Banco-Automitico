@@ -6,13 +6,16 @@
 #include "cliente.h"
 #include "movimentacao.h"
 #include "banco.h"
+#include "interface.h"
 using namespace std;
 
 int main(){
 
 
-  Banco a("Banco nordeste");
-  a.ler_dados();
+  Banco a("BANCO NORDESTE");
+  Interface I();
+  I.main();
+  //a.ler_dados();
   // Cliente b;
   // b.setNome("Paulo");
   // b.setCpf_cnpj("115654879622");
@@ -28,17 +31,17 @@ int main(){
   // a.criar_conta(ac);
 
 
-  list<Conta> con = a.get_contas();
-  cout<<con.size()<<endl;
-  a.saldo(1);
-  a.saldo(2);
-  a.saldo(3);
-//  a.saque(1,20);
-  a.saldo(1);
-  cout<<"-----------"<<endl;
-  a.excluir_cliente("115654879622");
+//   list<Conta> con = a.get_contas();
+//   cout<<con.size()<<endl;
+//   a.saldo(1);
+//   a.saldo(2);
+//   a.saldo(3);
+//   a.saque(1,20);
+//   a.saldo(1);
+//   cout<<"-----------"<<endl;
+//   a.excluir_cliente("115654879622");
   
-  a.gravar_dados();
+  // a.gravar_dados();
 
   // a.deposito(1,100);
   // a.saldo(1);

@@ -40,6 +40,7 @@ class Banco{
 	list <Conta> get_contas();
 	void gravar_dados();
 	void ler_dados();
+	string get_nome_banco();
 };
 
 #endif //BANCO_H
