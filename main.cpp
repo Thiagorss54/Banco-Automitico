@@ -12,7 +12,7 @@ int main(){
 
 
   Banco a("Banco nordeste");
- a.ler_dados();
+  a.ler_dados();
   // Cliente b;
   // b.setNome("Paulo");
   // b.setCpf_cnpj("115654879622");
@@ -26,13 +26,23 @@ int main(){
   // a.criar_conta(ad);
   // a.criar_conta(b);
   // a.criar_conta(ac);
-//   a.get_contas();
-//    a.deposito(1,100);
-//   // a.saldo(1);
-//    a.deposito(2,2);
-//   // a.saldo(2);
-//    a.deposito(3,50);
-//   // a.saldo(3);
+
+
+  list<Conta> con = a.get_contas();
+  cout<<con.size()<<endl;
+  a.saldo(1);
+  a.saldo(2);
+  a.saldo(3);
+//  a.saque(1,20);
+  a.saldo(1);
+  a.gravar_dados();
+
+  // a.deposito(1,100);
+  // a.saldo(1);
+  // a.deposito(2,2);
+  // a.saldo(2);
+  // a.deposito(3,50);
+  // a.saldo(3);
 // //    cout<<"-------------------------------------------"<<endl;
 // //   // a.tarifa();
 //   a.transferencia_conta(1,2,20);
@@ -42,7 +52,7 @@ int main(){
   //
   //
   //
-  a.gravar_dados();
+
 
   // Conta cb(&b);
   // cout << "\t\t\tINICIO DE CREDITAR" << endl;
