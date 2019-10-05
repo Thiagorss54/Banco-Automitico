@@ -8,14 +8,14 @@
 #include "movimentacao.h"
 using namespace std;
 
-void Conta::print(){
-		cout << "\t\t\t  CLIENTE" << endl;
-		cout << "numero = " << numConta << endl;
-		cout << "cliente:" << endl;
-		cliente->print();
-		cout << "saldo = " << saldo << endl;
-		
-}
+// void Conta::print(){
+// 		cout << "\t\t\t  CLIENTE" << endl;
+// 		cout << "numero = " << numConta << endl;
+// 		cout << "cliente:" << endl;
+// 		cliente.print();
+// 		cout << "saldo = " << saldo << endl;
+
+// }
 
 int Conta::proximoNumConta = 0;
 
@@ -61,18 +61,28 @@ void Conta::creditar(double v, string d){
 	}
 }
 
-
-
-// Conta::Conta(){}
-Conta::Conta(Cliente *c){
+Conta::Conta(Cliente c){
 	saldo = 0.0;
 	cliente = c;
 	proximoNumConta++;
 	numConta = proximoNumConta;
 }
+
+Conta::Conta(int nconta, double sald, Cliente c, list<Movimentacao> mov){
+	numConta = nconta;
+	saldo = sald;
+	cliente = c;
+	for (list<Movimentacao>::iterator it = mov.begin(); it != mov.end(); it++) {
+			movimentacoes.push_back(*it);
+	}
+	if (nconta >= proximoNumConta){
+		proximoNumConta = nconta+1;
+	}
+}
+
 int Conta::getNumConta(){ return numConta; }
 double Conta::getSaldo(){ return saldo; }
-Cliente* Conta::getCliente(){ return cliente; }
+Cliente Conta::getCliente(){ return cliente; }
 //list<Movimentacao> Conta::getMovimentacoes(){ return movimentacoes;}
 
 
@@ -135,9 +145,9 @@ list<Movimentacao> Conta::extrato(vector<string> di){
 			// if (it->dataMov[0] >= di[0] && it->dataMov[1] >= di[1] && it->dataMov[2] >= di[2] && it->dataMov[0] <= df[0]
 			// 	&& it->dataMov[1] <= di[1] && it->dataMov[2] <= di[2]){
 			if(it->dataMov[0] >= di[0] && it->dataMov[0] <= df[0]){
-				
+
 				if(di[0]==df[0] && it->dataMov[1] >= di[1] && it->dataMov[1] <= df[1]){
-					
+
 						if((di[1]==df[1]) && (it->dataMov[2] >= di[2] && it->dataMov[2] <= df[2])){
 							cout << "valor:: "<< it->valor << endl ;
 							res.push_back(*it);
@@ -172,10 +182,10 @@ list<Movimentacao> Conta::extrato(vector<string> di, vector<string> df){
 	auto aux1 = di[0] + di[1] + di[2];
 	auto aux2 = df[0] + df[1] + df[2];
 	cout <<"Di  " << aux1<< "   Df  "  << aux2 << endl;
-	
+
 	if(!movimentacoes.empty()){
 		for(list<Movimentacao>::iterator it = movimentacoes.begin(); it != movimentacoes.end(); it++){
-		
+
 			auto dataMovimentacao = it->dataMov[0] + it->dataMov[1] + it->dataMov[2];
 			cout << "dataMovimentacao " << dataMovimentacao << endl;
 			if(dataMovimentacao >= aux1 && dataMovimentacao <= aux2 ){
@@ -196,7 +206,3 @@ list<Movimentacao> Conta::extrato(vector<string> di, vector<string> df){
 		return res;
 	}
 }
-
-
-
-Conta::~Conta(){}

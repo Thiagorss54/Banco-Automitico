@@ -14,6 +14,7 @@ class Cliente{
 
 	friend class Banco;
 	friend class Conta;
+	friend class Movimentacao;
 
 	public:
 		Cliente();
@@ -27,7 +28,7 @@ class Cliente{
 		void setCpf_cnpj(string c);
 		void setEndereco(string e);
 		void setFone(string f);
-		~Cliente(); 
+		~Cliente();
 		void print();
 };
 

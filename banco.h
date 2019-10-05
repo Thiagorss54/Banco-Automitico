@@ -7,7 +7,7 @@
 #include <map>
 
 #include "cliente.h"
-#include "conta.h" 
+#include "conta.h"
 #include "movimentacao.h"
 
 using namespace std;
@@ -19,6 +19,7 @@ class Banco{
 	list<Conta> listaContas;
 	friend class Cliente;
 	friend class Conta;
+	friend class Movimentacao;
 
 	public:
 	Banco(string nomeBanco);
@@ -38,6 +39,8 @@ class Banco{
 	void excluir_conta(int nconta);
 	list <Cliente> get_clientes();
 	list <Conta> get_contas();
+	void gravar_dados();
+	void ler_dados();
 };
 
 #endif //BANCO_H
