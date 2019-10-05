@@ -15,9 +15,25 @@ Caio
 123456
 rua mae do nknnjose
 231231123
+Paulo
+115654879622
+rua a
+998745632545
+Jacu
+11
+rua mae do jose
+231231123
+Pirocao
+11
+rua mae
+231123
+Caio
+123456
+rua mae do nknnjose
+231231123
 Conta
 1
-80
+317
 Pirocao
 mov
 2019
@@ -33,9 +49,16 @@ mov
 Transferencia para a conta 2
 D
 20
+mov
+2019
+10
+05
+Deposito
+C
+237
 Conta
 2
-22
+473
 Paulo
 mov
 2019
@@ -51,6 +74,74 @@ mov
 Transferencia da conta 1
 C
 20
+mov
+2019
+10
+05
+Deposito
+C
+451
+Conta
+3
+50
+Jacu
+mov
+2019
+10
+04
+Deposito
+C
+50
+Conta
+1
+317
+Pirocao
+mov
+2019
+10
+04
+Deposito
+C
+100
+mov
+2019
+10
+04
+Transferencia para a conta 2
+D
+20
+mov
+2019
+10
+05
+Deposito
+C
+237
+Conta
+2
+473
+Paulo
+mov
+2019
+10
+04
+Deposito
+C
+2
+mov
+2019
+10
+04
+Transferencia da conta 1
+C
+20
+mov
+2019
+10
+05
+Deposito
+C
+451
 Conta
 3
 50

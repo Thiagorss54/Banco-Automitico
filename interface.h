@@ -9,7 +9,7 @@
 
 class Interface{
     public:
-    Interface();
+    Interface(string nomeBanco);
     void menu();
     void cadastrarCliente();
     void criarConta();
@@ -27,7 +27,9 @@ class Interface{
     void main() ;
     
     private:
-        Banco banco(string x);
+        string nomeBanco_;
+        Banco* NU;
+       
 
 
 

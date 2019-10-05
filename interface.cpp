@@ -1,4 +1,6 @@
 #include "interface.h"
+
+
     int nconta;
     double valor;
     
@@ -7,28 +9,28 @@
         system("cls");
     }
 
-    bool confirmacao(){
+    int confirmacao(){
         char confirmacao;
-        cout << "CONFIRMAR (C)       ANULAR (A)" << endl;
+        cout << "CONFIRMAR (C)       Retornar(R)      ANULAR (A)   " << endl;
         cin >> confirmacao;
-        if(confirmacao == 'C')
-            return true;
-        else if(confirmacao == 'A')
-            return false;
-        else {
-            cls();
-            confirmacao();
+        if(confirmacao == 'C'){
+            return 0;
         }
+        else if(confirmacao == 'R'){
+            return 1;
+        }
+        else
+            return 2;
+        
     }
   
-    Interface::Interface(){
-
-
+    Interface::Interface(string nomeBanco):nomeBanco_(nomeBanco){
+        NU = new Banco("teste");
     }
 
     void Interface::menu(){
         system("cls");
-        cout << "\n\n\n\t\t\t  " << bank.get_nome_banco() << endl << endl << endl ;
+        cout << "\n\n\n\t\t\t  " << nomeBanco_ << endl << endl << endl ;
         cout << "1  Cadastrar cliente";
         cout << "\t\t\t\t2  Criar Conta" << endl<< endl;
         cout << "3  Excluir Cliente" ;
@@ -41,8 +43,8 @@
         cout << "\t\t\t\t\t10 Saldo" << endl<< endl;
         cout << "11 Extrato" ;
         cout << "\t\t\t\t\t12 Listar Clientes" << endl<< endl;
-        cout << "13 Listar Contas" << endl;
-        cout << "\t\t\t\t\t0 FINALIZAR" << endl<< endl;
+        cout << "13 Listar Contas";
+        cout << "\t\t\t\t0 FINALIZAR" << endl<< endl;
         cout << endl ;
         
 
@@ -68,10 +70,19 @@
         cin >> nconta;
         cout << "Valor:\t";
         cin >> valor;
-        if(confirmacao() == true){
+        int conf = confirmacao();
+        if(conf == 0){
+            NU->deposito(nconta,valor);
+            cout << "   Operacao realizada.  " << endl;
+            NU->gravar_dados();
+           
 
         }
-
+        else if(conf == 1){
+            deposito();
+        }
+        else
+           main();
     }
     void Interface::saque(){
         cls();
@@ -83,7 +94,8 @@
         cout << "\t\t\t Transferencia\n\n";
     }
     void Interface::cobrarTarifa(){
-
+        cls();
+        cout << "\t\t\t Cobrar Tarifa\n\n";
     }
     void Interface::cobrarCPMF(){
 
@@ -102,7 +114,9 @@
 
     }
     void Interface::main(){
+        NU->ler_dados();
         menu();
+        Banco banco(nomeBanco_);
         int funcao;
         cin >> funcao;
         switch(funcao){

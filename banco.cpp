@@ -67,7 +67,9 @@ void Banco::deposito(int nconta, double valor){
     if(nconta == j->numConta){
       j->creditar(valor, "Deposito");
     }
+    
   }
+  
 }
 
 void Banco::saque(int nconta, double valor){

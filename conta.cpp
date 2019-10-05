@@ -56,9 +56,9 @@ void Conta::creditar(double v, string d){
 	Movimentacao mov(d,'C',v);
 	saldo += v;
 	movimentacoes.push_back(mov);
-	for(auto i=movimentacoes.begin();i!=movimentacoes.end();i++){
-		 cout << "mov descricao :  "<< i->descricao << endl;
-	}
+	// for(auto i=movimentacoes.begin();i!=movimentacoes.end();i++){
+	// 	 cout << "mov descricao :  "<< i->descricao << endl;
+	// }
 }
 
 Conta::Conta(Cliente c){

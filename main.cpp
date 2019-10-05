@@ -12,8 +12,8 @@ using namespace std;
 int main(){
 
 
-  Banco a("BANCO NORDESTE");
-  Interface I();
+  string nB = "  BANCO ";
+  Interface I(nB);
   I.main();
   //a.ler_dados();
   // Cliente b;
@@ -58,7 +58,6 @@ int main(){
   //
   //
   //
-
 
   // Conta cb(&b);
   // cout << "\t\t\tINICIO DE CREDITAR" << endl;
