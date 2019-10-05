@@ -42,6 +42,7 @@ class Banco{
 	void ler_dados();
 	void extrato(int nconta, vector<string> di);
 	void extrato(int nconta, vector<string> di, vector<string> df);
+	string get_nome_banco();
 };
 
 #endif //BANCO_H

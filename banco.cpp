@@ -278,6 +278,9 @@ void Banco::ler_dados(){
   }
   in.close();
 }
+string Banco::get_nome_banco(){
+    return nomeBanco;
+}
 
 void Banco::extrato(int nconta, vector<string> di){
   list<Movimentacao> mov;
