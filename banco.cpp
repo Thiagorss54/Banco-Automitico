@@ -23,51 +23,45 @@ void Banco::setConta(Conta c){
 }
 
 void Banco::excluir_cliente(string c){
+  int aux = 0;
+  Cliente a;
   for (auto i = listaClientes.begin() ; i != listaClientes.end() ; i++){
     if (c == i->cpf_cnpj){
-      cout<<"deu bom"<<endl;
+      for (auto j = listaContas.begin();j!=listaContas.end();j++){
+        if (i->nomeCliente == j->cliente.getNome()){
+          aux++;
+        }
+      }
+      if(aux == 0){
+        a = *i;
+      }
     }
-    
+  }
+  if(aux == 0){
+    listaClientes.remove(a);
+  }
+  else{
+    cout<<"Cliente ainda possui conta"<<endl;
+  }
+  
+}
+
+void Banco::excluir_conta(int nconta){
+  int aux=0;
+  double sald;
+  Cliente c;
+  list<Movimentacao> mov;
+  for (auto j = listaContas.begin(); j != listaContas.end(); j++) {
+    if(nconta == j->numConta){
+      listaContas.erase(j);
+      aux++;
+    }
+  }
+  if(aux == 0){
+    cout<<"Conta nao existe no banco de dados."<<endl;
   }
 }
-// void Banco::delCliente(int id) {
-// 	int a = 0;
-// 	Cliente aux();
-// 	for (list<Cliente>::iterator i = listaClientes.begin(); i != listaClientes.end(); i++) {
-// 		if (id == i->Cpf_cnpj) {
-// 			for (list<Conta>::iterator j = listaContas.begin(); j != listaContas.end(); j++) {
-// 				if (i == j->cliente) {
-// 					a++;
-// 				}
-// 			}
-// 			if (a == 0) {
-// 				aux = i;
-// 			}else {
-// 				cout << "O cliente não pode ser excluido pois ainda tem conta." << endl;
-// 			}
-// 		}else {
-// 			cout << "O cliente não está cadastrado nesse banco." << endl;
-// 		}
-// 	}
-// 	listaClientes.remove(aux);
-// }
 
-// void Banco::delConta(int num) {
-// 	int a = 0;
-// 	Cliente aux();
-// 	for (list<Conta>::iterator i = listaContas.begin(); i != listaContas.end(); i++) {
-// 		if(num == i->numConta) {
-// 			aux = i;
-// 			a++;
-// 		}
-// 	}
-// 	if(a == 0){
-// 		cout << "A conta não existe." << endl;
-// 	}
-// 	else {
-// 		listaContas.remove(aux);
-// 	}
-// }
 void Banco::deposito(int nconta, double valor){
   for (auto j = listaContas.begin(); j != listaContas.end(); j++) {
     if(nconta == j->numConta){
@@ -169,17 +163,10 @@ void Banco::criar_conta(Cliente c){
   this->setConta(a);
 }
 
-void Banco::excluir_conta(int nconta){
-  for (auto j = listaContas.begin(); j != listaContas.end(); j++) {
-     if(nconta == j->numConta){
-       listaContas.erase(j);
-    }
-  }
-}
-
 list <Cliente> Banco::get_clientes(){
   list<Cliente> aux;
   for (auto j = listaClientes.begin(); j != listaClientes.end(); j++) {
+    cout<<"Cliente "<<j->nomeCliente<<endl;
     aux.push_back(*j);
   }
   return aux;
@@ -290,4 +277,34 @@ void Banco::ler_dados(){
     }
   }
   in.close();
+}
+
+void Banco::extrato(int nconta, vector<string> di){
+  list<Movimentacao> mov;
+  for (auto i = listaContas.begin();i!=listaContas.end();i++){
+    if(nconta == i->numConta){
+      mov = i->extrato(di);
+    }
+  }
+  // Imprimir extrato
+  for (auto i = mov.begin();i!=mov.end();i++){
+    cout<<i->dataMov[0]<<"/"<<i->dataMov[1]<<"/"<<i->dataMov[2]<<
+      "   Tipo: "<<i->debitoCredito<<"  Valor: "<<i->valor<<
+      "   Descricao: "<<i->descricao<<endl;
+  }
+}
+
+void Banco::extrato(int nconta, vector<string> di, vector<string> df){
+  list<Movimentacao> mov;
+  for (auto i = listaContas.begin();i!=listaContas.end();i++){
+    if(nconta == i->numConta){
+      mov = i->extrato(di,df);
+    }
+  }
+  // Imprimir extrato
+  for (auto i = mov.begin();i!=mov.end();i++){
+    cout<<i->dataMov[0]<<"/"<<i->dataMov[1]<<"/"<<i->dataMov[2]<<
+      "   Tipo: "<<i->debitoCredito<<"  Valor: "<<i->valor<<
+      "   Descricao: "<<i->descricao<<endl;
+  }
 }
