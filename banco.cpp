@@ -164,7 +164,7 @@ void Banco::saldo(int nconta){
 }
 
 void Banco::criar_conta(Cliente c){
-  Conta a(&c);
+  Conta a(c);
   this->setConta(a);
 }
 
@@ -202,14 +202,17 @@ void Banco::gravar_dados(){
     out<<j->endereco<<endl;
     out<<j->fone<<endl;
   }
-  out<<endl;
   list<Conta> co = get_contas();
+  cout<<co.size()<<endl;
   for (auto j = co.begin() ; j != co.end() ; j++){
     out<<"Conta"<<endl;
     out<<j->numConta<<endl;
     out<<j->saldo<<endl;
-    auto ic = j->cliente;
-    out<<ic->nomeCliente<<endl;
+    Cliente clienteaux = j->cliente;
+    cout<<clienteaux.getNome()<<endl;
+    string stringaux = clienteaux.getNome();
+    cout<<stringaux<<endl;
+    out<<stringaux<<endl;
     for(auto k = j->movimentacoes.begin(); k != j->movimentacoes.end(); k++){
       out<<"mov"<<endl;
       out<<k->dataMov[0]<<endl;
@@ -284,7 +287,7 @@ void Banco::ler_dados(){
         }
         if(linha.size() == 0){break;}
       }
-      Conta co(nconta,sald,&aux,m);
+      Conta co(nconta,sald,aux,m);
       this->setConta(co);
     }
   }

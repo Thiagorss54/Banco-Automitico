@@ -8,14 +8,14 @@
 #include "movimentacao.h"
 using namespace std;
 
-void Conta::print(){
-		cout << "\t\t\t  CLIENTE" << endl;
-		cout << "numero = " << numConta << endl;
-		cout << "cliente:" << endl;
-		cliente->print();
-		cout << "saldo = " << saldo << endl;
+// void Conta::print(){
+// 		cout << "\t\t\t  CLIENTE" << endl;
+// 		cout << "numero = " << numConta << endl;
+// 		cout << "cliente:" << endl;
+// 		cliente.print();
+// 		cout << "saldo = " << saldo << endl;
 
-}
+// }
 
 int Conta::proximoNumConta = 0;
 
@@ -61,14 +61,14 @@ void Conta::creditar(double v, string d){
 	}
 }
 
-Conta::Conta(Cliente *c){
+Conta::Conta(Cliente c){
 	saldo = 0.0;
 	cliente = c;
 	proximoNumConta++;
 	numConta = proximoNumConta;
 }
 
-Conta::Conta(int nconta, double sald, Cliente *c, list<Movimentacao> mov){
+Conta::Conta(int nconta, double sald, Cliente c, list<Movimentacao> mov){
 	numConta = nconta;
 	saldo = sald;
 	cliente = c;
@@ -82,7 +82,7 @@ Conta::Conta(int nconta, double sald, Cliente *c, list<Movimentacao> mov){
 
 int Conta::getNumConta(){ return numConta; }
 double Conta::getSaldo(){ return saldo; }
-Cliente* Conta::getCliente(){ return cliente; }
+Cliente Conta::getCliente(){ return cliente; }
 //list<Movimentacao> Conta::getMovimentacoes(){ return movimentacoes;}
 
 

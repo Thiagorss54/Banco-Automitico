@@ -12,7 +12,7 @@ class Conta{
 	private:
 	int numConta;
 	double saldo;
-	Cliente *cliente;
+	Cliente cliente;
 	list<Movimentacao> movimentacoes;
 	friend class Movimentacao;
 	friend class Banco;
@@ -20,11 +20,11 @@ class Conta{
 
 	public:
 	static int proximoNumConta;
-	Conta(Cliente *c);
-	Conta(int nconta, double sald, Cliente *c, list<Movimentacao> mov);
+	Conta(Cliente c);
+	Conta(int nconta, double sald, Cliente c, list<Movimentacao> mov);
 	int getNumConta();
 	double getSaldo();
-	Cliente* getCliente();
+	Cliente getCliente();
 	bool debitar(double v,string d);
 	bool debitar(double v,Movimentacao mov);
 	void creditar(double v, string d);
