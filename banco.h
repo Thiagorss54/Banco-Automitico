@@ -26,8 +26,6 @@ class Banco{
 	void setCliente(Cliente c);
 	void setConta(Conta c);
 	void operator =(const Banco& c);
-	void delCliente(int num);
-	void delConta(int num);
 	void deposito(int nconta, double valor);
 	void saque(int nconta, double valor);
 	void saque(int nconta, double valor, string ano, string mes, string dia);
@@ -36,6 +34,7 @@ class Banco{
 	void debitar_cpmf();
 	void saldo(int nconta);
 	void criar_conta(Cliente c);
+	void excluir_cliente(string c);
 	void excluir_conta(int nconta);
 	list <Cliente> get_clientes();
 	list <Conta> get_contas();
