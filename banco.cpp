@@ -27,7 +27,7 @@ void Banco::excluir_cliente(string c){
   Cliente a;
   for (auto i = listaClientes.begin() ; i != listaClientes.end()++ ; i++){
     if (c == i->cpf_cnpj){
-      for (auto j = listaContas.begin();j!=listaContas.end();j++){
+      for (auto j = listaContas.begin();j!=listaContas.end()++;j++){
         if (i->nomeCliente == j->cliente.getNome()){
           aux++;
         }

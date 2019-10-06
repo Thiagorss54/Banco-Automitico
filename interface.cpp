@@ -14,6 +14,8 @@
         char confirmacao;
         cout << endl << "CONFIRMAR (C)       Retornar(R)      ANULAR (A)   " << endl;
         cin >> confirmacao;
+        cout<< "\r";
+        cout << endl <<endl;
         if(confirmacao == 'C'){
             return 0;
         }
@@ -56,6 +58,9 @@
     void Interface::criarConta(){
         //imprimir o nome dos clientes pra pessoa digitar qual que ela quer relacionar a uma conta
         // usar um cliente aux 
+        Cliente aux;
+        cout << "\t\t\t Criar Conta\n\n\n";
+        
     }
     void Interface::excluirCliente(){
         cls();
@@ -63,11 +68,12 @@
         cout << "\t\t\t Excluir Cliente\n\n\n";
         cout << "Cpf/Cnpj:\t  " ;
         cin >> cpfCnpj;
+        
         conf = confirmacao();
         if(conf == 0){
             NU->excluir_cliente(cpfCnpj);
-            cout << "        Operacao realizada.  " << endl;
             NU->gravar_dados();
+            cout << endl << endl << endl;
             system("pause");
         }
         else if(conf == 1){
@@ -85,6 +91,7 @@
         if(conf == 0){
             NU->excluir_conta(nconta);
             NU->gravar_dados();
+            cout << endl << endl << endl;
             system("pause");
         }
         else if(conf == 1){
@@ -213,7 +220,9 @@
         int cont=1;
         list <Cliente> aux = NU->get_clientes();
         for (auto j = aux.begin(); j !=aux.end(); j++,cont++) {
-             cout<< cont << "   " <<j->nomeCliente<<endl;
+            cout << "Cliente " << cont << endl;
+            j->print();
+            cout << endl;
         }
         cout << endl << endl << endl;
         system("pause");
@@ -226,15 +235,12 @@
         cout << "\t\t\t Contas\n\n\n";
         list <Conta> aux = NU->get_contas();
         for (auto j = aux.begin(); j !=aux.end(); j++) {
-            cout << "\t\t\t ";
-            g=3;
-            g2=j->numConta/10;
-            while((g - g2)>=0){
-                cout << "0";
-                g--;
+            
+            cout << "numero = " << j->numConta << endl;
+            cout << "cliente: "<< j->cliente.getNome() << endl;
+            cout << "saldo = " << j->saldo << endl;
+            cout << endl;
             }
-            cout <<j->numConta<<endl;
-        }
         cout << endl << endl << endl;
         system("pause");
         main();
