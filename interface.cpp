@@ -1,7 +1,7 @@
 #include "interface.h"
 
 
-    int nconta,conf;
+    int nconta,conf,Inicio=0;
     double valor;
     
     
@@ -12,7 +12,7 @@
 
     int confirmacao(){
         char confirmacao;
-        cout << "CONFIRMAR (C)       Retornar(R)      ANULAR (A)   " << endl;
+        cout << endl << "CONFIRMAR (C)       Retornar(R)      ANULAR (A)   " << endl;
         cin >> confirmacao;
         if(confirmacao == 'C'){
             return 0;
@@ -58,15 +58,45 @@
         // usar um cliente aux 
     }
     void Interface::excluirCliente(){
-
+        cls();
+        string cpfCnpj;
+        cout << "\t\t\t Excluir Cliente\n\n\n";
+        cout << "Cpf/Cnpj:\t  " ;
+        cin >> cpfCnpj;
+        conf = confirmacao();
+        if(conf == 0){
+            NU->excluir_cliente(cpfCnpj);
+            cout << "        Operacao realizada.  " << endl;
+            NU->gravar_dados();
+            system("pause");
+        }
+        else if(conf == 1){
+            excluirCliente();
+        }
+           main();
     }
     void Interface::excluirConta(){
+        cls();
+        
+        cout << "\t\t\t Excluir Conta\n\n\n";
+        cout << "Numero da Conta:\t  " ;
+        cin >> nconta;
+        conf = confirmacao();
+        if(conf == 0){
+            NU->excluir_conta(nconta);
+            NU->gravar_dados();
+            system("pause");
+        }
+        else if(conf == 1){
+            excluirConta();
+        }
+           main();
 
     }
     void Interface::deposito(){
         
         cls();
-        cout << "\t\t\t Deposito\n\n";
+        cout << "\t\t\t Deposito\n\n\n";
         cout << "Numero da Conta:\t  " ;
         cin >> nconta;
         cout << "Valor:\t  ";
@@ -85,7 +115,7 @@
     }
     void Interface::saque(){
         cls();
-        cout << "\t\t\t Saque\n\n";
+        cout << "\t\t\t Saque\n\n\n";
         cout << "Numero da Conta:\t  " ;
         cin >> nconta;
         cout << "Valor:\t  ";
@@ -106,10 +136,10 @@
     void Interface::transferencia(){
         int nconta_O, nconta_D;
         cls();
-        cout << "\t\t\t Transferencia\n\n";
-        cout << "Numero da Conta:\t  " ;
+        cout << "\t\t\t Transferencia\n\n\n";
+        cout << "Numero da Conta :\t  " ;
         cin >> nconta_O;
-        cout << "Conta Destino:\t  ";
+        cout << "Numero da Conta Destino:\t  ";
         cin >> nconta_D;
         cout << "Valor:\t  ";
         cin >> valor;
@@ -127,8 +157,8 @@
     }
     void Interface::cobrarTarifa(){
         cls();
-        cout << "\t\t\t Pagamento da Tarifa\n\n";
-        cout << "Confirmar pagamento?   ";
+        cout << "\t\t\t Pagamento da Tarifa\n\n\n";
+        cout << "Confirmar pagamento?" << endl;
         conf = confirmacao();
         if(conf == 0){
             NU->tarifa();
@@ -144,8 +174,8 @@
     }
     void Interface::cobrarCPMF(){
         cls();
-        cout << "\t\t\t CPMF\n\n";
-        cout << "Confirmar pagamento?   ";
+        cout << "\t\t\t CPMF\n\n\n";
+        cout << "Confirmar pagamento?" << endl;
         conf = confirmacao();
         if(conf == 0){
             NU->debitar_cpmf();
@@ -161,14 +191,12 @@
     }
     void Interface::saldo(){
         cls();
-        cout << "\t\t\t Saldo\n\n";
+        cout << "\t\t\t Saldo\n\n\n";
         cout << "Numero da Conta:\t  " ;
         cin >> nconta;
         conf = confirmacao();
         if(conf == 0){
             NU->saldo(nconta);
-            cout << "        Operacao realizada.  " << endl;
-            NU->gravar_dados();
             system("pause");
         }
         else if(conf == 1){
@@ -180,13 +208,42 @@
       
     }
     void Interface::listarClientes(){
+        cls();
+        cout << "\t\t\t Clientes\n\n\n";
+        int cont=1;
+        list <Cliente> aux = NU->get_clientes();
+        for (auto j = aux.begin(); j !=aux.end(); j++,cont++) {
+             cout<< cont << "   " <<j->nomeCliente<<endl;
+        }
+        cout << endl << endl << endl;
+        system("pause");
+        main();
 
     }
     void Interface::listarContas(){
+        cls();
+        int g,g2;
+        cout << "\t\t\t Contas\n\n\n";
+        list <Conta> aux = NU->get_contas();
+        for (auto j = aux.begin(); j !=aux.end(); j++) {
+            cout << "\t\t\t ";
+            g=3;
+            g2=j->numConta/10;
+            while((g - g2)>=0){
+                cout << "0";
+                g--;
+            }
+            cout <<j->numConta<<endl;
+        }
+        cout << endl << endl << endl;
+        system("pause");
+        main();
 
     }
     void Interface::main(){
-        NU->ler_dados();
+        if(Inicio==0)
+            NU->ler_dados();
+        Inicio=1;
         menu();
         Banco banco(nomeBanco_);
         int funcao;

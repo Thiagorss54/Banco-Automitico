@@ -25,7 +25,7 @@ void Banco::setConta(Conta c){
 void Banco::excluir_cliente(string c){
   int aux = 0;
   Cliente a;
-  for (auto i = listaClientes.begin() ; i != listaClientes.end() ; i++){
+  for (auto i = listaClientes.begin() ; i != listaClientes.end()++ ; i++){
     if (c == i->cpf_cnpj){
       for (auto j = listaContas.begin();j!=listaContas.end();j++){
         if (i->nomeCliente == j->cliente.getNome()){
@@ -51,7 +51,7 @@ void Banco::excluir_conta(int nconta){
   double sald;
   Cliente c;
   list<Movimentacao> mov;
-  for (auto j = listaContas.begin(); j != listaContas.end(); j++) {
+  for (auto j = listaContas.begin(); j != listaContas.end()++; j++) {
     if(nconta == j->numConta){
       listaContas.erase(j);
       aux++;
