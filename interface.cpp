@@ -6,8 +6,8 @@
     
     
     void cls(){
-        // system("cls");
-        cout << "\n\n\n\n\n";
+         system("cls");
+        
     }
 
     int confirmacao(){
@@ -53,13 +53,54 @@
 
     }
     void Interface::cadastrarCliente(){
+         cls();
+        cout << "\t\t\t CADASTRO DE CLIENTE\n\n\n";
+        cout << "Digite o nome do cliente:\t  " ;
+        string cli;
+        cin >> cli;
+        cout << "Digite o cpf_cnpj do cliente:\t  " ;
+        string cpf;
+        cin >> cpf;
+        cout << "Digite o telefone do cliente:\t  " ;
+        string tel;
+        cin >> tel;
+        cout << "Digite o endereco do cliente:\t  " ;
+        string ende;
+        cin >> ende;
+        conf = confirmacao();
+        Cliente aux(cli,cpf,ende,tel);
+       
+        NU->setCliente(aux);
+        NU->gravar_dados();
+        cout << endl << endl << endl;
+        system("pause");
+        main();
+        
+        
+        
+       
+        
 
     }
     void Interface::criarConta(){
         //imprimir o nome dos clientes pra pessoa digitar qual que ela quer relacionar a uma conta
         // usar um cliente aux 
-        Cliente aux;
-        cout << "\t\t\t Criar Conta\n\n\n";
+        // Cliente aux;
+         cout << "\t\t\t Criar Conta\n\n\n";
+         cout << "Digite o nome do Cliente: ";
+        // cin >> aux;
+        // conf = confirmacao();
+        // if(conf == 0){
+        //     NU->criar_conta(aux);
+        //     NU->gravar_dados();
+        //     cout << endl << endl << endl;
+        //     system("pause");
+        // }
+        // else if(conf == 1){
+        //     criarConta();
+        // }
+        //    main();
+
         
     }
     void Interface::excluirCliente(){
