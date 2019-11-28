@@ -1,6 +1,6 @@
 #include "contapoupanca.h"
 
-void Contapoupanca::Debito_Poupanca(double v, string d){
+bool Contapoupanca::debitar(double v, string d){
     time_t rawtime;
 	string a;
 	struct tm * timeinfo;
@@ -27,13 +27,15 @@ void Contapoupanca::Debito_Poupanca(double v, string d){
     
     if(Poupanca[dia - 1] - v >= 0){
         Poupanca[dia - 1] -= v;
-        Movimentacao mov(d,'DP',v); 
-		movimentacoes.push_back(mov);
+        Movimentacao mov(d,'D',v); 
+		//movimentacoes.push_back(mov);
+        return true;
     }else{
         cout << "Saldo insuficiente" << endl;
+        return false;
     }
 }
-void Contapoupanca::Credito_Poupanca(double valor){
+void Contapoupanca::creditar(double v,string d){
     time_t rawtime;
 	string a;
 	struct tm * timeinfo;
@@ -49,8 +51,9 @@ void Contapoupanca::Credito_Poupanca(double valor){
     }
 
     Poupanca[dia - 1] += v;
-    Movimentacao mov(d,'CP',v); 
-	movimentacoes.push_back(mov);
+    Movimentacao mov(d,'C',v); 
+   // movimentacoes.push_back(mov);
+	
 }
 void Contapoupanca::Rendimento_Poupanca(){
     time_t rawtime;
@@ -69,6 +72,3 @@ void Contapoupanca::Rendimento_Poupanca(){
 
 
 
-};
-
-#endif
