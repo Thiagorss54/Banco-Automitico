@@ -18,6 +18,7 @@ class Conta{
 	friend class Banco;
 	friend class Cliente;
 	friend class Interface;
+	friend class Contacorrente;
 
 	public:
 	static int proximoNumConta;
@@ -26,7 +27,7 @@ class Conta{
 	int getNumConta();
 	double getSaldo();
 	Cliente getCliente();
-	bool debitar(double v,string d);
+	virtual bool debitar(double v,string d);
 	bool debitar(double v,Movimentacao mov);
 	void creditar(double v, string d);
 	void print();

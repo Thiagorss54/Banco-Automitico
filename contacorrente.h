@@ -2,13 +2,15 @@
 #define CONTACORRENTE_H
 
 #include "conta.h"
+#include "cliente.h"
 
 class Contacorrente: public Conta{
 private:
-    double limitecredito;
+    double limitecredito_;
 
 public:
-    Contacorrente(Cliente c, double lim): Cliente(c),limitecredito(lim){};
+    Contacorrente(Cliente c, double lim): Conta(c),limitecredito_(lim){};
+    bool debitar(double v,string d);
     ~Contacorrente();
 };
 

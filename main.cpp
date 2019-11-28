@@ -7,20 +7,30 @@
 #include "movimentacao.h"
 #include "banco.h"
 #include "interface.h"
+#include "contacorrente.h"
 using namespace std;
 
 int main(){
 
 
-  string nB = "  BANCO ";
-  Interface I(nB);
-  I.main();
+  // string nB = "  BANCO ";
+  // Interface I(nB);
+  // I.main();
+
+
   //a.ler_dados();
-  // Cliente b;
-  // b.setNome("Paulo");
-  // b.setCpf_cnpj("115654879622");
-  // b.setEndereco("rua a");
-  // b.setFone("998745632545");
+  Cliente b;
+  b.setNome("Paulo");
+  b.setCpf_cnpj("115654879622");
+  b.setEndereco("rua a");
+  b.setFone("998745632545");
+
+  double lim = 300;
+
+  Contacorrente a(b,lim);
+  a.debitar(400,"c");
+  double sal = a.getSaldo();
+  cout<< sal << endl;
   // Cliente ac ("Jacu","11","rua mae do jose","231231123");
   // Cliente ad ("Pirocao","11","rua mae","231123");
   // a.setCliente(b);

@@ -8,14 +8,14 @@
 #include "movimentacao.h"
 using namespace std;
 
-// void Conta::print(){
-// 		cout << "\t\t\t  CLIENTE" << cont << endl;
-// 		cout << "numero = " << numConta << endl;
-// 		cout << "cliente:" << endl;
-// 		cliente.print();
-// 		cout << "saldo = " << saldo << endl;
+void Conta::print(){
+		cout << "\t\t\t  CLIENTE" << endl;
+		cout << "numero = " << numConta << endl;
+		cout << "cliente:" << endl;
+		cliente.print();
+		cout << "saldo = " << saldo << endl;
 
-// }
+}
 
 int Conta::proximoNumConta = 0;
 
