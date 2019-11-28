@@ -19,6 +19,7 @@ class Conta{
 	friend class Cliente;
 	friend class Interface;
 	friend class Contacorrente;
+	friend class Contapoupanca;
 
 	public:
 	static int proximoNumConta;

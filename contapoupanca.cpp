@@ -28,7 +28,7 @@ bool Contapoupanca::debitar(double v, string d){
     if(Poupanca[dia - 1] - v >= 0){
         Poupanca[dia - 1] -= v;
         Movimentacao mov(d,'D',v); 
-		//movimentacoes.push_back(mov);
+		movimentacoes.push_back(mov);
         return true;
     }else{
         cout << "Saldo insuficiente" << endl;
@@ -52,7 +52,7 @@ void Contapoupanca::creditar(double v,string d){
 
     Poupanca[dia - 1] += v;
     Movimentacao mov(d,'C',v); 
-   // movimentacoes.push_back(mov);
+   movimentacoes.push_back(mov);
 	
 }
 void Contapoupanca::Rendimento_Poupanca(){
