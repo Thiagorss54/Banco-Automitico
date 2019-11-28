@@ -25,7 +25,9 @@ void Banco::setConta(Conta c){
 void Banco::setConta(Contacorrente c){
 	listaContasCorrente.push_back(c);
 }
-
+void Banco::setConta(Contapoupanca c){
+  listaContasPoupanca.push_back(c);
+}
 void Banco::excluir_cliente(string c){
   int aux = 0;
   Cliente a;
@@ -55,12 +57,27 @@ void Banco::excluir_conta(int nconta){
   double sald;
   Cliente c;
   list<Movimentacao> mov;
-  for (auto j = listaContas.begin(); j != listaContas.end()++; j++) {
-    if(nconta == j->numConta){
-      listaContas.erase(j);
+  int contador=0; //teste
+  for (list<Contacorrente>::iterator it = listaContasCorrente.begin(); it != listaContasCorrente.end(); ++it) {
+    if(nconta == it->numConta){
+      listaContasCorrente.erase(it);
       aux++;
+      break;
     }
+    
   }
+
+
+  for (list<Contapoupanca>::iterator it = listaContasPoupanca.begin(); it != listaContasPoupanca.end(); it++) {
+    if(nconta == it->numConta){
+      listaContasPoupanca.erase(it);
+      aux++;
+      break;
+    }
+    
+  }
+
+  
   if(aux == 0){
     cout<<"Conta nao existe no banco de dados."<<endl;
   }
