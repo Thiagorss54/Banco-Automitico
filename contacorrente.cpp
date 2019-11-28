@@ -1,10 +1,6 @@
+#include "contacorrente.h"
 
 
-
-contacorrente::contacorrente(/* args */)
-{
-}
-
-contacorrente::~contacorrente()
+Contacorrente::~Contacorrente()
 {
 }

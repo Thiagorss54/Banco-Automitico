@@ -1,12 +1,14 @@
 #ifndef CONTACORRENTE_H
 #define CONTACORRENTE_H
 
+#include "conta.h"
+
 class Contacorrente: public Conta{
 private:
     double limitecredito;
 
 public:
-    Contacorrente(Cliente c, double lim): Cliente(c),limitecredito(lim);
+    Contacorrente(Cliente c, double lim): Cliente(c),limitecredito(lim){};
     ~Contacorrente();
 };
 
