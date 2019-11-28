@@ -9,7 +9,7 @@
 using namespace std;
 
 // void Conta::print(){
-// 		cout << "\t\t\t  CLIENTE" << endl;
+// 		cout << "\t\t\t  CLIENTE" << cont << endl;
 // 		cout << "numero = " << numConta << endl;
 // 		cout << "cliente:" << endl;
 // 		cliente.print();
@@ -24,9 +24,9 @@ bool Conta::debitar(double v, string d){
 		Movimentacao mov(d,'D',v);
 		saldo -= v;
 		movimentacoes.push_back(mov);
-		for(auto i=movimentacoes.begin();i!=movimentacoes.end();i++){
-			i->print();
-		}
+		// for(auto i=movimentacoes.begin();i!=movimentacoes.end();i++){
+		// 	i->print();
+		// }
 		return true;
 	}
 	else{
@@ -39,9 +39,9 @@ bool Conta::debitar(double v,Movimentacao mov){
 	if(saldo - v >= 0){
 		saldo -= v;
 		movimentacoes.push_back(mov);
-		for(auto i=movimentacoes.begin();i!=movimentacoes.end();i++){
-			cout << "mov descricao :  "<< i->descricao << endl;
-		}
+		// for(auto i=movimentacoes.begin();i!=movimentacoes.end();i++){
+		// 	cout << "mov descricao :  "<< i->descricao << endl;
+		// }
 		return true;
 	}
 	else{
@@ -56,9 +56,9 @@ void Conta::creditar(double v, string d){
 	Movimentacao mov(d,'C',v);
 	saldo += v;
 	movimentacoes.push_back(mov);
-	for(auto i=movimentacoes.begin();i!=movimentacoes.end();i++){
-		 cout << "mov descricao :  "<< i->descricao << endl;
-	}
+	// for(auto i=movimentacoes.begin();i!=movimentacoes.end();i++){
+	// 	 cout << "mov descricao :  "<< i->descricao << endl;
+	// }
 }
 
 Conta::Conta(Cliente c){
@@ -187,9 +187,9 @@ list<Movimentacao> Conta::extrato(vector<string> di, vector<string> df){
 		for(list<Movimentacao>::iterator it = movimentacoes.begin(); it != movimentacoes.end(); it++){
 
 			auto dataMovimentacao = it->dataMov[0] + it->dataMov[1] + it->dataMov[2];
-			cout << "dataMovimentacao " << dataMovimentacao << endl;
+			// cout << "dataMovimentacao " << dataMovimentacao << endl;
 			if(dataMovimentacao >= aux1 && dataMovimentacao <= aux2 ){
-				cout << "primiu   " << dataMovimentacao << endl;
+				// cout << "primiu   " << dataMovimentacao << endl;
 				res.push_back(*it);
 			}
 		}

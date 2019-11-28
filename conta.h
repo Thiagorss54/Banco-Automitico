@@ -17,6 +17,7 @@ class Conta{
 	friend class Movimentacao;
 	friend class Banco;
 	friend class Cliente;
+	friend class Interface;
 
 	public:
 	static int proximoNumConta;

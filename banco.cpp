@@ -25,9 +25,9 @@ void Banco::setConta(Conta c){
 void Banco::excluir_cliente(string c){
   int aux = 0;
   Cliente a;
-  for (auto i = listaClientes.begin() ; i != listaClientes.end() ; i++){
+  for (auto i = listaClientes.begin() ; i != listaClientes.end()++ ; i++){
     if (c == i->cpf_cnpj){
-      for (auto j = listaContas.begin();j!=listaContas.end();j++){
+      for (auto j = listaContas.begin();j!=listaContas.end()++;j++){
         if (i->nomeCliente == j->cliente.getNome()){
           aux++;
         }
@@ -51,7 +51,7 @@ void Banco::excluir_conta(int nconta){
   double sald;
   Cliente c;
   list<Movimentacao> mov;
-  for (auto j = listaContas.begin(); j != listaContas.end(); j++) {
+  for (auto j = listaContas.begin(); j != listaContas.end()++; j++) {
     if(nconta == j->numConta){
       listaContas.erase(j);
       aux++;
@@ -67,7 +67,9 @@ void Banco::deposito(int nconta, double valor){
     if(nconta == j->numConta){
       j->creditar(valor, "Deposito");
     }
+    
   }
+  
 }
 
 void Banco::saque(int nconta, double valor){
@@ -136,17 +138,17 @@ void Banco::debitar_cpmf(){
   x = buffer;
   opa.push_back(x);
   for (auto j = listaContas.begin(); j != listaContas.end(); j++) {
-    double pirocao = 0;
+    double aux1 = 0;
     for(auto a = j->movimentacoes.begin(); a!= j->movimentacoes.end();a++){
       if(a->debitoCredito == 'D'){
         int days = rdn(stoi(a->dataMov[0]),stoi(a->dataMov[1]),stoi(a->dataMov[2])) - rdn(stoi(opa[0]), stoi(opa[1]) , stoi(opa[2]));
         if(days <=7){
-          pirocao += a->valor;
+          aux1 += a->valor;
         }
       }
     }
-    pirocao *= 0.0038;
-    j->debitar(pirocao,"CPMF");
+    aux1 *= 0.0038;
+    j->debitar(aux1,"CPMF");
   }
 }
 
@@ -166,7 +168,7 @@ void Banco::criar_conta(Cliente c){
 list <Cliente> Banco::get_clientes(){
   list<Cliente> aux;
   for (auto j = listaClientes.begin(); j != listaClientes.end(); j++) {
-    cout<<"Cliente "<<j->nomeCliente<<endl;
+    // cout<<"Cliente "<<j->nomeCliente<<endl;
     aux.push_back(*j);
   }
   return aux;
@@ -174,7 +176,7 @@ list <Cliente> Banco::get_clientes(){
 list <Conta> Banco::get_contas(){
   list<Conta> aux;
   for (auto j = listaContas.begin(); j != listaContas.end(); j++) {
-    cout<<"Conta "<<j->numConta<<endl;
+    //cout<<"Conta "<<j->numConta<<endl;
     aux.push_back(*j);
   }
   return aux;
@@ -277,6 +279,9 @@ void Banco::ler_dados(){
     }
   }
   in.close();
+}
+string Banco::get_nome_banco(){
+    return nomeBanco;
 }
 
 void Banco::extrato(int nconta, vector<string> di){

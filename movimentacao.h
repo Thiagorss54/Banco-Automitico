@@ -18,6 +18,7 @@ class Movimentacao{
 	friend class Conta;
 	friend class Cliente;
 	friend class Banco;
+	friend class Interface;
 	public:
 	Movimentacao(string d, char op, double v);
 	Movimentacao(string d, char op, double v, string ano, string mes, string dia);

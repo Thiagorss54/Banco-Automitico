@@ -15,6 +15,7 @@ class Cliente{
 	friend class Banco;
 	friend class Conta;
 	friend class Movimentacao;
+	friend class Interface;
 
 	public:
 		Cliente();

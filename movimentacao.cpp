@@ -38,9 +38,9 @@ Movimentacao::Movimentacao(string d, char op, double v, string ano, string mes, 
 	this->descricao = d;
 	this->debitoCredito = op;
 	this->valor = v;
-	cout<<"descricao = "<< this->descricao <<endl;
-	cout<< "deb ou cred = " << this->debitoCredito << endl;
-	cout <<"valor = " << this->valor << endl;
+	// cout<<"descricao = "<< this->descricao <<endl;
+	// cout<< "deb ou cred = " << this->debitoCredito << endl;
+	// cout <<"valor = " << this->valor << endl;
 }
 void Movimentacao::print(){
 	cout << "\t\t\tMOVIMENTACAO" << endl;
