@@ -9,6 +9,7 @@
 #include "cliente.h"
 #include "conta.h"
 #include "movimentacao.h"
+#include "contacorrente.h"
 
 using namespace std;
 
@@ -17,6 +18,7 @@ class Banco{
 	string nomeBanco;
 	list<Cliente> listaClientes;
 	list<Conta> listaContas;
+	list<Contacorrente> listaContasCorrente;
 	friend class Cliente;
 	friend class Conta;
 	friend class Movimentacao;
@@ -27,6 +29,7 @@ class Banco{
 	Banco(string nomeBanco);
 	void setCliente(Cliente c);
 	void setConta(Conta c);
+	void setConta(Contacorrente c);
 	void deposito(int nconta, double valor);
 	void saque(int nconta, double valor);
 	void saque(int nconta, double valor, string ano, string mes, string dia);
@@ -39,6 +42,7 @@ class Banco{
 	void excluir_conta(int nconta);
 	list <Cliente> get_clientes();
 	list <Conta> get_contas();
+	list <Contacorrente> get_contascorrente();
 	void gravar_dados();
 	void ler_dados();
 	void extrato(int nconta, vector<string> di);
