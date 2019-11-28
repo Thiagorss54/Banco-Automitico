@@ -12,6 +12,7 @@ class Contapoupanca: public Conta{
         Contapoupanca(Cliente c):Conta(c){};
         void creditar(double valor,string d);
         bool debitar(double valor,string d);
+        bool debitar(double valor,Movimentacao mov);
         void Rendimento_Poupanca();
         double getSaldo(int dia){ return Poupanca[dia - 1]; }
 };

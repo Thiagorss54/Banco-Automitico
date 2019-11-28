@@ -69,6 +69,21 @@ void Contapoupanca::Rendimento_Poupanca(){
     Poupanca[dia - 1] += Poupanca[dia - 1] * 0.01;
 }
 
+//refazer a debitar
+bool Contapoupanca::debitar(double v,Movimentacao mov){
+	if((saldo ) - v >= 0){
+		saldo -= v;
+		movimentacoes.push_back(mov);
+		// for(auto i=movimentacoes.begin();i!=movimentacoes.end();i++){
+		// 	cout << "mov descricao :  "<< i->descricao << endl;
+		// }
+		return true;
+	}
+	else{
+		cout << "Saldo insuficiente" << endl;
+		return false;
+	}
+}
 
 
 

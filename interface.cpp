@@ -85,22 +85,53 @@
     void Interface::criarConta(){
         //imprimir o nome dos clientes pra pessoa digitar qual que ela quer relacionar a uma conta
         // usar um cliente aux 
-        // Cliente aux;
-         cout << "\t\t\t Criar Conta\n\n\n";
-         cout << "Digite o nome do Cliente: ";
-        // cin >> aux;
-        // conf = confirmacao();
-        // if(conf == 0){
-        //     NU->criar_conta(aux);
-        //     NU->gravar_dados();
-        //     cout << endl << endl << endl;
-        //     system("pause");
-        // }
-        // else if(conf == 1){
-        //     criarConta();
-        // }
-        //    main();
+         
 
+         cout << "\t\t\t Criar Conta\n\n\n";
+        //mostrando dmais
+        int cont =0;
+       list <Cliente> aux = NU->get_clientes();
+        for (auto j = aux.begin(); j !=aux.end(); j++,cont++) {
+            cout << "Cliente " << cont << endl;
+            j->print();
+            cout << endl;
+        }
+        cout << endl << endl << endl;
+        cout << "Digite o nome do Cliente: ";
+        string nome;
+        cin>>nome;
+        
+        cont =0;
+        for (auto j = aux.begin(); j !=aux.end(); j++,cont++) {
+            cout <<"nome " <<nome<<endl <<" get " <<j->getNome()<<endl;
+
+            if(nome == j->getNome()){
+
+                cout<<"cliente valido" << endl;
+                conf = confirmacao();
+                if(conf == 0){
+                    NU->criar_conta_poupanca(*j);
+                    NU->gravar_dados();
+                    cout << endl << endl << endl;
+                    system("pause");
+                    break;
+                }
+                if(conf == 1){
+                    criarConta();
+                }           
+            }
+            // else
+            // {
+            //     cout<<"cliente " <<nome << " Inexistente" <<endl<<"Digite novamente"<<endl;
+            //     system("pause");
+            //     criarConta();
+            // }
+            
+           main();
+     
+        }
+        
+         
         
     }
     void Interface::excluirCliente(){
@@ -274,7 +305,8 @@
         cls();
         int g,g2;
         cout << "\t\t\t Contas\n\n\n";
-        list <Conta> aux = NU->get_contas();
+        list <Contapoupanca> aux = NU->get_contaspoupanca();
+        cout << "contas poupanca: " << endl;
         for (auto j = aux.begin(); j !=aux.end(); j++) {
             
             cout << "numero = " << j->numConta << endl;

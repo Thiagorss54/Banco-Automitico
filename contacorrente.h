@@ -9,8 +9,11 @@ private:
     double limitecredito_;
 
 public:
-    Contacorrente(Cliente c, double lim): Conta(c),limitecredito_(lim){};
+    Contacorrente(Cliente c, double lim = 0): Conta(c),limitecredito_(lim){};
     bool debitar(double v,string d);
+    bool debitar(double v,Movimentacao mov);
+	
+
     ~Contacorrente();
 };
 

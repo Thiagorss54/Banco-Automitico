@@ -18,7 +18,7 @@ class Banco{
 	private:
 	string nomeBanco;
 	list<Cliente> listaClientes;
-	list<Conta> listaContas;
+	
 	list<Contacorrente> listaContasCorrente;
 	list<Contapoupanca> listaContasPoupanca;
 	friend class Cliente;
@@ -30,9 +30,10 @@ class Banco{
 	public:
 	Banco(string nomeBanco);
 	void setCliente(Cliente c);
-	void setConta(Conta c);
+	
 	void setConta(Contacorrente c);
 	void setConta(Contapoupanca c);
+
 	void deposito(int nconta, double valor);
 	void saque(int nconta, double valor);
 	void saque(int nconta, double valor, string ano, string mes, string dia);
@@ -40,12 +41,15 @@ class Banco{
 	void tarifa();
 	void debitar_cpmf();
 	void saldo(int nconta);
-	void criar_conta(Cliente c);
+	//void criar_conta(Cliente c);
+	void criar_conta_corrente(Cliente c);
+	void criar_conta_poupanca(Cliente c);
 	void excluir_cliente(string c);
 	void excluir_conta(int nconta);
 	list <Cliente> get_clientes();
-	list <Conta> get_contas();
+	
 	list <Contacorrente> get_contascorrente();
+	list <Contapoupanca> get_contaspoupanca();
 	void gravar_dados();
 	void ler_dados();
 	void extrato(int nconta, vector<string> di);

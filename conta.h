@@ -29,7 +29,7 @@ class Conta{
 	double getSaldo();
 	Cliente getCliente();
 	virtual bool debitar(double v,string d);
-	bool debitar(double v,Movimentacao mov);
+	virtual bool debitar(double v,Movimentacao mov);
 	virtual void creditar(double v, string d);
 	void print();
 	list<Movimentacao> extrato();
