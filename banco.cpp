@@ -22,6 +22,10 @@ void Banco::setConta(Conta c){
 	listaContas.push_back(c);
 }
 
+void Banco::setConta(Contacorrente c){
+	listaContasCorrente.push_back(c);
+}
+
 void Banco::excluir_cliente(string c){
   int aux = 0;
   Cliente a;
@@ -176,7 +180,16 @@ list <Cliente> Banco::get_clientes(){
 list <Conta> Banco::get_contas(){
   list<Conta> aux;
   for (auto j = listaContas.begin(); j != listaContas.end(); j++) {
-    //cout<<"Conta "<<j->numConta<<endl;
+    cout<<"Conta "<<j->numConta<<endl;
+    aux.push_back(*j);
+  }
+  return aux;
+}
+
+list <Contacorrente> Banco::get_contascorrente(){
+  list<Contacorrente> aux;
+  for (auto j = listaContasCorrente.begin(); j != listaContasCorrente.end(); j++) {
+    cout<<"Conta "<<j->numConta<<endl;
     aux.push_back(*j);
   }
   return aux;

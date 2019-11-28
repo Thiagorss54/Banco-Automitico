@@ -24,14 +24,20 @@ int main(){
   b.setCpf_cnpj("115654879622");
   b.setEndereco("rua a");
   b.setFone("998745632545");
+  Cliente ac ("Jacu","11","rua mae do jose","231231123");
 
   double lim = 300;
 
   Contacorrente a(b,lim);
+  Contacorrente cc(ac,lim);
+  Banco banco("Foda-se");
+  banco.setConta(a);
+  banco.setConta(cc);
+  banco.get_contascorrente();
   a.debitar(400,"c");
   double sal = a.getSaldo();
   cout<< sal << endl;
-  // Cliente ac ("Jacu","11","rua mae do jose","231231123");
+  
   // Cliente ad ("Pirocao","11","rua mae","231123");
   // a.setCliente(b);
   // a.setCliente(ac);
