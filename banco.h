@@ -51,8 +51,8 @@ class Banco{
 	list <Contapoupanca> get_contaspoupanca();//ok
 	void gravar_dados();																		
 	void ler_dados();
-	void extrato(int nconta, vector<string> di);
-	void extrato(int nconta, vector<string> di, vector<string> df);
+	void extrato(int nconta, vector<string> di);//ok
+	void extrato(int nconta, vector<string> di, vector<string> df);//ok
 	string get_nome_banco();
 };
 

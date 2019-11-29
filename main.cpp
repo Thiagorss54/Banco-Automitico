@@ -39,21 +39,19 @@ int main(){
   banco.setConta(dd);
   banco.setConta(cc);
   banco.setConta(a);
-
-
-
   banco.deposito(1,100);
   banco.deposito(2,100);
   //banco.saldo(1);
   banco.saldo(2);
   // banco.saque(2,15);
   // banco.saldo(2);
-	void transferencia_conta(int conta_origem, int conta_destino,double valor);
+  void transferencia_conta(int conta_origem, int conta_destino,double valor);
   banco.transferencia_conta(1,2,50);
-  banco.saldo(1);
-  banco.saldo(2);
-  banco.tarifa();
-  banco.saldo(1);
+  // banco.saldo(1);
+  // banco.saldo(2);
+   banco.tarifa();
+  // banco.saldo(1);
+
   // d/ouble sal = a.getSaldo();
   // cout<< sal << endl; 
   // Cliente ad ("Pirocao","11","rua mae","231123");
@@ -101,21 +99,21 @@ int main(){
   // // cb.print();
   //
   //
-  // string ai = "2019", mi = "10", di = "06";
-  // string af = "2019", mf = "10", df = "01";
-  // string datainicial = "20191004";
-  // string datafinal = "20191001";
-  // vector<string> d;
-  // d.push_back(ai);
-  // d.push_back(mi);
-  // d.push_back(di);
-  //
-  // vector<string> d1;
-  // d1.push_back(af);
-  // d1.push_back(mf);
-  // d1.push_back(df);
-  //
-  // cb.extrato(d1,d);
+  string ai = "2019", mi = "10", di = "06";
+   string af = "2019", mf = "10", df = "01";
+  string datainicial = "20191004";
+  string datafinal = "20191001";
+  vector<string> d;
+  d.push_back(ai);
+  d.push_back(mi);
+  d.push_back(di);
+  vector<string> d1;
+  d1.push_back(af);
+  d1.push_back(mf);
+  d1.push_back(df);
+  
+  banco.extrato(2,d);
+
 
   return 0;
 
