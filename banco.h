@@ -29,28 +29,27 @@ class Banco{
 
 	public:
 	Banco(string nomeBanco);
-	void setCliente(Cliente c);
+	void setCliente(Cliente c);//ok
 	
-	void setConta(Contacorrente c);
-	void setConta(Contapoupanca c);
+	void setConta(Contacorrente c);//ok
+	void setConta(Contapoupanca c);//ok
 
-	void deposito(int nconta, double valor);
-	void saque(int nconta, double valor);
+	void deposito(int nconta, double valor);//ok
+	void saque(int nconta, double valor);//ok
 	void saque(int nconta, double valor, string ano, string mes, string dia);
-	void transferencia_conta(int conta_origem, int conta_destino,double valor);
-	void tarifa();
-	void debitar_cpmf();
-	void saldo(int nconta);
+	void transferencia_conta(int conta_origem, int conta_destino,double valor);//ok
+	void tarifa();//ok
+	void debitar_cpmf();//ok
+	void saldo(int nconta);//ok
 	//void criar_conta(Cliente c);
-	void criar_conta_corrente(Cliente c);
-	void criar_conta_poupanca(Cliente c);
-	void excluir_cliente(string c);
-	void excluir_conta(int nconta);
-	list <Cliente> get_clientes();
-	
-	list <Contacorrente> get_contascorrente();
-	list <Contapoupanca> get_contaspoupanca();
-	void gravar_dados();
+	void criar_conta_corrente(Cliente c);//ok
+	void criar_conta_poupanca(Cliente c);//ok
+	void excluir_cliente(string c);//ok
+	void excluir_conta(int nconta);//ok
+	list <Cliente> get_clientes();//ok
+	list <Contacorrente> get_contascorrente();//ok
+	list <Contapoupanca> get_contaspoupanca();//ok
+	void gravar_dados();																		
 	void ler_dados();
 	void extrato(int nconta, vector<string> di);
 	void extrato(int nconta, vector<string> di, vector<string> df);

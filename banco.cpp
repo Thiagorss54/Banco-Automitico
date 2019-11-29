@@ -109,8 +109,6 @@ void Banco::deposito(int nconta, double valor){
       j->creditar(valor, "Deposito");
     }
   }
-
-  
 }
 
 void Banco::saque(int nconta, double valor){
@@ -260,7 +258,13 @@ void Banco::saldo(int nconta){
   
   for (auto j = listaContasPoupanca.begin(); j != listaContasPoupanca.end(); j++) {
     if(nconta == j->numConta){
-      cout<<"O saldo da conta: "<<nconta<<" = "<<j->saldo<<endl;
+      double saldo = 0;
+      for(int i =0; i < 28;i++){
+     //   cout<<"dia " <<i<<" " <<saldo<<endl;
+        saldo+=j->getSaldo(i+1);
+
+      }
+      cout<<"O saldo da conta: "<<nconta<<" = "<<saldo<<endl;
     }
   }
 }

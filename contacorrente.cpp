@@ -1,5 +1,6 @@
 #include "contacorrente.h"
 
+
 bool Contacorrente::debitar(double v, string d){
 	if((saldo + limitecredito_) - v >= 0){
 		Movimentacao mov(d,'D',v);

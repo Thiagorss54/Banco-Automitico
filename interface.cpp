@@ -107,11 +107,31 @@
 
             if(nome == j->getNome()){
 
+
                 cout<<"cliente valido" << endl;
                 conf = confirmacao();
                 if(conf == 0){
-                    NU->criar_conta_poupanca(*j);
+
+                    int tipo_c = 0;
+                    while (tipo_c !=1 && tipo_c !=2)
+                    {
+                        cout<<"Digite [1] para criar conta poupanca e [2] para criar conta corrente: "<<endl;
+                        cin>>tipo_c;
+                        if(tipo_c == 1)
+                            NU->criar_conta_poupanca(*j);
+                        if(tipo_c == 2)
+                            NU->criar_conta_corrente(*j);
+                        else{
+                            cout<<"Digite [1] ou [2]" <<endl;
+                        }
+                  
+                    }
+                    
+                        
+                    
+                    
                     NU->gravar_dados();
+                    cout<<"criou ---------------" <<endl;
                     cout << endl << endl << endl;
                     system("pause");
                     break;
@@ -342,7 +362,7 @@
             case 12: listarClientes();break;
             case 13: listarContas();break;
             case 0: exit(0);break;
-            default: cls(); cout <<" \t\t\t Operacao INVALIDA" << endl<< endl;system("pause");menu();
+            default: cls(); cout <<" \t\t\t Operacao INVALIDA" << endl<< endl;menu();
         }
         system("pause");
     }

@@ -1,5 +1,11 @@
 #include "contapoupanca.h"
 
+
+Contapoupanca::Contapoupanca(Cliente c):Conta(c){
+	for(int i =0;i <28;i++){
+		Poupanca[i]=0.000;
+	}
+}
 bool Contapoupanca::debitar(double v, string d){
     time_t rawtime;
 	string a;
@@ -45,12 +51,14 @@ void Contapoupanca::creditar(double v,string d){
 	strftime (buffer,80,"%d",timeinfo);
 	a = buffer;
 	int dia = stoi(a);
-
+	
+	cout<< "d " << dia << endl; 
     if(dia == 29 || dia == 30 || dia == 31){
         dia = 28;
     }
-
+	// cout<< "d " << dia << endl; //////
     Poupanca[dia - 1] += v;
+	cout << "poup" << Poupanca[dia-1]<< endl;////
     Movimentacao mov(d,'C',v); 
    movimentacoes.push_back(mov);
 	

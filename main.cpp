@@ -13,40 +13,49 @@ using namespace std;
 int main(){
 
 
-   string nB = "  BANCO ";
-   Interface I(nB);
-   I.main();
+  //  string nB = "  BANCO ";
+  //  Interface I(nB);
+  //  I.main();
 
 
-  //a.ler_dados();
-  // Cliente b;
-  // b.setNome("Paulo");
-  // b.setCpf_cnpj("115654879622");
-  // b.setEndereco("rua a");
-  // b.setFone("998745632545");
-  //Cliente ac ("Jacu","11","rua mae do jose","231231123");
+  // a.ler_dados();
+  Cliente b;
+  b.setNome("Paulo");
+  b.setCpf_cnpj("115654879622");
+  b.setEndereco("rua a");
+  b.setFone("998745632545");
+  Cliente ac ("Jacu","11","rua mae do jose","231231123");
 
-  // double lim = 300;
+  double lim = 300;
 
-  // Contacorrente a(b,lim);
+  Contacorrente a(b,lim);
   
- //Contapoupanca dd(ac);
+ Contapoupanca dd(ac);
 
   
-//   Contacorrente cc(ac,lim);
+  Contacorrente cc(ac,lim);
   
-  //Banco banco("Foda-se");
-   //banco.setConta(dd);
-   //banco.setConta(cc);
-  // banco.setConta(dd);
+  Banco banco("Foda-se");
+  banco.setConta(dd);
+  banco.setConta(cc);
+  banco.setConta(a);
 
-  //cout<<"pauuuu"<<endl;
-  //banco.excluir_conta(1);
-  // banco.get_contascorrente();
-  // a.debitar(400,"c");
-  // double sal = a.getSaldo();
-  // cout<< sal << endl;
-  
+
+
+  banco.deposito(1,100);
+  banco.deposito(2,100);
+  //banco.saldo(1);
+  banco.saldo(2);
+  // banco.saque(2,15);
+  // banco.saldo(2);
+	void transferencia_conta(int conta_origem, int conta_destino,double valor);
+  banco.transferencia_conta(1,2,50);
+  banco.saldo(1);
+  banco.saldo(2);
+  banco.tarifa();
+  banco.saldo(1);
+  // d/ouble sal = a.getSaldo();
+  // cout<< sal << endl; 
   // Cliente ad ("Pirocao","11","rua mae","231123");
   // a.setCliente(b);
   // a.setCliente(ac);

@@ -9,7 +9,7 @@ class Contapoupanca: public Conta{
     private:
         double Poupanca[28];
     public:
-        Contapoupanca(Cliente c):Conta(c){};
+        Contapoupanca(Cliente c);
         void creditar(double valor,string d);
         bool debitar(double valor,string d);
         bool debitar(double valor,Movimentacao mov);
