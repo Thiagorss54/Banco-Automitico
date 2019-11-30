@@ -55,7 +55,6 @@ void Banco::excluir_cliente(string c){
         a = *i;
       }
     }
-
   }
   if(aux == 0){
     listaClientes.remove(a);
@@ -63,7 +62,6 @@ void Banco::excluir_cliente(string c){
   else{
     cout<<"Cliente ainda possui conta"<<endl;
   }
-  
 }
 
 void Banco::excluir_conta(int nconta){
@@ -78,27 +76,20 @@ void Banco::excluir_conta(int nconta){
       aux++;
       break;
     }
-    
   }
-
-
   for (list<Contapoupanca>::iterator it = listaContasPoupanca.begin(); it != listaContasPoupanca.end(); it++) {
     if(nconta == it->numConta){
       listaContasPoupanca.erase(it);
       aux++;
       break;
     }
-    
   }
-
-  
   if(aux == 0){
     cout<<"Conta nao existe no banco de dados."<<endl;
   }
 }
 
 void Banco::deposito(int nconta, double valor){
-
    for (auto j = listaContasPoupanca.begin();j!=listaContasPoupanca.end()++;j++) {
     if(nconta == j->numConta){
       j->creditar(valor, "Deposito");
@@ -112,7 +103,6 @@ void Banco::deposito(int nconta, double valor){
 }
 
 void Banco::saque(int nconta, double valor){
-
   for (auto j = listaContasPoupanca.begin();j!=listaContasPoupanca.end()++;j++) {
     if(nconta == j->numConta){
       j->debitar(valor, "Saque");
@@ -124,7 +114,6 @@ void Banco::saque(int nconta, double valor){
     }
   }
 }
-
 
 void Banco::saque(int nconta, double valor, string ano, string mes, string dia){
   Movimentacao mov("Saque",'D',valor,ano,mes,dia);
@@ -139,7 +128,6 @@ void Banco::saque(int nconta, double valor, string ano, string mes, string dia){
     }
   }
 }
-
 
 void Banco::transferencia_conta(int conta_origem, int conta_destino,double valor){
   int aux=0;
@@ -159,17 +147,16 @@ void Banco::transferencia_conta(int conta_origem, int conta_destino,double valor
           }
         }
       }
-    
     }
   }
 
-for (auto j = listaContasCorrente.begin(); j != listaContasCorrente.end(); j++) {
+  for (auto j = listaContasCorrente.begin(); j != listaContasCorrente.end(); j++) {
     if(conta_origem == j->numConta){
       if(j->debitar(valor,"Transferencia para a conta " + to_string(conta_destino))){
         for (auto k = listaContasPoupanca.begin(); k != listaContasPoupanca.end(); k++) {
           if(conta_destino == k->numConta){
             k->creditar(valor, "Transferencia da conta " + to_string(conta_origem));
-             aux++;
+            aux++;
           }
         }
         for (auto k = listaContasCorrente.begin(); k != listaContasCorrente.end(); k++) {
@@ -179,15 +166,11 @@ for (auto j = listaContasCorrente.begin(); j != listaContasCorrente.end(); j++) 
           }
         }
       }
-    
     }
   }
   if(aux == 0){
     cout<<"Não foi possível realizar a transacao"  <<endl;
   }
-
-
-
 }
 
 void Banco::tarifa(){
@@ -203,7 +186,6 @@ int rdn(int y, int m, int d) { /* Rata Die day one is 0001-01-01 */
 }
 
 void Banco::debitar_cpmf(){
-
   vector<string> opa ;
   time_t rawtime;
   string x;
@@ -233,7 +215,6 @@ void Banco::debitar_cpmf(){
     aux1 *= 0.0038;
     j->debitar(aux1,"CPMF");
   }
-
   for (auto j = listaContasPoupanca.begin(); j != listaContasPoupanca.end(); j++) {
     double aux1 = 0;
     for(auto a = j->movimentacoes.begin(); a!= j->movimentacoes.end();a++){
@@ -251,23 +232,18 @@ void Banco::debitar_cpmf(){
 
 void Banco::saldo(int nconta){
   int achou=0;
- //cout << "banco.cpp 253" << endl;
   for (auto j = listaContasCorrente.begin(); j != listaContasCorrente.end(); j++) {
-    //cout << "banco.cpp saldo linha 254" << endl;
     if(nconta == j->numConta){
       cout<<"O saldo da conta "<<nconta<<" é  RS"<<j->saldo<<endl;
       achou=1;
     }
   }
-  
   for (auto j = listaContasPoupanca.begin(); j != listaContasPoupanca.end(); j++) {
     if(nconta == j->numConta){
       double saldo = 0;
       achou =1;
       for(int i =0; i < 28;i++){
-     //   cout<<"dia " <<i<<" " <<saldo<<endl;
         saldo+=j->getSaldo(i+1);
-
       }
       cout<<"O saldo da conta: "<<nconta<<" = "<<saldo<<endl;
     }
@@ -278,12 +254,10 @@ void Banco::saldo(int nconta){
   }
 }
 
-
-
 list <Cliente> Banco::get_clientes(){
   list<Cliente> aux;
   for (auto j = listaClientes.begin(); j != listaClientes.end(); j++) {
-    cout<<"Cliente "<<j->nomeCliente<<endl;
+    // cout<<"Cliente "<<j->nomeCliente<<endl;
     aux.push_back(*j);
   }
   return aux;
@@ -299,7 +273,7 @@ list <Contacorrente> Banco::get_contascorrente(){
 }
 
 list <Contapoupanca> Banco::get_contaspoupanca(){
- list<Contapoupanca> aux;
+  list<Contapoupanca> aux;
   for (auto j = listaContasPoupanca.begin(); j != listaContasPoupanca.end(); j++) {
     //cout<<"Conta Poupanca "<<j->numConta<<endl;
     aux.push_back(*j);
@@ -365,7 +339,6 @@ void Banco::ler_dados(){
   ifstream in("Bancodedados.txt");
   string linha;
   getline(in,linha);
-        cout<<linha<<" 1"<<endl;
   while (!(in.eof())) {
     if(linha == "Clientes"){
       getline(in,linha);
@@ -408,7 +381,6 @@ void Banco::ler_dados(){
         if(linha.size() == 0) {break;}
         if(linha == "ContaCP") {break;}
         if(linha == "ContaCC") {break;}
-        
         if(linha=="mov") getline(in,linha);
         while((linha != "mov")){
           string ano = linha;
@@ -427,13 +399,11 @@ void Banco::ler_dados(){
           getline(in,linha);
           if(linha == "ContaCC"){break;}
           if(linha.size() == 0){break;}
-
         }
         if(linha.size() == 0){break;}
       }   
       Contacorrente co(nconta,sald,aux,m,limcred);
       this->setConta(co);
-      cout<<linha<<" 2"<<endl;
     }
     else if(linha == "ContaCP"){
       getline(in,linha);
@@ -459,13 +429,9 @@ void Banco::ler_dados(){
       list<Movimentacao> m;
       while(linha != "ContaCP"){
         getline(in,linha);
-        cout<<linha<<endl;
         if(linha.size() == 0) {break;}
-        
         if(linha=="mov") getline(in,linha);
-           
         while((linha != "mov")){
-            
           string ano = linha;
           getline(in,linha);
           string mes = linha;
@@ -480,22 +446,20 @@ void Banco::ler_dados(){
           Movimentacao a(d,op,v,ano,mes,dia);
           m.push_back(a);
           getline(in,linha);
-          cout<<linha<<endl; 
           if(linha == "ContaCP"){break;}
           if(linha.size() == 0){break;}
-
         }
         if(linha.size() == 0){break;}
       }      
       Contapoupanca co(nconta,aux,m,saldo_p);
       this->setConta(co);
     }
-    }
+  }
   in.close();
 }
 
 string Banco::get_nome_banco(){
-    return nomeBanco;
+  return nomeBanco;
 }
 
 void Banco::extrato(int nconta, vector<string> di){
@@ -520,19 +484,16 @@ void Banco::extrato(int nconta, vector<string> di){
 
 void Banco::extrato(int nconta, vector<string> di, vector<string> df){
   list<Movimentacao> mov;
-
   for (auto i = listaContasCorrente.begin();i!=listaContasCorrente.end();i++){
     if(nconta == i->numConta){
       mov = i->extrato(di,df);
     }
   }
-
   for (auto i = listaContasPoupanca.begin();i!=listaContasPoupanca.end();i++){
     if(nconta == i->numConta){
       mov = i->extrato(di,df);
     }
   }
-
   // Imprimir extrato
   for (auto i = mov.begin();i!=mov.end();i++){
     cout<<i->dataMov[0]<<"/"<<i->dataMov[1]<<"/"<<i->dataMov[2]<<
