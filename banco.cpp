@@ -12,7 +12,7 @@ using namespace std;
 
 Banco::Banco(string nBanco){
   nomeBanco = nBanco;
-}
+} 
 
 void Banco::setCliente(Cliente c) {
 	listaClientes.push_back(c);
@@ -250,15 +250,20 @@ void Banco::debitar_cpmf(){
 }
 
 void Banco::saldo(int nconta){
+  int achou=0;
+ //cout << "banco.cpp 253" << endl;
   for (auto j = listaContasCorrente.begin(); j != listaContasCorrente.end(); j++) {
+    //cout << "banco.cpp saldo linha 254" << endl;
     if(nconta == j->numConta){
-      cout<<"O saldo da conta: "<<nconta<<" = "<<j->saldo<<endl;
+      cout<<"O saldo da conta "<<nconta<<" é  RS"<<j->saldo<<endl;
+      achou=1;
     }
   }
   
   for (auto j = listaContasPoupanca.begin(); j != listaContasPoupanca.end(); j++) {
     if(nconta == j->numConta){
       double saldo = 0;
+      achou =1;
       for(int i =0; i < 28;i++){
      //   cout<<"dia " <<i<<" " <<saldo<<endl;
         saldo+=j->getSaldo(i+1);
@@ -266,6 +271,10 @@ void Banco::saldo(int nconta){
       }
       cout<<"O saldo da conta: "<<nconta<<" = "<<saldo<<endl;
     }
+  }
+  if(achou ==0){
+    cout <<"OPERACAO INVALIDA. CONTA INEXISTENTE!"<< endl;
+    //system("pause");
   }
 }
 
@@ -283,7 +292,7 @@ list <Cliente> Banco::get_clientes(){
 list <Contacorrente> Banco::get_contascorrente(){
   list<Contacorrente> aux;
   for (auto j = listaContasCorrente.begin(); j != listaContasCorrente.end(); j++) {
-    cout<<"Conta Corrente "<<j->numConta<<endl;
+    //cout<<"Conta Corrente "<<j->numConta<<endl;
     aux.push_back(*j);
   }
   return aux;
@@ -292,7 +301,7 @@ list <Contacorrente> Banco::get_contascorrente(){
 list <Contapoupanca> Banco::get_contaspoupanca(){
  list<Contapoupanca> aux;
   for (auto j = listaContasPoupanca.begin(); j != listaContasPoupanca.end(); j++) {
-    cout<<"Conta Poupanca "<<j->numConta<<endl;
+    //cout<<"Conta Poupanca "<<j->numConta<<endl;
     aux.push_back(*j);
   }
   return aux;
@@ -338,6 +347,7 @@ void Banco::ler_dados(){
 //       getline(in,linha);
 //       while(linha != "Conta"){
 //         string nome = linha;
+
 //         getline(in,linha);
 //         string cpf = linha;
 //         getline(in,linha);
