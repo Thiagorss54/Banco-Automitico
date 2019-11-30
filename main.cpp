@@ -35,7 +35,7 @@ int main(){
   
 //   Contacorrente cc(ac,lim);
   
-  //Banco banco("Foda-se");
+  //Banco banco("BANCO");
 
  // banco.ler_dados();
   // cout<<"aqui"<<endl;
