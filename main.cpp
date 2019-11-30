@@ -38,13 +38,23 @@ int main(){
   Banco banco("Foda-se");
 
   banco.ler_dados();
-  cout<<"aqui"<<endl;
-  list<Contapoupanca> c = banco.get_contaspoupanca();
-  // cout<<"deu"<<endl;
-  // list<Cliente> c = banco.get_clientes();
-  // list<Contacorrente> cc = banco.get_contascorrente();
+  // cout<<"aqui"<<endl;
+  // list<Contapoupanca> c = banco.get_contaspoupanca();
+  // banco.saque(7,10);
+  // banco.saldo(7);
+
+  // // cout<<"deu"<<endl;
+  // // list<Cliente> c = banco.get_clientes();
+  // // list<Contacorrente> cc = banco.get_contascorrente();
   // Cliente ac ("Josue","11","avenida amazonas","231231123");
-  // Contapoupanca cp(ac);
+  // Contacorrente cc(ac,400);
+  // banco.setConta(cc);
+  // Cliente acc ("Breno","111145","avenida do contorno","231123");
+  // Contapoupanca cp(acc);
+  // banco.setCliente(acc);
+  // banco.setConta(cp);
+
+
   // banco.setConta(cp);
   // banco.deposito(7,30);
 
