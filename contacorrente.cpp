@@ -1,5 +1,8 @@
 #include "contacorrente.h"
 
+Contacorrente::Contacorrente(int nconta,double sald,Cliente c,list<Movimentacao> m,double lim):Conta(nconta,sald,c,m){
+    limitecredito_ = lim;
+}
 
 bool Contacorrente::debitar(double v, string d){
 	if((saldo + limitecredito_) - v >= 0){
