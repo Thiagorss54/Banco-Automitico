@@ -130,7 +130,7 @@
                             cout << "\t\t\t Criar Conta\n\n\n";
                             cout << endl << endl << "           Sua conta foi criada." << endl;
                             }
-                            else if()
+                        
                         else if(tipo_c == 2){
                             conf = confirmacao();
                             if(conf==0){
