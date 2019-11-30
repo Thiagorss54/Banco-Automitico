@@ -10,8 +10,10 @@ private:
 
 public:
     Contacorrente(Cliente c, double lim = 0): Conta(c),limitecredito_(lim){};
+    Contacorrente(int nconta,double sald,Cliente c,list<Movimentacao> m, double lim);
     bool debitar(double v,string d);
     bool debitar(double v,Movimentacao mov);
+    double lim_cred(){return limitecredito_;}
 	
 
     ~Contacorrente();

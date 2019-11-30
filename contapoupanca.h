@@ -10,6 +10,7 @@ class Contapoupanca: public Conta{
         double Poupanca[28];
     public:
         Contapoupanca(Cliente c);
+        Contapoupanca(int nconta,Cliente c,list<Movimentacao> m, double sald[28]);
         void creditar(double valor,string d);
         bool debitar(double valor,string d);
         bool debitar(double valor,Movimentacao mov);
