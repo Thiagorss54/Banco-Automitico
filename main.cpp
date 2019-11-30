@@ -13,9 +13,9 @@ using namespace std;
 int main(){
 
 
-  //  string nB = "  BANCO ";
-  //  Interface I(nB);
-  //  I.main();
+   string nB = "  BANCO ";
+   Interface I(nB);
+   I.main();
 
 
   // a.ler_dados();
