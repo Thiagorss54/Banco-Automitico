@@ -6,6 +6,12 @@ Contapoupanca::Contapoupanca(Cliente c):Conta(c){
 		Poupanca[i]=0.000;
 	}
 }
+
+Contapoupanca::Contapoupanca(int nconta,Cliente c,list<Movimentacao> m, double sald[28]):Conta(nconta,0,c,m){
+	for(int i =0;i <28;i++){
+		Poupanca[i]=sald[i];
+	}
+}
 bool Contapoupanca::debitar(double v, string d){
     time_t rawtime;
 	string a;

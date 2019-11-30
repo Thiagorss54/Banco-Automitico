@@ -24,7 +24,7 @@ int main(){
 //   b.setCpf_cnpj("115654879622");
 //   b.setEndereco("rua a");
 //   b.setFone("998745632545");
-//   Cliente ac ("Jacu","11","rua mae do jose","231231123");
+
 
 //   double lim = 300;
 
@@ -35,7 +35,24 @@ int main(){
   
 //   Contacorrente cc(ac,lim);
   
-//   Banco banco("Foda-se");
+  Banco banco("Foda-se");
+
+  banco.ler_dados();
+  cout<<"aqui"<<endl;
+  list<Contapoupanca> c = banco.get_contaspoupanca();
+  // cout<<"deu"<<endl;
+  // list<Cliente> c = banco.get_clientes();
+  // list<Contacorrente> cc = banco.get_contascorrente();
+  // Cliente ac ("Josue","11","avenida amazonas","231231123");
+  // Contapoupanca cp(ac);
+  // banco.setConta(cp);
+  // banco.deposito(7,30);
+
+  // banco.setCliente(ac);
+  // banco.setConta(a);
+  //   list<Contacorrente> ccc = banco.get_contascorrente();
+  banco.gravar_dados();
+
 //   banco.setConta(dd);
 //   banco.setConta(cc);
 //   banco.setConta(a);

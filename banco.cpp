@@ -283,7 +283,7 @@ void Banco::saldo(int nconta){
 list <Cliente> Banco::get_clientes(){
   list<Cliente> aux;
   for (auto j = listaClientes.begin(); j != listaClientes.end(); j++) {
-    // cout<<"Cliente "<<j->nomeCliente<<endl;
+    cout<<"Cliente "<<j->nomeCliente<<endl;
     aux.push_back(*j);
   }
   return aux;
@@ -308,106 +308,194 @@ list <Contapoupanca> Banco::get_contaspoupanca(){
 }
 
 void Banco::gravar_dados(){
-  // ofstream out("Bancodedados.txt");
-  // out<<"Clientes"<<endl;
-  // list<Cliente> c = get_clientes();
-  // for (auto j = c.begin() ; j!= c.end(); j++){
-  //   out<<j->nomeCliente<<endl;
-  //   out<<j->cpf_cnpj<<endl;
-  //   out<<j->endereco<<endl;
-  //   out<<j->fone<<endl;
-  // }
-  // list<Conta> co = get_contas();
-  // for (auto j = co.begin() ; j != co.end() ; j++){
-  //   out<<"Conta"<<endl;
-  //   out<<j->numConta<<endl;
-  //   out<<j->saldo<<endl;
-  //   Cliente clienteaux = j->cliente;;
-  //   string stringaux = clienteaux.getNome();
-  //   out<<stringaux<<endl;
-  //   for(auto k = j->movimentacoes.begin(); k != j->movimentacoes.end(); k++){
-  //     out<<"mov"<<endl;
-  //     out<<k->dataMov[0]<<endl;
-  //     out<<k->dataMov[1]<<endl;
-  //     out<<k->dataMov[2]<<endl;
-  //     out<<k->descricao<<endl;
-  //     out<<k->debitoCredito<<endl;
-  //     out<<k->valor<<endl;
-  //   }
-  // }
-  // out.close();
+  ofstream out("Bancodedados.txt");
+  out<<"Clientes"<<endl;
+  list<Cliente> c = get_clientes();
+  for (auto j = c.begin() ; j!= c.end(); j++){
+    out<<j->nomeCliente<<endl;
+    out<<j->cpf_cnpj<<endl;
+    out<<j->endereco<<endl;
+    out<<j->fone<<endl;
+  }
+  list<Contacorrente> cc = get_contascorrente();
+  for (auto j = cc.begin() ; j != cc.end() ; j++){
+    out<<"ContaCC"<<endl;
+    out<<j->numConta<<endl;
+    out<<j->saldo<<endl;
+    double l = j->lim_cred();
+    out<<l<<endl;
+    Cliente clienteaux = j->cliente;;
+    string stringaux = clienteaux.getNome();
+    out<<stringaux<<endl;
+    for(auto k = j->movimentacoes.begin(); k != j->movimentacoes.end(); k++){
+      out<<"mov"<<endl;
+      out<<k->dataMov[0]<<endl;
+      out<<k->dataMov[1]<<endl;
+      out<<k->dataMov[2]<<endl;
+      out<<k->descricao<<endl;
+      out<<k->debitoCredito<<endl;
+      out<<k->valor<<endl;
+    }
+  }
+  list<Contapoupanca> cp = get_contaspoupanca();
+  for (auto j = cp.begin() ; j != cp.end() ; j++){
+    out<<"ContaCP"<<endl;
+    out<<j->numConta<<endl;
+    for(int i =0; i < 28;i++){
+      double s = j->getSaldo(i+1);
+      out<<s<<endl;
+    }
+    Cliente clienteaux = j->cliente;;
+    string stringaux = clienteaux.getNome();
+    out<<stringaux<<endl;
+    for(auto k = j->movimentacoes.begin(); k != j->movimentacoes.end(); k++){
+      out<<"mov"<<endl;
+      out<<k->dataMov[0]<<endl;
+      out<<k->dataMov[1]<<endl;
+      out<<k->dataMov[2]<<endl;
+      out<<k->descricao<<endl;
+      out<<k->debitoCredito<<endl;
+      out<<k->valor<<endl;
+    }
+  }
+  out.close();
 }
 
 void Banco::ler_dados(){
-//   ifstream in("Bancodedados.txt");
-//   string linha;
-//   getline(in,linha);
-//   while (!(in.eof())) {
-//     if(linha == "Clientes"){
-//       getline(in,linha);
-//       while(linha != "Conta"){
-//         string nome = linha;
+  ifstream in("Bancodedados.txt");
+  string linha;
+  getline(in,linha);
+        cout<<linha<<" 1"<<endl;
+  while (!(in.eof())) {
+    if(linha == "Clientes"){
+      getline(in,linha);
+      while(linha != "ContaCC"){
+        string nome = linha;
+        getline(in,linha);
+        string cpf = linha;
+        getline(in,linha);
+        string endereco = linha;
+        getline(in,linha);
+        string fone = linha;
+        Cliente a (nome,cpf,endereco,fone);
+        this->setCliente(a);
+        getline(in,linha);
+      }
+    }
+    else if(linha == "ContaCC"){
+      getline(in,linha);
+      int nconta = stoi(linha);
+      getline(in,linha);
+      double sald = stod(linha);
+      getline(in,linha);
+      double limcred = stod(linha);
+      getline(in,linha);
+      string ncli = linha;
+      list<Cliente> c = get_clientes();
+      Cliente aux;
+      for (auto cli = c.begin() ; cli != c.end() ; cli++){
+        if(ncli == cli->nomeCliente){
+          aux.setNome(cli->nomeCliente);
+          aux.setCpf_cnpj(cli->cpf_cnpj);
+          aux.setEndereco(cli->endereco);
+          aux.setFone(cli->fone);
+          break;
+        }
+      }
+      list<Movimentacao> m;
+      while(linha != "ContaCC"){
+        getline(in,linha);
+        if(linha.size() == 0) {break;}
+        if(linha == "ContaCP") {break;}
+        if(linha == "ContaCC") {break;}
+        
+        if(linha=="mov") getline(in,linha);
+        while((linha != "mov")){
+          string ano = linha;
+          getline(in,linha);
+          string mes = linha;
+          getline(in,linha);
+          string dia = linha;
+          getline(in,linha);
+          string d = linha;
+          getline(in,linha);
+          char op = linha[0];
+          getline(in,linha);
+          double v = stod(linha);
+          Movimentacao a(d,op,v,ano,mes,dia);
+          m.push_back(a);
+          getline(in,linha);
+          if(linha == "ContaCC"){break;}
+          if(linha.size() == 0){break;}
 
-//         getline(in,linha);
-//         string cpf = linha;
-//         getline(in,linha);
-//         string endereco = linha;
-//         getline(in,linha);
-//         string fone = linha;
-//         Cliente a (nome,cpf,endereco,fone);
-//         this->setCliente(a);
-//         getline(in,linha);
-//       }
-//     }
-//     else if(linha == "Conta"){
-//       getline(in,linha);
-//       int nconta = stoi(linha);
-//       getline(in,linha);
-//       double sald = stod(linha);
-//       getline(in,linha);
-//       string ncli = linha;
-//       list<Cliente> c = get_clientes();
-//       Cliente aux;
-//       for (auto cli = c.begin() ; cli != c.end() ; cli++){
-//         if(ncli == cli->nomeCliente){
-//           aux.setNome(cli->nomeCliente);
-//           aux.setCpf_cnpj(cli->cpf_cnpj);
-//           aux.setEndereco(cli->endereco);
-//           aux.setFone(cli->fone);
-//           break;
-//         }
-//       }
-//       list<Movimentacao> m;
-//       while(linha != "Conta"){
-//         getline(in,linha);
-//         while((linha != "mov")){
-//           string ano = linha;
-//           getline(in,linha);
-//           string mes = linha;
-//           getline(in,linha);
-//           string dia = linha;
-//           getline(in,linha);
-//           string d = linha;
-//           getline(in,linha);
-//           char op = linha[0];
-//           getline(in,linha);
-//           double v = stod(linha);
-//           Movimentacao a(d,op,v,ano,mes,dia);
-//           m.push_back(a);
-//           getline(in,linha);
-//           if(linha == "Conta"){break;}
-//           if(linha.size() == 0){break;}
-//         }
-//         if(linha.size() == 0){break;}
-//       }
-//       Conta co(nconta,sald,aux,m);
-//       this->setConta(co);
-//     }
-//   }
-//   in.close();
-// }
-// string Banco::get_nome_banco(){
-//     return nomeBanco;
+        }
+        if(linha.size() == 0){break;}
+      }   
+      Contacorrente co(nconta,sald,aux,m,limcred);
+      this->setConta(co);
+      cout<<linha<<" 2"<<endl;
+    }
+    else if(linha == "ContaCP"){
+      getline(in,linha);
+      int nconta = stoi(linha);
+      getline(in,linha);
+      double saldo_p[28];
+      for(int i =0; i < 28;i++){
+        saldo_p[i] = stod(linha);
+        getline(in,linha);
+      }
+      string ncli = linha;
+      list<Cliente> c = get_clientes();
+      Cliente aux;
+      for (auto cli = c.begin() ; cli != c.end() ; cli++){
+        if(ncli == cli->nomeCliente){
+          aux.setNome(cli->nomeCliente);
+          aux.setCpf_cnpj(cli->cpf_cnpj);
+          aux.setEndereco(cli->endereco);
+          aux.setFone(cli->fone);
+          break;
+        }
+      }
+      list<Movimentacao> m;
+      while(linha != "ContaCP"){
+        getline(in,linha);
+        cout<<linha<<endl;
+        if(linha.size() == 0) {break;}
+        
+        if(linha=="mov") getline(in,linha);
+           
+        while((linha != "mov")){
+            
+          string ano = linha;
+          getline(in,linha);
+          string mes = linha;
+          getline(in,linha);
+          string dia = linha;
+          getline(in,linha);
+          string d = linha;
+          getline(in,linha);
+          char op = linha[0];
+          getline(in,linha);
+          double v = stod(linha);
+          Movimentacao a(d,op,v,ano,mes,dia);
+          m.push_back(a);
+          getline(in,linha);
+          cout<<linha<<endl; 
+          if(linha == "ContaCP"){break;}
+          if(linha.size() == 0){break;}
+
+        }
+        if(linha.size() == 0){break;}
+      }      
+      Contapoupanca co(nconta,aux,m,saldo_p);
+      this->setConta(co);
+    }
+    }
+  in.close();
+}
+
+string Banco::get_nome_banco(){
+    return nomeBanco;
 }
 
 void Banco::extrato(int nconta, vector<string> di){

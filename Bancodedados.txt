@@ -1,39 +1,24 @@
 Clientes
 Paulo
 115654879622
-rua a
+rua alberto vasconcelos
 998745632545
 Jose
 15
-rua mae do jose
+rua maria cristina
 231231123
 Pablo
 11
-rua mae
+rua alfa
 231123
-fernando
-1234
-eerer
-3212
-fer
-1
-3
-2
-f
-1
-3
-2
-fer
-1
-3
-2
-w
-w
-w
-w
-Conta
+Josue
+11
+avenida amazonas
+231231123
+ContaCC
 1
 80
+200
 Pablo
 mov
 2019
@@ -49,9 +34,10 @@ mov
 Transferencia para a conta 2
 D
 20
-Conta
+ContaCC
 2
 22
+200
 Paulo
 mov
 2019
@@ -67,9 +53,10 @@ mov
 Transferencia da conta 1
 C
 20
-Conta
+ContaCC
 3
 50
+200
 Jose
 mov
 2019
@@ -78,3 +65,46 @@ mov
 Deposito
 C
 50
+ContaCC
+5
+0
+300
+Josue
+ContaCP
+7
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+30
+Josue
+mov
+2019
+11
+30
+Deposito
+C
+30
