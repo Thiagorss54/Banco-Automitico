@@ -68,6 +68,7 @@
         string ende;
         cin >> ende;
         conf = confirmacao();
+        if(conf == 0){
         Cliente aux(cli,cpf,ende,tel);
        
         NU->setCliente(aux);
@@ -77,6 +78,11 @@
         cout << "   Cliente cadastrado!" << endl;
         cout << endl << endl << endl;
         system("pause");
+        }
+        else if(conf == 1){
+            system("pause");
+            cadastrarCliente();
+        }
         main();
         
         
@@ -88,11 +94,11 @@
     void Interface::criarConta(){
         //imprimir o nome dos clientes pra pessoa digitar qual que ela quer relacionar a uma conta
         // usar um cliente aux 
-         
+         cls();
 
          cout << "\t\t\t Criar Conta\n\n\n";
-        //mostrando dmais
-        int cont =0;
+
+        int cont =0,achou=0;
        list <Cliente> aux = NU->get_clientes();
        
         for (auto j = aux.begin(); j !=aux.end(); j++,cont++) {
@@ -109,7 +115,7 @@
         for (auto j = aux.begin(); j !=aux.end(); j++,cont++) {
 
             if(nome == j->getNome()){
-
+                achou=1;
 
                 //cout<<"cliente valido" << endl;
                 conf = confirmacao();
@@ -120,9 +126,9 @@
                     {   
                         cls();
                         cout << "\t\t\t Criar Conta\n\n\n";
-                        cout<<"1  Conta poupanca                      2  Conta corrente: "<<endl<<endl<<endl;
+                        cout<<"1  Conta poupanca                      2  Conta corrente "<<endl<<endl<<endl;
                         cin>>tipo_c;
-                        if(tipo_c == 1)
+                        if(tipo_c == 1){
                             conf = confirmacao();
                             if(conf==0){
                             NU->criar_conta_poupanca(*j);
@@ -130,42 +136,52 @@
                             cout << "\t\t\t Criar Conta\n\n\n";
                             cout << endl << endl << "           Sua conta foi criada." << endl;
                             }
-                        
+                            else if(conf == 1){
+                                criarConta();
+                            }
+                        }
                         else if(tipo_c == 2){
                             conf = confirmacao();
                             if(conf==0){
                             NU->criar_conta_corrente(*j);
                             cls();
                             cout << "\t\t\t Criar Conta\n\n\n";
-                            cout << endl << endl << "           Sua conta foi criada." << endl;
+                            cout << endl << endl << "\n\n         Sua conta foi criada." << endl;
+                            }
+                            else if(conf == 1){
+                                criarConta();
                             }
                         }
                     }
-                    
-                        
-                    
-                    
                     NU->gravar_dados();
                     // cout<<"criou ---------------" <<endl;
                     cout << endl << endl << endl;
                     system("pause");
                 }
                 else if(conf == 1){
+                    cls();
                     criarConta();
                 }           
             }
-            // else
-            // {
-            //     cout<<"cliente " <<nome << " Inexistente" <<endl<<"Digite novamente"<<endl;
-            //     system("pause");
-            //     criarConta();
-            // }
+           
             
-            main();
+            
      
         }
-        
-            
+         if(achou=0) {
+                cls();
+                int voltar=0;
+                cout << "\t\t\t Criar Conta\n\n\n";
+                cout<<"Cliente " <<nome << " inexistente" <<endl<< endl;
+                cout << "1  Digitar novamente        2 Voltar para o inicio"<< endl;
+                cin >> voltar;
+                if(voltar==1){
+                cls();
+                criarConta();
+                }
+                
+            }
+            main();
         
     }
     void Interface::excluirCliente(){
@@ -195,8 +211,11 @@
         cin >> nconta;
         conf = confirmacao();
         if(conf == 0){
+            cls();
             NU->excluir_conta(nconta);
             NU->gravar_dados();
+             cout << "\t\t\t Excluir Conta\n\n\n";
+             cout<< "           Conta excluida"<<endl;
             cout << endl << endl << endl;
             system("pause");
         }
