@@ -169,7 +169,7 @@ void Banco::transferencia_conta(int conta_origem, int conta_destino,double valor
     }
   }
   if(aux == 0){
-    cout<<"Não foi possível realizar a transacao"  <<endl;
+    cout<<"Nao foi possivel realizar a transacao"  <<endl;
   }
 }
 
@@ -234,7 +234,7 @@ void Banco::saldo(int nconta){
   int achou=0;
   for (auto j = listaContasCorrente.begin(); j != listaContasCorrente.end(); j++) {
     if(nconta == j->numConta){
-      cout<<"O saldo da conta "<<nconta<<" é  RS"<<j->saldo<<endl;
+      cout<<"Saldo da conta "<<nconta<<"   RS "<<j->saldo<<endl;
       achou=1;
     }
   }

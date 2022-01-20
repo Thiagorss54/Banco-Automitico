@@ -26,6 +26,25 @@
             return 2;
         
     }
+    vector <string> dataDehoje(){
+        vector<string> dataMov;
+    time_t rawtime;
+	string a;
+	struct tm * timeinfo;
+	char buffer [80]; 
+	time (&rawtime);
+	timeinfo = localtime (&rawtime);
+	strftime (buffer,80,"%Y",timeinfo);
+	a = buffer;
+	dataMov.push_back(a);
+	strftime (buffer,80,"%m",timeinfo);
+	a = buffer;
+	dataMov.push_back(a);
+	strftime (buffer,80,"%d",timeinfo);
+	a = buffer;
+	dataMov.push_back(a);
+    return dataMov;
+    }
   
     Interface::Interface(string nomeBanco):nomeBanco_(nomeBanco){
         NU = new Banco("teste");
@@ -68,15 +87,21 @@
         string ende;
         cin >> ende;
         conf = confirmacao();
+        if(conf == 0){
         Cliente aux(cli,cpf,ende,tel);
        
         NU->setCliente(aux);
         NU->gravar_dados();
         cls();
         cout << "\t\t\t CADASTRO DE CLIENTE\n\n\n";
-        cout << "   Cliente cadastrado!" << endl;
+        cout << "\t\t\t  Cliente cadastrado!" << endl;
         cout << endl << endl << endl;
         system("pause");
+        }
+        else if(conf == 1){
+            system("pause");
+            cadastrarCliente();
+        }
         main();
         
         
@@ -88,11 +113,11 @@
     void Interface::criarConta(){
         //imprimir o nome dos clientes pra pessoa digitar qual que ela quer relacionar a uma conta
         // usar um cliente aux 
-         
+         cls();
 
          cout << "\t\t\t Criar Conta\n\n\n";
-        //mostrando dmais
-        int cont =0;
+
+        int cont =0,achou=0;
        list <Cliente> aux = NU->get_clientes();
        
         for (auto j = aux.begin(); j !=aux.end(); j++,cont++) {
@@ -109,7 +134,7 @@
         for (auto j = aux.begin(); j !=aux.end(); j++,cont++) {
 
             if(nome == j->getNome()){
-
+                achou=1;
 
                 //cout<<"cliente valido" << endl;
                 conf = confirmacao();
@@ -120,52 +145,62 @@
                     {   
                         cls();
                         cout << "\t\t\t Criar Conta\n\n\n";
-                        cout<<"1  Conta poupanca                      2  Conta corrente: "<<endl<<endl<<endl;
+                        cout<<"1  Conta poupanca                      2  Conta corrente "<<endl<<endl<<endl;
                         cin>>tipo_c;
-                        if(tipo_c == 1)
+                        if(tipo_c == 1){
                             conf = confirmacao();
                             if(conf==0){
                             NU->criar_conta_poupanca(*j);
                             cls();
                             cout << "\t\t\t Criar Conta\n\n\n";
-                            cout << endl << endl << "           Sua conta foi criada." << endl;
+                            cout <<  "                      Sua conta foi criada." << endl;
                             }
-                        
+                            else if(conf == 1){
+                                criarConta();
+                            }
+                        }
                         else if(tipo_c == 2){
                             conf = confirmacao();
                             if(conf==0){
                             NU->criar_conta_corrente(*j);
                             cls();
                             cout << "\t\t\t Criar Conta\n\n\n";
-                            cout << endl << endl << "           Sua conta foi criada." << endl;
+                            cout << "\t\t Sua conta foi criada." << endl;
+                            }
+                            else if(conf == 1){
+                                criarConta();
                             }
                         }
                     }
-                    
-                        
-                    
-                    
                     NU->gravar_dados();
                     // cout<<"criou ---------------" <<endl;
                     cout << endl << endl << endl;
                     system("pause");
                 }
                 else if(conf == 1){
+                    cls();
                     criarConta();
                 }           
             }
-            // else
-            // {
-            //     cout<<"cliente " <<nome << " Inexistente" <<endl<<"Digite novamente"<<endl;
-            //     system("pause");
-            //     criarConta();
-            // }
+           
             
-            main();
+            
      
         }
-        
-            
+         if(achou=0) {
+                cls();
+                int voltar=0;
+                cout << "\t\t\t Criar Conta\n\n\n";
+                cout<<"Cliente " <<nome << " inexistente" <<endl<< endl;
+                cout << "1  Digitar novamente        2 Voltar para o inicio"<< endl;
+                cin >> voltar;
+                if(voltar==1){
+                cls();
+                criarConta();
+                }
+                
+            }
+            main();
         
     }
     void Interface::excluirCliente(){
@@ -177,8 +212,13 @@
         
         conf = confirmacao();
         if(conf == 0){
+            cls();
             NU->excluir_cliente(cpfCnpj);
             NU->gravar_dados();
+            cls();
+             cout << "\t\t\t Excluir Cliente\n\n\n";
+             cout<< "\t\t\tCliente excluido"<<endl;
+            cout << endl << endl << endl;
             cout << endl << endl << endl;
             system("pause");
         }
@@ -195,8 +235,11 @@
         cin >> nconta;
         conf = confirmacao();
         if(conf == 0){
+            cls();
             NU->excluir_conta(nconta);
             NU->gravar_dados();
+             cout << "\t\t\t Excluir Conta\n\n\n";
+             cout<< "           Conta excluida"<<endl;
             cout << endl << endl << endl;
             system("pause");
         }
@@ -259,7 +302,6 @@
         conf = confirmacao();
         if(conf == 0){
             NU->transferencia_conta(nconta_O,nconta_D,valor);
-            cout << "        Operacao realizada.  " << endl;
             NU->gravar_dados();
             system("pause");
         }
@@ -318,6 +360,26 @@
            main();
     }
     void Interface::extrato(){
+        cls();
+        int n;
+        cout << "\t\t\t Extrato\n\n\n";
+        cout<< "Numero da conta: ";
+        cin >> n;
+        conf = confirmacao();
+        if(conf ==0){
+            cls();
+            vector<string> aux = dataDehoje();
+            cout << "\t\t\t Extrato\n\n\n";
+            NU->extrato(n,aux);
+            cout<< endl << endl;
+            system("pause");
+
+        }
+        else if(conf ==1){
+            extrato();
+        }
+        
+        main();
       
     }
     void Interface::listarClientes(){
@@ -349,7 +411,7 @@
             cout << endl;
             }
              list <Contacorrente> aux1 = NU->get_contascorrente();
-        cout << "          Contas Corrente: " << endl<<endl;
+        cout <<"           Contas Corrente: " << endl<<endl;
         for (auto cc = aux1.begin(); cc !=aux1.end(); cc++) {
             
             cout << "numero = " << cc->numConta << endl;

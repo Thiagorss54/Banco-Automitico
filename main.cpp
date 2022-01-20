@@ -13,9 +13,9 @@ using namespace std;
 int main(){
 
 
-  //  string nB = "  BANCO ";
-  //  Interface I(nB);
-  //  I.main();
+   string nB = "  BANCO ";
+   Interface I(nB);
+   I.main();
 
 
   // a.ler_dados();
@@ -35,9 +35,9 @@ int main(){
   
 //   Contacorrente cc(ac,lim);
   
-  Banco banco("Foda-se");
+  //Banco banco("BANCO");
 
-  banco.ler_dados();
+ // banco.ler_dados();
   // cout<<"aqui"<<endl;
   // list<Contapoupanca> c = banco.get_contaspoupanca();
   // banco.saque(7,10);
@@ -61,7 +61,7 @@ int main(){
   // banco.setCliente(ac);
   // banco.setConta(a);
   //   list<Contacorrente> ccc = banco.get_contascorrente();
-  banco.gravar_dados();
+  //banco.gravar_dados();
 
 //   banco.setConta(dd);
 //   banco.setConta(cc);

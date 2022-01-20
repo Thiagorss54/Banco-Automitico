@@ -9,9 +9,9 @@ bool Contacorrente::debitar(double v, string d){
 		Movimentacao mov(d,'D',v);
 		saldo -= v;
 		movimentacoes.push_back(mov);
-		for(auto i=movimentacoes.begin();i!=movimentacoes.end();i++){
-			i->print();
-		}
+		// for(auto i=movimentacoes.begin();i!=movimentacoes.end();i++){
+		// 	i->print();
+		// }
 		return true;
 	}
 	else{

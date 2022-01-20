@@ -58,13 +58,12 @@ void Contapoupanca::creditar(double v,string d){
 	a = buffer;
 	int dia = stoi(a);
 	
-	cout<< "d " << dia << endl; 
+	
     if(dia == 29 || dia == 30 || dia == 31){
         dia = 28;
     }
 	// cout<< "d " << dia << endl; //////
     Poupanca[dia - 1] += v;
-	cout << "poup" << Poupanca[dia-1]<< endl;////
     Movimentacao mov(d,'C',v); 
    movimentacoes.push_back(mov);
 	
